@@ -11,4 +11,11 @@ package flota_klasy;
  */
 public class KartaPaliwowa {
     
+    private long id_karta_paliwowa;
+    private int id_status_paliwowa;
+    private int id_lokalizacja_paliwowa;
+    private String numer_Karty;
+    private String pin_karty;
+    private int id_importu;
+    
 }
