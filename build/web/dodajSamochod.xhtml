@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="jquery-ui.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="/resources/js/validator.min.js"></script>
+    </head>
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+
+        </ui:define>    
+
+        <ui:define name="body">
+
+            <br/>
+            Podaj dane nowego pojazdu:
+            <hr></hr>
+            <h:form>
+                <br/>
+                <table class="table table-hover" >
+                    <tr>
+                        <td class="col-md-2">Nazwa pojazdu <span class="glyphicon glyphicon-star" label="nazwa_pojazdu" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnazwaSamochodu}" /></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Marka pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmarkaSamochodu}" label= "marka_pojazdu" required="true" requiredMessage="Nie podano." /></td>
+                        <td class="col-md-2">
+                            <h:form rendered="#{dodajSamochod.czyWyswietlic}">
+                                <div class="alert alert-warning alert-dismissible"  role="alert"  >
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
+                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                                </div>
+                            </h:form>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Model pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmodelSamochodu}" id="model_pojazdu" label="model_pojazdu" required="true" requiredMessage=""/>
+                        </td>
+                        <td class="col-md-2">
+                            <h:message for="model_pojazdu"></h:message>
+
+                        </td>
+
+                        <td class="col-md-2">Oznaczenie producenta pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajoznaczenieproducentaSamochodu}" label="oznaczenie_producenta_pojazdu" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Rodzaj Paliwa</td>
+                        <td class="col-md-2" >
+                            <h:selectOneMenu value="#{dodajSamochod.dodajpaliwoSamochodu}" style="color: black; width: fit-content" >
+                                <f:selectItem itemValue="Benzyna" itemLabel="Benzyna"/>
+                                <f:selectItem itemValue="Diesel" itemLabel="Diesel"/>
+                            </h:selectOneMenu> 
+
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Numer rejestracyjny <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnrrejSamochodu}" label="nr_rej" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer VIN <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajvinSamochodu}" label="nr_vin" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Status Pojazdu</td>
+                        <td class="col-md-2">
+
+                            <h:selectOneMenu value="#{dodajSamochod.dodajstatusSamochodu}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{samochodStatusZapytania.samochodStatusList}" var="lok"
+                                               itemLabel="#{lok.nazwa_samochod_status}" itemValue="#{lok.nazwa_samochod_status}"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Rodzaj Opon <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodajoponystatusSamochodu}" style="color: black; width: fit-content" >
+                                <f:selectItem itemValue="Letnie" itemLabel="Letnie"/>
+                                <f:selectItem itemValue="Zimowe" itemLabel="Zimowe"/>
+                            </h:selectOneMenu> </td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Lokalizacja Pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2">
+
+
+
+                            <h:selectOneMenu value="#{dodajSamochod.dodajlokalizacjaSamochodu}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
+                                               itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+                            </h:selectOneMenu>
+
+
+
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Lokalizacja Stała Pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2">
+
+
+                            <h:selectOneMenu value="#{dodajSamochod.dodajlokalizacjaStalaSamochodu}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaStalaList}" var="lok_st"
+                                               itemLabel="#{lok_st.nazwa_lokalizacja}" itemValue="#{lok_st.nazwa_lokalizacja}"/>
+                            </h:selectOneMenu>
+
+
+
+
+                        </td>                
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Rodzaj Pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodajrodzajSamochodu}" style="color: black; width: fit-content" >
+                                <f:selectItem itemValue="Własny" itemLabel="Własny"/>
+                                <f:selectItem itemValue="Wypożyczalnia" itemLabel="Wypożyczalnia"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer Karty Parkingowej</td>
+                        <td class="col-md-2">
+                        <h:selectOneMenu value="#{dodajSamochod.dodajkartaParkingowa}" style="color: black; width: fit-content">
+                            <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="lok"
+                                           itemLabel="#{lok.numer_karta_parkingowa}" itemValue="#{lok.numer_karta_parkingowa}"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Numer Karty Paliwowej</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajkartaPaliwowa}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Przebieg <span class="glyphicon glyphicon-star"/> </td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajprzebiegSamochodu}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Pracownik Używajacy</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajpracownikSamochodu}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer Ubezpieczenia</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajubezpieczenieSamochodu}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Pojemność Silnika</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajpojemnoscSilnika}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+                    <tr><td class="col-md-2">Rok Produkcji</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajrokProdukcji}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Data Przyjęcia Do Firmy</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPrzyjecia}"/></td>
+                        <td class="col-md-2">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">Data Pierwszej Rejestracji</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPierwszejRejestracji}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Numer GPS</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajIdGps}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Przebieg</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKilometry}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Kolor Nadwozia</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKolor}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Wersja Pojazdu</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajWersja}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Typ Samochodu</td>
+                        <td class="col-md-2">
+
+                            <h:selectOneMenu value="#{dodajSamochod.dodajIdTypSamochodu}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{typPojazduZapytania.typPojazduList}" var="tpl"
+                                               itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">VAT</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajVat}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Grupa Limit</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajIdGrupaLimit}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer Umowy Leasingu</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowyLeasingu}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Numer Umowy Serwisu</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowySerwis}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">MPK</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMpk}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Numer Umowy PRV</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajPrvUmowa}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">Umowa Z Dnia</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajUmowaZDnia}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Miejsce Parkingowe</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMiejsceParkingowe}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">Rozmiar Opon</td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajRozmiarOpon}"/></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+                </table>
+                <hr></hr>
+
+
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton value="Dodaj Samochod" action="#{dodajSamochod.dodajSamochod()}"  class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
+                </Button>
+            </h:form>
+        </ui:define>
+        <ui:define name="bottom">
+            <h:form>
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton value="Powrot" action="#{wyswietlSamochod.pokazWszystkieSamochody()}"  class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
+                </Button>
+            </h:form>
+
+
+        </ui:define>  
+
+    </ui:composition>
+</html>
