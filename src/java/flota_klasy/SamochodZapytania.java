@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+
 /**
  *
  * @author M
@@ -22,54 +23,82 @@ import javax.faces.model.ListDataModel;
 @ManagedBean
 @SessionScoped
 public class SamochodZapytania {
-    
-    long id;
-    List<Lokalizacja> listaLokalizacji;
-    List<Samochod> listaSamochodow;
-    DataModel listaSamochodowNowa;
-    Samochod samochod;
-    Lokalizacja lok;
-    
-    private Samochod aktualnySamochod;
-    private String modelSamochodu="%";
-    private String statusSamochodu="%";
-    private String nrrejSamochodu="%";
-    private String lokalizacjaSamochodu="%";
-    private String pracownikSamochodu="%";
-    private String nazwaSamochodu="%";
-    private String vinSamochodu = "%";
-    private String oznaczenieproducentaSamochodu = "%";
-    private String markaSamochodu = "%";
-    private String oponystatusSamochodu="%";
-    
-    private String paliwoSamochodu="%";
-    private String lokalizacjaStalaSamochodu = "%";
-    
-    private String rodzajSamochodu = "%";
-    private String kartaParkingowa = "%";
-    private String kartaPaliwowa = "%";
-    private String przebiegSamochodu = "%"; //dla tabeli kilometry
-    private String ubezpieczenieSamochodu = "%";
-    
-        ;
+
+    ;
     /**  
      * 
      * Creates a new instance of SamochodZapytania
      */
-    public SamochodZapytania() {
+    public static String sprawdzUnikalnoscDanych(String nazwaPola, String nazwaTabeli, String zmienna) {
+
+        String sprawdz;
+        Connection c = null;
+        String sql;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String wynikzbazy = "a";
+
+        sql = "select " + nazwaPola + " as wynik from " + nazwaTabeli + " where " + nazwaPola + " = '" + zmienna + "'";
+        System.out.println("zlozone zapytanie weryfikacyjne "+ sql);
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+
+            stmt = c.createStatement();
+
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+            wynikzbazy = rs.getString("wynik");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        if (wynikzbazy.isEmpty()) {
+            sprawdz = "tak";
+        } else {
+            sprawdz = "nie";
+        }
+        return sprawdz;
     }
     
     
-     
- 
-    //piszemyt wlasnie
-    
-    //pirzesmzy wlasnie
-    
+    public static String dodajSamochod(Samochod samochod){
+    Connection c = null;
+        Statement stmt = null;
+       
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            stmt = c.createStatement();
+            String sql = "INSERT INTO samochod(\n"
+                    + "             nazwa, marka, model, oznaczenie_producenta, paliwo, \n"
+                    + "            poj_silnika, nr_rej, nr_vin, id_status, id_opony_status, id_lokalizacja, \n"
+                    + "            id_lokalizacja_stala, id_rodzaj_pojazdu, id_karta_parkingowa, \n"
+                    + "            id_karta_paliwowa, id_importu, kilometry, pracownik_uzywajacy, \n"
+                    + "            id_ubezpieczenia)\n"
+                    + "    VALUES ( ?, ?, ?, ?, ?, \n"
+                    + "            ?, ?, ?, ?, ?, ?, \n"
+                    + "            ?, ?, ?, \n"
+                    + "            ?, ?, ?, ?, \n"
+                    + "            ?);";
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
 
-    
-    
-    
-    
- 
+       
+        
+        return "dodano";
+    }
+    //piszemyt wlasnie
+    //pirzesmzy wlasnie
 }

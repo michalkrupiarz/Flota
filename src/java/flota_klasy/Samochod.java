@@ -5,10 +5,15 @@
  */
 package flota_klasy;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author M
  */
+@ManagedBean
+@SessionScoped
 public class Samochod {
 
     private long id_samochod;
@@ -415,5 +420,7 @@ public class Samochod {
     public void setRozmiar_opon(String rozmiar_opon) {
         this.rozmiar_opon = rozmiar_opon;
     }
+
     
-}
+   }
+

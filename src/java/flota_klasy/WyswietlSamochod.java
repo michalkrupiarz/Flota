@@ -5,11 +5,7 @@
  */
 package flota_klasy;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -71,6 +67,8 @@ public class WyswietlSamochod {
     private String miejsce_parkingowe = "%";
     private String rozmiar_opon = "%";
 
+    
+    
     public String getModelSamochodu() {
         return modelSamochodu;
     }
@@ -426,8 +424,8 @@ public class WyswietlSamochod {
     }
 
     public DataModel getWyswietlSamochod() {
-
-        listaSamochodowNowa = new ListDataModel(WyszukajSamochod.getListaSamochodowNowa(statusSamochodu, nrrejSamochodu,
+        
+        listaSamochodowNowa = new ListDataModel(WyszukajSamochod.getListaSamochodowWyszukanych(statusSamochodu, nrrejSamochodu,
                 modelSamochodu, lokalizacjaSamochodu, pracownikSamochodu, nazwaSamochodu,
                 oponystatusSamochodu, oznaczenieproducentaSamochodu, vinSamochodu, markaSamochodu,
                 paliwoSamochodu, lokalizacjaStalaSamochodu, rodzajSamochodu, kartaParkingowa,
@@ -450,7 +448,8 @@ public class WyswietlSamochod {
                 miejsce_parkingowe,
                 rozmiar_opon
         ));
-
+        
+        
         return listaSamochodowNowa;
     }
 
@@ -481,7 +480,10 @@ public class WyswietlSamochod {
                 umowa_z_dnia,
                 miejsce_parkingowe,
                 rozmiar_opon));
-
+        
+              
+            
+        
         return listaSamochodowNowa;
     }
 }

@@ -5,98 +5,42 @@
  */
 package flota_klasy;
 
-
 /**
  *
  * @author M
  */
 public class WeryfikacjaDanych {
-    
-   
-    
-    public static boolean sprawdzNrRej(String nrrej){
-    
-        boolean sprawdz;
-        
-        if (nrrej.length()==7) 
-        
-        {
-            sprawdz = true;
-        }else
-        {
-            sprawdz = false;
-        }
-        return sprawdz;
-    }
-    
-    public static boolean sprawdzNazwe(String nazwa){
-        boolean sprawdz;
-        
-        if(nazwa.isEmpty()) {
-            sprawdz = false;
-        }   else
-        {
-            sprawdz=true;
-        }
-        return sprawdz;
-            
-    }
-    
-    public static boolean sprawdzMarke (String marka){
-        boolean sprawdz;
-        if(marka.isEmpty()){
-            sprawdz=false;
-        }else{
-            sprawdz=true;
-        }
-        return sprawdz;
-    }
-    
-    public static boolean sprawdzModel (String model){
-        boolean sprawdz;
-        if(model.isEmpty()) {
-            sprawdz=false;
-        }else{
-            sprawdz=true;
-        }
-        return sprawdz;
-    }
-    
-    public static boolean oznProd (String oP){
-        boolean sprawdz;
-        if(oP.isEmpty()){
-            sprawdz=false;
-        }else{
-            sprawdz=true;
-        }
-        return sprawdz;
-    }
-    
-        public static boolean Paliwo (String paliwo){
-        boolean sprawdz;
-        if(paliwo.equals("Diesel") || paliwo.equals("Benzyna")){
-            sprawdz=true;
-        }else{
-            sprawdz=false;
-        }
-        return sprawdz;
-    }
-    
-     public static boolean Vin(String vin){
-    
-        boolean sprawdz;
-        
-        if (vin.length()==17) 
-        
-        {
-            sprawdz = true;
-        }else
-        {
-            sprawdz = false;
-        }
-        return sprawdz;
-    }
-     
-    
-}
 
+    public static boolean czyWprowadzono(String nazwaPola) {
+        boolean sprawdz;
+
+        if (nazwaPola.isEmpty()) {
+            sprawdz = true;
+        } else {
+            sprawdz = false;
+        }
+
+        return sprawdz;
+    }
+
+    public static String czyPoprawnaDlugosc(String nazwaPola, int wymaganaDlugosc) {
+        String sprawdz;
+        if (nazwaPola.length() != wymaganaDlugosc) {
+            sprawdz = "nie";
+        } else {
+            sprawdz = "tak";
+        }
+
+        return sprawdz;
+    }
+
+    public static String czyUnikalny(String nazwaPola, String nazwaTabeli, String nazwaZmienna) {
+
+        String sprawdz;
+
+        sprawdz = SamochodZapytania.sprawdzUnikalnoscDanych(nazwaPola, nazwaTabeli, nazwaZmienna);
+
+        return sprawdz;
+    }
+
+}
