@@ -176,12 +176,16 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Przebieg <span class="glyphicon glyphicon-star"/> </td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajprzebiegSamochodu}"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajprzebiegSamochodu}" label="przebieg" required="true" requiredMessage="Nie podano."/></td>
                         <td class="col-md-2">
 
                         </td>
                         <td class="col-md-2">Pracownik Używajacy</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajpracownikSamochodu}"/></td>
+                        <td class="col-md-2">
+                        <h:selectOneMenu value="#{dodajSamochod.dodajpracownikSamochodu}" style="color: black; width: fit-content">
+                            <f:selectItems value="#{pracownikZapytania.listaPracownik}" var="lok"
+                                           itemLabel="#{lok.imieNazwisko}" itemValue="#{lok.imieNazwisko}"/>
+                            </h:selectOneMenu></td>
                         <td class="col-md-2">
 
                         </td>
