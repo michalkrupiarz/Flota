@@ -164,7 +164,11 @@ and open the template in the editor.
 
                         </td>
                         <td class="col-md-2">Numer Karty Paliwowej</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajkartaPaliwowa}"/></td>
+                        <td class="col-md-2">
+                         <h:selectOneMenu value="#{dodajSamochod.dodajkartaPaliwowa}" style="color: black; width: fit-content">
+                             <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="lok"
+                                            itemLabel="#{lok.numer_Karty}" itemValue="#{lok.numer_Karty}"/>
+                            </h:selectOneMenu></td>
                         <td class="col-md-2">
 
                         </td>
