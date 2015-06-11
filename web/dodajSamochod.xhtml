@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -53,7 +54,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Oznaczenie producenta pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajoznaczenieproducentaSamochodu}" id="oznaczenie_producenta_pojazdu" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajoznaczenieproducentaSamochodu}" id="oznaczenie_producenta_pojazdu" required="true" requiredMessage="Nie podano oznaczenia pojazdu."/></td>
                         <td class="col-md-2"> <h:message for="oznaczenie_producenta_pojazdu"></h:message></td>
                     </tr>
 
@@ -71,15 +72,15 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Numer rejestracyjny <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnrrejSamochodu}" label="nr_rej" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2"></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnrrejSamochodu}" id="nr_rej" required="true" requiredMessage="Nie podano numeru rejestracyjnego."/></td>
+                        <td class="col-md-2"><h:message for="nr_rej"></h:message></td>
 
                     </tr>
 
                     <tr>
                         <td class="col-md-2">Numer VIN <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajvinSamochodu}" label="nr_vin" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2">
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajvinSamochodu}" id="nr_vin" required="true" requiredMessage="Nie podano numeru VIN."/></td>
+                        <td class="col-md-2"><h:message for="nr_vin"></h:message>
 
                         </td>
                         <td class="col-md-2">Status Pojazdu</td>
@@ -171,8 +172,8 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Przebieg <span class="glyphicon glyphicon-star"/> </td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajprzebiegSamochodu}" label="przebieg" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2">
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajprzebiegSamochodu}" id="przebieg" required="true" requiredMessage="Nie podano przebiegu."/></td>
+                        <td class="col-md-2"><h:message for="przebieg"></h:message>
 
                         </td>
                         <td class="col-md-2">Pracownik Używajacy</td>
@@ -195,15 +196,18 @@ and open the template in the editor.
 
                         </td>
                         <td class="col-md-2">Pojemność Silnika</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajpojemnoscSilnika}" label="poj_silnika" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2">
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajpojemnoscSilnika}" id="poj_silnika" required="true" requiredMessage="Nie podano pojemnosci silnika."/></td>
+                        <td class="col-md-2"><h:message for="poj_silnika"></h:message>
 
                         </td>
 
                     </tr>
                     <tr><td class="col-md-2">Rok Produkcji</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajrokProdukcji}" label="rok_prod" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2">
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajrokProdukcji}" id="rok_prod" required="true" requiredMessage="Nie podano roku produkcji." pt:placeholder="rrrr">
+                                <f:validateRegex pattern="[0-9].{4}"/>
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2"><h:message for="rok_prod"></h:message>
 
                         </td>
                         <td class="col-md-2">Data Przyjęcia Do Firmy</td>
@@ -321,7 +325,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Miejsce Parkingowe</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMiejsceParkingowe}" label="miejsce_parkingowe" /></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMiejsceParkingowe}" id="miejsce_parkingowe" /></td>
                         <td class="col-md-2">
 
                         </td>
