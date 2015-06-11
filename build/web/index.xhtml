@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    </h:head>
+    
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+ 
+        </ui:define>
+    <ui:define  name= "body">
+        
+        <f:view>
+             <h:form>
+                 <br/>
+                 <br/>
+                      <div class="row">                          
+                          <div class="col-sm-6" align="left">Wyszukaj pojazd</div>
+                      </div>
+                 <br/>
+                      <div class ="row">
+                          <div class="col-sm-3">
+                               
+                                    <label  for="podaj_model_label">Model</label>
+                                    <h:inputText class="input-sm" id="podaj_model" value="#{wyswietlSamochod.modelSamochodu}"></h:inputText>
+                                
+                          </div>
+                            
+                          <div class="col-sm-3">
+                              
+                                    <label  for="podaj_nr_rej_label">Numer rejestracyjny</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_nr_rej" value="#{wyswietlSamochod.nrrejSamochodu}"></h:inputText>
+                              
+                          </div>
+                          <div class="col-sm-3">
+                                
+                                    <label  for="numer_vin_label">VIN</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_vin" value="#{wyswietlSamochod.vinSamochodu}"></h:inputText>
+                                
+                        </div>
+                          <div class="col-sm-3">
+                                
+                                    <label  for="opony_status_label">Rodzaj Opon</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_status_opon" value="#{wyswietlSamochod.oponystatusSamochodu}"></h:inputText>
+                                
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-3">
+                                
+                                    <label  for="podaj_nr_ubezpieczenia">Nr Ubezpieczenia</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_nr_ubezpieczenia" value="#{wyswietlSamochod.ubezpieczenieSamochodu}"></h:inputText>
+                                
+                           </div>
+                      
+                           <div class="col-sm-3">
+                                
+                                    <label  for="podaj_nazwe_label">Nazwa</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_nazwe" value="#{wyswietlSamochod.nazwaSamochodu}"></h:inputText>
+                                    
+                          </div>
+                           <div class="col-sm-3">
+                                
+                                    <label  for="podaj_lokalizacja_label">Lokalizacja</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_lokalizacja" value="#{wyswietlSamochod.lokalizacjaSamochodu}"></h:inputText>
+                                
+                           </div>
+                     
+                           <div class="col-sm-3">
+                                
+                                    <label  for="podaj_pracownik_label">Pracownik</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_pracownik" value="#{wyswietlSamochod.pracownikSamochodu}"></h:inputText>
+                                
+                           </div>
+                       </div>
+                        <div class="row">
+                          
+                             <div class="col-sm-3">
+                                
+                                    <label  for="model_label">Oznaczenie Producenta</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_oznaczenie_producenta" value="#{wyswietlSamochod.oznaczenieproducentaSamochodu}"></h:inputText>
+                                
+                        </div>
+                            <div class="col-sm-3">
+                                
+                                    <label  for="marka_label">Marka</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_marke" value="#{wyswietlSamochod.markaSamochodu}"></h:inputText>
+                              
+                        </div>
+                            <div class="col-sm-3">
+                                
+                                    <label  for="paliwo_label">Rodzaj Paliwa</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_paliwo" value="#{wyswietlSamochod.paliwoSamochodu}"></h:inputText>
+                              
+                        </div>
+                            <div class="col-sm-3">
+                                
+                                    <label  for="marka_label">Lokalizacja Stala</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_lokalizacje_stala" value="#{wyswietlSamochod.lokalizacjaStalaSamochodu}"></h:inputText>
+                              
+                        </div>
+                      </div>
+                      <div class="row">
+                          
+                             <div class="col-sm-3">
+                                
+                                    <label  for="rodzaj_label">Rodzaj Samochodu</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_rodzaj_samochodu" value="#{wyswietlSamochod.rodzajSamochodu}"></h:inputText>
+                                
+                        </div>
+                            <div class="col-sm-3">
+                                
+                                    <label  for="karta_parkignowa_label">Numer Karty Parkingowej</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_numer_karty_parkingowej" value="#{wyswietlSamochod.kartaParkingowa}"></h:inputText>
+                              
+                        </div>
+                            <div class="col-sm-3">
+                                
+                                    <label  for="karta_paliwowa_label">Numer Karty Paliwowej</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_numer_karty_paliwowej" value="#{wyswietlSamochod.kartaPaliwowa}"></h:inputText>
+                              
+                        </div>
+                            <div class="col-sm-3">
+                                
+                                    <label  for="przebieg_samochodu_label">Przebieg Samochodu</label>
+                                    <h:inputText size="50" class="input-sm" id="podaj_przebieg_pojazdu" value="#{wyswietlSamochod.przebiegSamochodu}"></h:inputText>
+                              
+                        </div>
+                          
+                      </div>
+                 <div class="row">
+                     <div class="col-sm-3">
+                         <label  for="podaj_status_label">Dostępność</label>
+                         <h:inputText size="50" class="input-sm" id="podaj_status" value="#{wyswietlSamochod.statusSamochodu}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="data_przyjecia_pojazdu_label">Data przyjęcia pojazdu</label>
+                         <h:inputText size="50" class="input-sm" id="data_przyjecia_pojazdu" value="#{wyswietlSamochod.data_przyjecia}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="data_pierwszej_rejestracji_label">Data pierwszej rejestracji</label>
+                         <h:inputText size="50" class="input-sm" id="data_pierwszej_rejestracji" value="#{wyswietlSamochod.data_pierwszej_rejestracji}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="numer_gps_label">Numer GPS</label>
+                         <h:inputText size="50" class="input-sm" id="id_gps" value="#{wyswietlSamochod.id_gps}"></h:inputText>
+                     </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-sm-3">
+                         <label  for="kilometry_label">Kilometry</label>
+                         <h:inputText size="50" class="input-sm" id="kilometry" value="#{wyswietlSamochod.kilometry}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="kolor_lakieru_label">Kolor lakieru</label>
+                         <h:inputText size="50" class="input-sm" id="kolor_lakieru" value="#{wyswietlSamochod.kolor}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="wersja_label">Wersja pojazdu</label>
+                         <h:inputText size="50" class="input-sm" id="wersja" value="#{wyswietlSamochod.wersja}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="id_typ_pojazdu">Typ pojazdu</label>
+                         <h:inputText size="50" class="input-sm" id="id_typ_pojazdu" value="#{wyswietlSamochod.id_typ_samochodu}"></h:inputText>
+                     </div>                                 
+                 </div>
+                 
+                  <div class="row">
+                    <div class="col-sm-3">
+                         <label  for="VAT">VAT</label>
+                         <h:inputText size="50" class="input-sm" id="vat" value="#{wyswietlSamochod.vat}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="id_grupa_limit">Grupa Limit</label>
+                         <h:inputText size="50" class="input-sm" id="id_grupa_limit" value="#{wyswietlSamochod.id_grupa_limit}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="nr_umowy_leasingu">Nr umowy leasingu</label>
+                         <h:inputText size="50" class="input-sm" id="nr_umowy_leasingu" value="#{wyswietlSamochod.nr_umowy_leasingu}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="nr_umowy_serwisu">Nr umowy serwisu</label>
+                         <h:inputText size="50" class="input-sm" id="nr_umowy_serwisu" value="#{wyswietlSamochod.nr_umowy_serwis}"></h:inputText>
+                     </div>                                 
+                 </div>
+                 
+                 <div class="row">
+                    <div class="col-sm-3">
+                         <label  for="MPK">MPK</label>
+                         <h:inputText size="50" class="input-sm" id="mpk" value="#{wyswietlSamochod.mpk}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="Prv_umowa">PRV Umowa</label>
+                         <h:inputText size="50" class="input-sm" id="prv_umowa" value="#{wyswietlSamochod.prv_umowa}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="Umowa_z_dnia">Umowa z dnia</label>
+                         <h:inputText size="50" class="input-sm" id="umowa_z_dnia" value="#{wyswietlSamochod.umowa_z_dnia}"></h:inputText>
+                     </div>
+                     <div class="col-sm-3">
+                         <label  for="miejsce_parkingowe">Miejsce Parkingowe</label>
+                         <h:inputText size="50" class="input-sm" id="miejsce_parkingowe" value="#{wyswietlSamochod.miejsce_parkingowe}"></h:inputText>
+                     </div>                                 
+                 </div>
+                 
+                 <div class="row">
+                    <div class="col-sm-3">
+                         <label  for="Rozmiar_opon">Rozmiar Opon</label>
+                         <h:inputText size="50" class="input-sm" id="rozmiar_opon" value="#{wyswietlSamochod.rozmiar_opon}"></h:inputText>
+                     </div>
+                 </div>
+                 
+                 
+                  <br/><br/> 
+                  <Button type="button" class="btn btn-default btn-sm">
+                      <h:commandButton id="submit" value="Szukaj" action="#{wyswietlSamochod.wyszukajSamochod()}" class ="btn-default">
+                                   <span class="glyphicon glyphicon-search"></span></h:commandButton>
+                  </Button>
+                  </h:form>
+            <hr></hr>
+            <h:form>
+                <h:dataTable value="#{wyswietlSamochod.wyswietlwyszukanySamochod}" var="item" class="table table-hover table-striped">
+                    <h:column>
+    			<f:facet name="header">
+    				L.p.
+    			</f:facet>
+    				<h:outputText value="#{item.id_samochod}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Model
+    			</f:facet>
+                        <h:outputText value="#{item.model}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Nr rejestracyjny
+    			</f:facet>
+                        <h:outputText value="#{item.nr_rej}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Nazwa
+    			</f:facet>
+                        <h:outputText value="#{item.nazwa}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Dostępność
+    			</f:facet>
+                        <h:outputText value="#{item.id_status}"/>
+                    </h:column>
+                     <h:column>
+    			<f:facet name="header">
+    				Lokalizacja
+    			</f:facet>
+                         <h:outputText value = "#{item.lokalizacja}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Pracownik
+    			</f:facet>
+                        <h:outputText value="#{item.pracownik_uzywajacy}"/>
+                    </h:column>
+                     <h:column>
+                         <Button type="button" class="btn btn-default btn-sm">
+                             <h:commandButton value="Przegladaj" action="#{wyswietlSamochod.pokazSamochod()}" class="btn-primary" id="Przegladaj" >
+                            <span class="glyphicon glyphicon-search"></span></h:commandButton>
+                         </Button>
+                    </h:column>
+                     
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+      
+    </ui:define>
+    </ui:composition>
+</html>

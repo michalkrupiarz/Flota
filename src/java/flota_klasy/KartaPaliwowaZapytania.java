@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package flota_klasy;
+
+/**
+ *
+ * @author M
+ */
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
+public class KartaPaliwowaZapytania {
+     public List<KartaPaliwowa> getListaKartPaliwowych(){
+        Connection c=null;
+        List <KartaPaliwowa> listaKartPaliwowych = new ArrayList<KartaPaliwowa>();
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            System.out.println("Opened database successfully");
+            stmt = c.createStatement();
+            String sql = "Select * from karta_paliwowa where karta_paliwowa.id_status_paliwowa = 1";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                KartaPaliwowa lok = new KartaPaliwowa();
+                lok.setId_karta_paliwowa(rs.getInt("id_karta_paliwowa"));
+                lok.setId_status_paliwowa(rs.getInt("id_status_paliwowa"));
+                lok.setId_lokalizacja_paliwowa(rs.getInt("id_lokalizacja_paliwowa"));
+                lok.setNumer_Karty(rs.getString("numer_karty"));
+                lok.setPin_karty(rs.getString("pin_karty"));
+                lok.setId_importu(rs.getInt("id_importu"));
+                listaKartPaliwowych.add(lok);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        return listaKartPaliwowych;
+    }
+}
