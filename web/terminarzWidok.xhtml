@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <meta charset="utf-8" />
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link href="./resources/css/bootstrap.css" rel="stylesheet" media="screen"/>
+        <script src="jquery.min.js"></script>
+        <script src="./resources/js/bootstrap.min.js"></script>
+        <link href="fullcalendar.css" rel="stylesheet" />
+        <link href="fullcalendar.print.css" rel="stylesheet" media="print" />
+        <script src="moment.min.js"></script>
+        <link href="jquery-ui.min.css" rel="stylesheet"/>
+	
+	<script src="jquery-ui.min.js"></script>
+        <script src="fullcalendar.min.js"></script>
+
+
+
+
+
+        <script>
+
+
+            $(document).ready(function () {
+
+                (function () {
+                    var date = new Date();
+                    var d = date.getDate();
+                    var m = date.getMonth();
+                    var y = date.getFullYear();
+                    $('#fullcalendar').fullCalendar({
+                        editable: true,
+                        header: {
+                            left: 'title',
+                            center: '',
+                            right: 'today, prev,next'
+                        },
+                        eventClick: function (calEvent, jsEvent, view) {
+
+                            $("#dialog").dialog({
+                                autoOpen: false,
+                                modal: true,
+                                position: {my: "left top"},
+                                buttons: [{
+                                        text: "ok",
+                                        icons: {
+                                            primary: "ui-icon-heart"
+                                        },
+                                        click: function () {
+                                            $(this).dialog("close");
+                                        }
+                                    }]
+                            }
+
+                            );
+                            $("#name").val(calEvent.id);
+                            $("#title").val(calEvent.title);
+                            $("#dialog").dialog('open');
+                        },
+                        events:'/Flota_dodawanie_pojazdu/KalendarzJsonServlet'
+                    });
+                }());
+            });
+        </script>
+        <style>
+
+            body {
+                margin: 40px 10px;
+                padding: 0;
+                font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+                font-size: 14px;
+            }
+
+            #fullcalendar {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+
+        </style>
+    </h:head>
+
+    <body>    
+
+        <div id="top">
+            <ui:insert name="top"><div class="col-sm-2"></div>
+                <div class="col-sm-8">
+
+                    <ul class="nav nav-tabs">
+
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                Samochod <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                            <h:commandButton value="Dodaj Samochod" action="#{dodajSamochod.wyswietldodajSamochod()}" class="btn-link" id="wyswietldodajSamochod" >
+                                            </h:commandButton></Button></h:form></li>
+                                <li>Usuń Samochód</li>
+                                <li>Edytuj Samochód</li>
+                                <li>Wyszukaj Samochód</li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                Terminarz <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                            <h:commandButton value="Pokaz Terminarz" action="#{terminarz.pokazTerminarz()}" class="btn-link" id="pokazTerminarz" >
+                                            </h:commandButton></Button></h:form></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-sm-3"></div>
+            </ui:insert> 
+        </div>  
+        <br/>
+        <br/>
+        <hr></hr>
+        <div id="fullcalendar"></div>
+
+        <div id="dialog" title="My dialog" style="display:none;">
+            <form>
+                <fieldset>
+                    <label for="Id">Id</label>
+                    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"/>
+                    <label for="Id">Title</label>
+                    <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all"/>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
+
+
