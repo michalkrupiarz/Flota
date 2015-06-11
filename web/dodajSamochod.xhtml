@@ -194,10 +194,7 @@ and open the template in the editor.
                     <tr>
                         <td class="col-md-2">Numer Ubezpieczenia</td>
                         <td class="col-md-2">
-                        <h:selectOneMenu value="#{dodajSamochod.dodajubezpieczenieSamochodu}" style="color: black; width: fit-content">
-                            <f:selectItems value="#{ubezpieczenieZapytania.ubezpieczeniaList}" var="lok"
-                                           itemLabel="#{lok.numer_polisy}" itemValue="#{lok.numer_polisy}"/>
-                            </h:selectOneMenu>
+                        Numer Ubezpieczenia powinien zostać dodany przy dodawaniu ubezpieczenia.
                         </td>
                         <td class="col-md-2">
 
@@ -230,8 +227,8 @@ and open the template in the editor.
                         <td class="col-md-2">Numer GPS</td>
                         <td class="col-md-2">
                          <h:selectOneMenu value="#{dodajSamochod.dodajIdGps}" style="color: black; width: fit-content">
-                            <f:selectItems value="#{GPSZapytania.gpsList}" var="lok"
-                                           itemLabel="#{lok.Gps_numer}" itemValue="#{lok.Gps_numer}"/>
+                             <f:selectItems value="#{gPSZapytania.GPSList}" var="lok"
+                                            itemLabel="#{lok.gps_numer}" itemValue="#{lok.gps_numer}"/>
                             </h:selectOneMenu>
                         </td>
                         <td class="col-md-2">
