@@ -30,27 +30,22 @@ and open the template in the editor.
                 <br/>
                 <table class="table table-hover" >
                     <tr>
-                        <td class="col-md-2">Nazwa pojazdu <span class="glyphicon glyphicon-star" label="nazwa_pojazdu" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnazwaSamochodu}" /></td>
-                        <td class="col-md-2">
-
+                        <td class="col-md-2">Nazwa pojazdu <span class="glyphicon glyphicon-star" /></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnazwaSamochodu}" id="nazwa_pojazdu" required="true" requiredMessage="Nie podano nazwy pojazdu."/>  </td>
+                        <td class="col-md-2"><h:message  for="nazwa_pojazdu"></h:message>
+                          
                         </td>
                         <td class="col-md-2">Marka pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmarkaSamochodu}" label= "marka_pojazdu" required="true" requiredMessage="Nie podano." /></td>
-                        <td class="col-md-2">
-                            <h:form rendered="#{dodajSamochod.czyWyswietlic}">
-                                <div class="alert alert-warning alert-dismissible"  role="alert"  >
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
-                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
-                                </div>
-                            </h:form>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmarkaSamochodu}" id= "marka_pojazdu" required="true" requiredMessage="Nie podano marki pojazdu." /></td>
+                        <td class="col-md-2"><h:message  for="marka_pojazdu"></h:message>
+                            
 
                         </td>
                     </tr>
 
                     <tr>
                         <td class="col-md-2">Model pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmodelSamochodu}" id="model_pojazdu" label="model_pojazdu" required="true" requiredMessage=""/>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmodelSamochodu}" id="model_pojazdu" label="model_pojazdu" required="true" requiredMessage="Nie podano modelu pojazdu"/>
                         </td>
                         <td class="col-md-2">
                             <h:message for="model_pojazdu"></h:message>
@@ -58,8 +53,8 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Oznaczenie producenta pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajoznaczenieproducentaSamochodu}" label="oznaczenie_producenta_pojazdu" required="true" requiredMessage="Nie podano."/></td>
-                        <td class="col-md-2"></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajoznaczenieproducentaSamochodu}" id="oznaczenie_producenta_pojazdu" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"> <h:message for="oznaczenie_producenta_pojazdu"></h:message></td>
                     </tr>
 
                     <tr>
@@ -157,8 +152,8 @@ and open the template in the editor.
                         <td class="col-md-2">Numer Karty Parkingowej</td>
                         <td class="col-md-2">
                         <h:selectOneMenu value="#{dodajSamochod.dodajkartaParkingowa}" style="color: black; width: fit-content">
-                            <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="lok"
-                                           itemLabel="#{lok.numer_karta_parkingowa}" itemValue="#{lok.numer_karta_parkingowa}"/>
+                            <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="kparkingowa"
+                                           itemLabel="#{kparkingowa.numer_karta_parkingowa}" itemValue="#{kparkingowa.numer_karta_parkingowa}"/>
                             </h:selectOneMenu></td>
                         <td class="col-md-2">
 
@@ -166,8 +161,8 @@ and open the template in the editor.
                         <td class="col-md-2">Numer Karty Paliwowej</td>
                         <td class="col-md-2">
                          <h:selectOneMenu value="#{dodajSamochod.dodajkartaPaliwowa}" style="color: black; width: fit-content">
-                             <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="lok"
-                                            itemLabel="#{lok.numer_Karty}" itemValue="#{lok.numer_Karty}"/>
+                             <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="kpaliwowa"
+                                            itemLabel="#{kpaliwowa.numer_Karty}" itemValue="#{kpaliwowa.numer_Karty}"/>
                             </h:selectOneMenu></td>
                         <td class="col-md-2">
 
