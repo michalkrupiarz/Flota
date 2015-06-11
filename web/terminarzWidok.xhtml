@@ -18,8 +18,8 @@
         <link href="fullcalendar.print.css" rel="stylesheet" media="print" />
         <script src="moment.min.js"></script>
         <link href="jquery-ui.min.css" rel="stylesheet"/>
-	
-	<script src="jquery-ui.min.js"></script>
+
+        <script src="jquery-ui.min.js"></script>
         <script src="fullcalendar.min.js"></script>
 
 
@@ -60,12 +60,51 @@
                                     }]
                             }
 
-                            );
+                            )
                             $("#name").val(calEvent.id);
                             $("#title").val(calEvent.title);
                             $("#dialog").dialog('open');
                         },
                         events:'/Flota_dodawanie_pojazdu/KalendarzJsonServlet'
+                                /*[   
+                                    {
+                                        title: 'All Day Event',
+                                        start: '2015-06-01'
+                                    },
+                                    {
+                                        title: 'Long Event',
+                                        start: '2014-06-07',
+                                        end: '2015-06-10'
+                                    },
+                                    {
+                                        id: 999,
+                                        title: 'Repeating Event',
+                                        start: '2015-06-09T16:00:00'
+                                    },
+                                    {
+                                        id: 999,
+                                        title: 'Repeating Event',
+                                        start: '2015-06-16T16:00:00'
+                                    },
+                                    {
+                                        title: 'Meeting',
+                                        start: '2014-06-12T10:30:00',
+                                        end: '2015-06-12T12:30:00'
+                                    },
+                                    {
+                                        title: 'Lunch',
+                                        start: '2015-06-12T12:00:00'
+                                    },
+                                    {
+                                        title: 'Birthday Party',
+                                        start: '2015-06-13T07:00:00'
+                                    },
+                                    {
+                                        title: 'Click for Google',
+                                        url: 'http://google.com/',
+                                        start: '2015-06-28'
+                                    }
+                                ]*/
                     });
                 }());
             });
@@ -83,7 +122,7 @@
                 max-width: 900px;
                 margin: 0 auto;
             }
-            
+
 
         </style>
     </h:head>
@@ -102,7 +141,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><h:form><Button type="button" class="btn btn-default btn-sm">
-                                            <h:commandButton value="Dodaj Samochod" action="#{dodajSamochod.wyswietldodajSamochod()}" class="btn-link" id="wyswietldodajSamochod" >
+                                            <h:commandButton value="Dodaj Samochod" action="#{dodajSamochod.wywietldodajSamochod()}" class="btn-link" id="wyswietldodajSamochod" >
                                             </h:commandButton></Button></h:form></li>
                                 <li>Usuń Samochód</li>
                                 <li>Edytuj Samochód</li>

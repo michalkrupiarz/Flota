@@ -1,15 +1,10 @@
+package flota_klasy;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package flota_klasy;
-
-/**
- *
- * @author michal.krupiarz
- */
-
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +17,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class KalendarzJsonServlet {
+/**
+ *
+ * @author michal.krupiarz
+ */
+public class KalendarzJsonServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List l = new ArrayList();
         List <Wypozyczenie> listaWypozyczen = new ArrayList<Wypozyczenie>();
@@ -66,4 +66,7 @@ public class KalendarzJsonServlet {
         PrintWriter out = response.getWriter();
         out.write(new Gson().toJson(l));
     }
+
 }
+
+
