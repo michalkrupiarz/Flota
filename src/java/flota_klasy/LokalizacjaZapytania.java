@@ -42,6 +42,7 @@ public class LokalizacjaZapytania {
                 lok.setId_lokalizacja(rs.getInt("id_lokalizacja"));
                 lok.setNazwa_lokalizacja(rs.getString("nazwa_lokalizacja"));
                 listaLokalizacji.add(lok);
+                
 
             }
         } catch (Exception e) {
