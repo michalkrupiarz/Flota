@@ -35,12 +35,12 @@ and open the template in the editor.
                         <td class="col-md-2">Nazwa pojazdu <span class="glyphicon glyphicon-star" /></td>
                         <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnazwaSamochodu}" id="nazwa_pojazdu" required="true" requiredMessage="Nie podano nazwy pojazdu."/>  </td>
                         <td class="col-md-2"><h:message  for="nazwa_pojazdu"></h:message>
-                          
+
                         </td>
                         <td class="col-md-2">Marka pojazdu <span class="glyphicon glyphicon-star"/></td>
                         <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmarkaSamochodu}" id= "marka_pojazdu" required="true" requiredMessage="Nie podano marki pojazdu." /></td>
                         <td class="col-md-2"><h:message  for="marka_pojazdu"></h:message>
-                            
+
 
                         </td>
                     </tr>
@@ -153,18 +153,18 @@ and open the template in the editor.
                     <tr>
                         <td class="col-md-2">Numer Karty Parkingowej</td>
                         <td class="col-md-2">
-                        <h:selectOneMenu value="#{dodajSamochod.dodajkartaParkingowa}" style="color: black; width: fit-content">
-                            <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="kparkingowa"
-                                           itemLabel="#{kparkingowa.numer_karta_parkingowa}" itemValue="#{kparkingowa.numer_karta_parkingowa}"/>
+                            <h:selectOneMenu value="#{dodajSamochod.dodajkartaParkingowa}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="kparkingowa"
+                                               itemLabel="#{kparkingowa.numer_karta_parkingowa}" itemValue="#{kparkingowa.numer_karta_parkingowa}"/>
                             </h:selectOneMenu></td>
                         <td class="col-md-2">
 
                         </td>
                         <td class="col-md-2">Numer Karty Paliwowej</td>
                         <td class="col-md-2">
-                         <h:selectOneMenu value="#{dodajSamochod.dodajkartaPaliwowa}" style="color: black; width: fit-content">
-                             <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="kpaliwowa"
-                                            itemLabel="#{kpaliwowa.numer_Karty}" itemValue="#{kpaliwowa.numer_Karty}"/>
+                            <h:selectOneMenu value="#{dodajSamochod.dodajkartaPaliwowa}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="kpaliwowa"
+                                               itemLabel="#{kpaliwowa.numer_Karty}" itemValue="#{kpaliwowa.numer_Karty}"/>
                             </h:selectOneMenu></td>
                         <td class="col-md-2">
 
@@ -172,16 +172,12 @@ and open the template in the editor.
                     </tr>
 
                     <tr>
-                        <td class="col-md-2">Przebieg <span class="glyphicon glyphicon-star"/> </td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajprzebiegSamochodu}" id="przebieg" required="true" requiredMessage="Nie podano przebiegu."/></td>
-                        <td class="col-md-2"><h:message for="przebieg"></h:message>
-
-                        </td>
+                     
                         <td class="col-md-2">Pracownik Używajacy</td>
                         <td class="col-md-2">
-                        <h:selectOneMenu value="#{dodajSamochod.dodajpracownikSamochodu}" style="color: black; width: fit-content">
-                            <f:selectItems value="#{pracownikZapytania.listaPracownik}" var="lok"
-                                           itemLabel="#{lok.imieNazwisko}" itemValue="#{lok.imieNazwisko}"/>
+                            <h:selectOneMenu value="#{dodajSamochod.dodajpracownikSamochodu}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{pracownikZapytania.listaPracownik}" var="lok"
+                                               itemLabel="#{lok.imieNazwisko}" itemValue="#{lok.imieNazwisko}"/>
                             </h:selectOneMenu></td>
                         <td class="col-md-2">
 
@@ -191,7 +187,7 @@ and open the template in the editor.
                     <tr>
                         <td class="col-md-2">Numer Ubezpieczenia</td>
                         <td class="col-md-2">
-                        Numer Ubezpieczenia powinien zostać dodany przy dodawaniu ubezpieczenia.
+                            Numer Ubezpieczenia powinien zostać dodany przy dodawaniu ubezpieczenia.
                         </td>
                         <td class="col-md-2">
 
@@ -205,13 +201,13 @@ and open the template in the editor.
                     </tr>
                     <tr><td class="col-md-2">Rok Produkcji</td>
                         <td class="col-md-2">
-                                <h:inputText value="#{dodajSamochod.dodajrokProdukcji}" 
-                                                          id="rok_prod"                
-                                                          required="true" 
-                                                          requiredMessage="Nie podano roku produkcji." 
-                                                          pt:placeholder="rrrr" 
-                                                          validatorMessage="Podana wartosc nie odpowiada wzorowi (4 znaki).">                                                                                      
-                                <f:validateRegex pattern="([0-9]).{3}" for="rok_produkcji"/>
+                            <h:inputText value="#{dodajSamochod.dodajrokProdukcji}" 
+                                         id="rok_prod"                
+                                         required="true" 
+                                         requiredMessage="Nie podano roku produkcji."  
+                                         pt:placeholder="rrrr" 
+                                         validatorMessage="Podana wartosc nie odpowiada wzorowi (4 znaki).">                                                                                                                                      
+                                <f:validateRegex pattern="([0-9]).{3}" for="rok_produkcji"    />      
                             </h:inputText>
                         </td>
                         <td class="col-md-2"><h:message for="rok_prod"></h:message>
@@ -219,14 +215,14 @@ and open the template in the editor.
                         </td>
                         <td class="col-md-2">Data Przyjęcia Do Firmy</td>
                         <td class="col-md-2">
-                                <h:inputText value="#{dodajSamochod.dodajdataPrzyjecia}" 
-                                                          id="data_przyjecia" 
-                                                          required="true" 
-                                                          requiredMessage="Nie podanp daty przyjęcia do firmy."
-                                                          pt:placeholder="rrrr-mm-dd"
-                                                          validatorMessage="Podano bledną datę.">
-                                <f:validateRegex pattern="([0-9]).{3}+([-])+[0-9]).{1}+([-])+[0-9]).{1}" for="data_przyjecia"/>
-                                </h:inputText>
+                            <h:inputText value="#{dodajSamochod.dodajdataPrzyjecia}" 
+                                         id="data_przyjecia" 
+                                         required="true" 
+                                         requiredMessage="Nie podanp daty przyjęcia do firmy."
+                                         pt:placeholder="rrrr-mm-dd"
+                                         validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_przyjecia"/>
+                            </h:inputText>
                         </td>
                         <td class="col-md-2"> <h:message for="data_przyjecia"></h:message>
                         </td>
@@ -234,16 +230,24 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td class="col-md-2">Data Pierwszej Rejestracji</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPierwszejRejestracji}" label="data_rej" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPierwszejRejestracji}" 
+                                                          id="data_pierw_rej" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano."
+                                                          pt:placeholder="rrrr-mm-dd"
+                                                          validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_pierw_rej"/>
+                            </h:inputText>
+                        </td>
                         <td class="col-md-2">
-
+                            <h:message for="ddata_pierw_rej"></h:message>
                         </td>
 
                         <td class="col-md-2">Numer GPS</td>
                         <td class="col-md-2">
-                         <h:selectOneMenu value="#{dodajSamochod.dodajIdGps}" style="color: black; width: fit-content">
-                             <f:selectItems value="#{gPSZapytania.GPSList}" var="lok"
-                                            itemLabel="#{lok.gps_numer}" itemValue="#{lok.gps_numer}"/>
+                            <h:selectOneMenu value="#{dodajSamochod.dodajIdGps}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{gPSZapytania.GPSList}" var="lok"
+                                               itemLabel="#{lok.gps_numer}" itemValue="#{lok.gps_numer}"/>
                             </h:selectOneMenu>
                         </td>
                         <td class="col-md-2">
@@ -254,37 +258,49 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Przebieg</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKilometry}" label="przebieg" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKilometry}" 
+                                                          id="przebieg" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano przebiegu."
+                                                          validatorMessage="Podano błędny przebieg.">
+                                <f:validateRegex for="przebieg" pattern="[0-9]+"/>
+                            </h:inputText>
+                        </td>
                         <td class="col-md-2">
-
+                            <h:message for="przebieg"/>
                         </td>
 
                         <td class="col-md-2">Kolor Nadwozia</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKolor}" label="kolor" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKolor}" id="kolor" required="true" requiredMessage="Nie podano koloru nadwozia."/></td>
                         <td class="col-md-2">
-
+                            <h:message for="kolor"/>
                         </td>
 
                     </tr>
 
                     <tr>
                         <td class="col-md-2">Wersja Pojazdu</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajWersja}" label="wersja" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajWersja}" id="wersja" required="true" requiredMessage="Nie podano wersji pojazdu."/></td>
                         <td class="col-md-2">
-
+                            <h:message for="wersja"/>
                         </td>
 
                         <td class="col-md-2">Typ Samochodu</td>
                         <td class="col-md-2">
 
-                            <h:selectOneMenu value="#{dodajSamochod.dodajIdTypSamochodu}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodajIdTypSamochodu}"
+                                             style="color: black; width: fit-content" 
+                                             id="typ_samochodu" 
+                                             required="true" 
+                                             requiredMessage="Nie podano typu samochodu">
                                 <f:selectItems value="#{typPojazduZapytania.typPojazduList}" var="tpl"
                                                itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
-                            </h:selectOneMenu>
+                                <f:validateRegex pattern="[a-zA-Z]+" for="typ_samochodu"/>
+                             </h:selectOneMenu>
 
                         </td>
                         <td class="col-md-2">
-
+                            <h:message for="typ_samochodu"/>
                         </td>
 
                     </tr>
