@@ -8,6 +8,7 @@ package flota_klasy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +22,18 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class LokalizacjaZapytania {
- 
-     public List<Lokalizacja> getLokalizacjaList() {
+
+    public List<Lokalizacja> getLokalizacjaList() {
         Connection c = null;
         List<Lokalizacja> listaLokalizacji = new ArrayList<Lokalizacja>();
         Statement stmt = null;
-        
+
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully");
+            System.out.println("Opened database successfully lokalizacja");
             stmt = c.createStatement();
             String sql = "Select * from lokalizacja";
             ResultSet rs = stmt.executeQuery(sql);
@@ -49,16 +50,23 @@ public class LokalizacjaZapytania {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-
+        
+        
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return listaLokalizacji;
-      
-   }
-     
-   public List<Lokalizacja> getLokalizacjaStalaList() {
+
+    }
+
+    public List<Lokalizacja> getLokalizacjaStalaList() {
         Connection c = null;
         List<Lokalizacja> listaLokalizacjiStalych = new ArrayList<Lokalizacja>();
         Statement stmt = null;
-        
+
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
@@ -81,19 +89,23 @@ public class LokalizacjaZapytania {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return listaLokalizacjiStalych;
-      
-   }  
-     
-     
-   public static int iloscLokalizacji(){
-       int ilosc=0;   
-       
-       Connection c = null;
-       Statement stmt = null;
-       
-       try {
+
+    }
+
+    public static int iloscLokalizacji() {
+        int ilosc = 0;
+
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
@@ -102,19 +114,23 @@ public class LokalizacjaZapytania {
             stmt = c.createStatement();
             String sql = "Select max(id_lokalizacja) as ilosc_lok from lokalizacja";
             ResultSet rs = stmt.executeQuery(sql);
-            
+
             ilosc = rs.getInt("ilosc_lok");
 
-            
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-       
-       return ilosc;
-   }
-    
-   
-   
+
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ilosc;
+    }
+
 }

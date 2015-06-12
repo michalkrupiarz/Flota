@@ -9,10 +9,10 @@ package flota_klasy;
  *
  * @author michal.krupiarz
  */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +22,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class KartaParkingowaZapytania {
-    public List<KartaParkingowa> getListaKartParkingowych(){
-        Connection c=null;
-        List <KartaParkingowa> listaKartParkingowych = new ArrayList<KartaParkingowa>();
+
+    public List<KartaParkingowa> getListaKartParkingowych() {
+        Connection c = null;
+        List<KartaParkingowa> listaKartParkingowych = new ArrayList<KartaParkingowa>();
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -51,7 +52,12 @@ public class KartaParkingowaZapytania {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return listaKartParkingowych;
     }
 }
