@@ -204,7 +204,7 @@ and open the template in the editor.
                     </tr>
                     <tr><td class="col-md-2">Rok Produkcji</td>
                         <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajrokProdukcji}" id="rok_prod" required="true" requiredMessage="Nie podano roku produkcji." pt:placeholder="rrrr">
-                                <f:validateRegex pattern="[0-9].{4}"/>
+                                <f:validateRegex pattern="([0-9]).{3}"/>
                             </h:inputText>
                         </td>
                         <td class="col-md-2"><h:message for="rok_prod"></h:message>

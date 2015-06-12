@@ -12,6 +12,7 @@ package flota_klasy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,14 @@ public class samochodStatusZapytania {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-
+        
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
         return lista;
     }
 }
