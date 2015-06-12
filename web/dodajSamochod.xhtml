@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      >
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -203,16 +204,31 @@ and open the template in the editor.
 
                     </tr>
                     <tr><td class="col-md-2">Rok Produkcji</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajrokProdukcji}" id="rok_prod" required="true" requiredMessage="Nie podano roku produkcji." pt:placeholder="rrrr">
-                                <f:validateRegex pattern="([0-9]).{3}"/>
+                        <td class="col-md-2">
+                                <h:inputText value="#{dodajSamochod.dodajrokProdukcji}" 
+                                                          id="rok_prod"                
+                                                          required="true" 
+                                                          requiredMessage="Nie podano roku produkcji." 
+                                                          pt:placeholder="rrrr" 
+                                                          validatorMessage="Podana wartosc nie odpowiada wzorowi (4 znaki).">                                                                                      
+                                <f:validateRegex pattern="([0-9]).{3}" for="rok_produkcji"/>
                             </h:inputText>
                         </td>
                         <td class="col-md-2"><h:message for="rok_prod"></h:message>
 
                         </td>
                         <td class="col-md-2">Data Przyjęcia Do Firmy</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPrzyjecia}" id="data_przyjecia" required="true" requiredMessage="Nie podano."/></td>
                         <td class="col-md-2">
+                                <h:inputText value="#{dodajSamochod.dodajdataPrzyjecia}" 
+                                                          id="data_przyjecia" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podanp daty przyjęcia do firmy."
+                                                          pt:placeholder="rrrr-mm-dd"
+                                                          validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="([0-9]).{3}+([-])+[0-9]).{1}+([-])+[0-9]).{1}" for="data_przyjecia"/>
+                                </h:inputText>
+                        </td>
+                        <td class="col-md-2"> <h:message for="data_przyjecia"></h:message>
                         </td>
 
                     </tr>
