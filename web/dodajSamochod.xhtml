@@ -240,7 +240,7 @@ and open the template in the editor.
                             </h:inputText>
                         </td>
                         <td class="col-md-2">
-                            <h:message for="ddata_pierw_rej"></h:message>
+                            <h:message for="data_pierw_rej"></h:message>
                         </td>
 
                         <td class="col-md-2">Numer GPS</td>
@@ -295,7 +295,7 @@ and open the template in the editor.
                                              requiredMessage="Nie podano typu samochodu">
                                 <f:selectItems value="#{typPojazduZapytania.typPojazduList}" var="tpl"
                                                itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
-                                <f:validateRegex pattern="[a-zA-Z]+" for="typ_samochodu"/>
+                                <f:validateRegex pattern="[^-]+" for="typ_samochodu"/>
                              </h:selectOneMenu>
 
                         </td>
