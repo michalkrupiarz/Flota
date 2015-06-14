@@ -172,7 +172,7 @@ and open the template in the editor.
                     </tr>
 
                     <tr>
-                     
+
                         <td class="col-md-2">Pracownik Używajacy</td>
                         <td class="col-md-2">
                             <h:selectOneMenu value="#{dodajSamochod.dodajpracownikSamochodu}" style="color: black; width: fit-content">
@@ -233,7 +233,7 @@ and open the template in the editor.
                         <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPierwszejRejestracji}" 
                                                           id="data_pierw_rej" 
                                                           required="true" 
-                                                          requiredMessage="Nie podano."
+                                                          requiredMessage="Nie podano daty pierwszej rejestracji."
                                                           pt:placeholder="rrrr-mm-dd"
                                                           validatorMessage="Podano bledną datę.">
                                 <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_pierw_rej"/>
@@ -296,7 +296,7 @@ and open the template in the editor.
                                 <f:selectItems value="#{typPojazduZapytania.typPojazduList}" var="tpl"
                                                itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
                                 <f:validateRegex pattern="[^-]+" for="typ_samochodu"/>
-                             </h:selectOneMenu>
+                            </h:selectOneMenu>
 
                         </td>
                         <td class="col-md-2">
@@ -307,57 +307,85 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">VAT</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajVat}"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajVat}"
+                                                          id="dodaj_Vat"
+                                                          required="true"
+                                                          requiredMessage="Nie podanu VAT."/></td>
                         <td class="col-md-2">
-
+                            <h:message for="podaj_Vat"/>
                         </td>
 
                         <td class="col-md-2">Grupa Limit</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajIdGrupaLimit}"/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajIdGrupaLimit}"
+                                                          id="grupa_limit"
+                                                          required="true"
+                                                          requiredMessage="Nie podano grupy limit."/></td>
                         <td class="col-md-2">
-
+                            <h:message for="grupa_limit"/>
                         </td>
 
                     </tr>
 
                     <tr>
                         <td class="col-md-2">Numer Umowy Leasingu</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowyLeasingu}" label="nr_leasing" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowyLeasingu}" 
+                                                          id="nr_leasing" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano numeru leasingu."/></td>
                         <td class="col-md-2">
-
+                            <h:message for ="nr_leasing"/>
                         </td>
 
                         <td class="col-md-2">Numer Umowy Serwisu</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowySerwis}" label="nr_umowy_serwis" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowySerwis}" 
+                                                          id="nr_umowy_serwis" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano numeru umowy serwisu."/></td>
                         <td class="col-md-2">
-
+                            <h:message for ="nr_umowy_serwis"/>
                         </td>
 
                     </tr>
 
                     <tr>
                         <td class="col-md-2">MPK</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMpk}" label="mpk" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMpk}" 
+                                                          id="mpk" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano MPK."/></td>
                         <td class="col-md-2">
-
+                            <h:message for ="mpk"/>
                         </td>
 
                         <td class="col-md-2">Numer Umowy PRV</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajPrvUmowa}" label="prv_umowa" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajPrvUmowa}" 
+                                                          id="prv_umowa" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano nr umowy PRV."/></td>
                         <td class="col-md-2">
-
+                            <h:message for="prv_umowa"/>
                         </td>
 
                     </tr>
                     <tr>
                         <td class="col-md-2">Umowa Z Dnia</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajUmowaZDnia}" label="umowa_z_dnia" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2">
+                            <h:inputText value="#{dodajSamochod.dodajUmowaZDnia}" 
+                                         id="umowa_z_dnia" 
+                                         required="true" requiredMessage="Nie podano daty umowy z dnia."
+                                         pt:placeholder="rrrr-mm-dd"
+                                         validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="umowa_z_dnia"/>
+                            </h:inputText>
+                        </td>
+
                         <td class="col-md-2">
 
+                            <h:message for="umowa_z_dnia"/>
                         </td>
 
                         <td class="col-md-2">Miejsce Parkingowe</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMiejsceParkingowe}" id="miejsce_parkingowe" /></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMiejsceParkingowe}" id="miejsce_parkingowe"/></td>
                         <td class="col-md-2">
 
                         </td>
