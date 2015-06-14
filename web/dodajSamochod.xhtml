@@ -365,9 +365,12 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td class="col-md-2">Rozmiar Opon</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajRozmiarOpon}" label="rozm_opon" required="true" requiredMessage="Nie podano."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajRozmiarOpon}" 
+                                                          id="rozm_opon" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano rozmiaru opon."/></td>
                         <td class="col-md-2">
-
+                            <h:message for="rozm_opon"/>
                         </td>
                     </tr>
                 </table>
