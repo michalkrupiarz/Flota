@@ -67,8 +67,6 @@ public class WyswietlSamochod {
     private String miejsce_parkingowe = "%";
     private String rozmiar_opon = "%";
 
-    
-    
     public String getModelSamochodu() {
         return modelSamochodu;
     }
@@ -424,7 +422,7 @@ public class WyswietlSamochod {
     }
 
     public DataModel getWyswietlSamochod() {
-        
+
         listaSamochodowNowa = new ListDataModel(WyszukajSamochod.getListaSamochodowWyszukanych(statusSamochodu, nrrejSamochodu,
                 modelSamochodu, lokalizacjaSamochodu, pracownikSamochodu, nazwaSamochodu,
                 oponystatusSamochodu, oznaczenieproducentaSamochodu, vinSamochodu, markaSamochodu,
@@ -448,13 +446,39 @@ public class WyswietlSamochod {
                 miejsce_parkingowe,
                 rozmiar_opon
         ));
-        
-        
+
         return listaSamochodowNowa;
     }
 
     public String wyszukajSamochod() {
         return "wyszukaneSamochody";
+    }
+
+    public DataModel getWyswietlWszystkieSamochody() {
+        listaSamochodowNowa = new ListDataModel(WyszukajSamochod.getListaSamochodowNowa(statusSamochodu, nrrejSamochodu,
+                modelSamochodu, lokalizacjaSamochodu, pracownikSamochodu, nazwaSamochodu,
+                oponystatusSamochodu, oznaczenieproducentaSamochodu, vinSamochodu, markaSamochodu,
+                paliwoSamochodu, lokalizacjaStalaSamochodu, rodzajSamochodu, kartaParkingowa,
+                kartaPaliwowa, przebiegSamochodu, ubezpieczenieSamochodu, poj_silnika,
+                rok_produkcji,
+                data_przyjecia,
+                data_pierwszej_rejestracji,
+                id_gps,
+                kilometry,
+                kolor,
+                wersja,
+                id_typ_samochodu,
+                vat,
+                id_grupa_limit,
+                nr_umowy_leasingu,
+                nr_umowy_serwis,
+                mpk,
+                prv_umowa,
+                umowa_z_dnia,
+                miejsce_parkingowe,
+                rozmiar_opon));
+
+        return listaSamochodowNowa;
     }
 
     public DataModel getWyswietlwyszukanySamochod() {
@@ -480,10 +504,7 @@ public class WyswietlSamochod {
                 umowa_z_dnia,
                 miejsce_parkingowe,
                 rozmiar_opon));
-        
-              
-            
-        
+
         return listaSamochodowNowa;
     }
 }

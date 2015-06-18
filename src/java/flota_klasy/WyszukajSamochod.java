@@ -314,37 +314,38 @@ public class WyszukajSamochod {
 
             stmt = c.createStatement();
             String sql = "select samochod.id_samochod as id, samochod.nazwa as nazwa, samochod.marka as marka, samochod.model as model,\n"
-                    + "samochod.oznaczenie_producenta as oznaczenie_producenta, samochod.paliwo as paliwo, samochod.nr_rej as nr_rej,\n"
-                    + "samochod.nr_vin as nr_vin, samochod_status.nazwa_samochod_status as status, opony_status.nazwa_opony_status as opony_status,\n"
-                    + "lokalizacja.nazwa_lokalizacja as lok, lokalizacja_stala.nazwa_lokalizacja as lok_stala, rodzaj_pojazdu.nazwa as rodzaj_pojazdu,\n"
-                    + "karta_parkingowa.numer_karta_parkingowa as karta_parkingowa, karta_paliwowa.numer_karty as karta_paliwowa, samochod.przebieg_calkowity as przebieg_calkowity,\n"
-                    + "concat(pracownik.imie ,' ', pracownik.nazwisko) as pracownik, ubezpieczenie.numer_polisy as ubezpieczenie,\n"
-                    + "samochod.rok_produkcji as rok_produkcji, samochod.data_przyjecia as data_przyjecia, samochod.data_pierwszej_rejestracji as data_pierwszej_rejestracji,\n"
-                    + "gps.gps_numer as id_gps, samochod.kilometry as kilometry, samochod.kolor as kolor, samochod.wersja as wersja,\n"
-                    + "typ_samochod.nazwa as id_typ_samochod, samochod.vat as vat, grupa_limit.nazwa as id_grupa_limit, samochod.nr_umowy_leasingu as nr_umowy_leasingu,\n"
-                    + "samochod.nr_umowy_serwis as nr_umowy_serwis, samochod.mpk as mpk, samochod.prv_umowa as prv_umowa, samochod.umowa_z_dnia as umowa_z_dnia, \n"
-                    + "samochod.miejsce_parkingowe as miejsce_parkingowe, samochod.rozmiar_opon as rozmiar_opon\n"
-                    + "from samochod \n"
-                    + "left join opony_status on samochod.id_opony_status = opony_status.id_opony_status\n"
-                    + "left join samochod_status on  samochod.id_status = samochod_status.id_samochod_status\n"
-                    + "left join lokalizacja  on samochod.id_lokalizacja = lokalizacja.id_lokalizacja\n"
-                    + "left join lokalizacja as lokalizacja_stala on samochod.id_lokalizacja_stala = lokalizacja_stala.id_lokalizacja\n"
-                    + "left join rodzaj_pojazdu on samochod.id_rodzaj_pojazdu = rodzaj_pojazdu.id_rodzaj_pojazdu\n"
-                    + "left join karta_parkingowa on samochod.id_karta_parkingowa = karta_parkingowa.id_karta_parkingowa\n"
-                    + "left join karta_paliwowa on samochod.id_karta_paliwowa = karta_paliwowa.id_karta_paliwowa\n"
-                    + "left join pracownik on samochod.id_samochod = pracownik.id_samochod\n"
-                    + "left join ubezpieczenie on samochod.id_samochod = ubezpieczenie.id_samochodu\n"
-                    + "left join gps on samochod.id_samochod = gps.id_samochod\n"
-                    + "left join typ_samochod on samochod.id_typ_samochod = typ_samochod.id_typ_samochod\n"
-                    + "left join grupa_limit on samochod.id_grupa_limit = grupa_limit.id_grupa_limit\n"
-                    + "where samochod.id_samochod is not null\n"
-                    + " order by samochod.id_samochod asc";
+                + "samochod.oznaczenie_producenta as oznaczenie_producenta, samochod.paliwo as paliwo, samochod.nr_rej as nr_rej,\n"
+                + "samochod.nr_vin as nr_vin, samochod_status.nazwa_samochod_status as status, opony_status.nazwa_opony_status as opony_status,\n"
+                + "lokalizacja.nazwa_lokalizacja as lok, lokalizacja_stala.nazwa_lokalizacja as lok_stala, rodzaj_pojazdu.nazwa as rodzaj_pojazdu,\n"
+                + "karta_parkingowa.numer_karta_parkingowa as karta_parkingowa, karta_paliwowa.numer_karty as karta_paliwowa, samochod.przebieg_calkowity as przebieg_calkowity,\n"
+                + "concat(pracownik.imie ,' ', pracownik.nazwisko) as pracownik, ubezpieczenie.numer_polisy as ubezpieczenie,\n"
+                + "samochod.poj_silnika as poj_silnika, samochod.rok_produkcji as rok_produkcji, samochod.data_przyjecia as data_przyjecia, samochod.data_pierwszej_rejestracji as data_pierwszej_rejestracji,\n"
+                + "gps.gps_numer as id_gps, samochod.kilometry as kilometry, samochod.kolor as kolor, samochod.wersja as wersja,\n"
+                + "typ_samochod.nazwa as id_typ_samochod, samochod.vat as vat, grupa_limit.nazwa as id_grupa_limit, samochod.nr_umowy_leasingu as nr_umowy_leasingu,\n"
+                + "samochod.nr_umowy_serwis as nr_umowy_serwis, samochod.mpk as mpk, samochod.prv_umowa as prv_umowa, samochod.umowa_z_dnia as umowa_z_dnia, \n"
+                + "samochod.miejsce_parkingowe as miejsce_parkingowe, samochod.rozmiar_opon as rozmiar_opon\n"
+                + "from samochod \n"
+                + "full join opony_status on samochod.id_opony_status = opony_status.id_opony_status\n"
+                + "full join samochod_status on  samochod.id_status = samochod_status.id_samochod_status\n"
+                + "full join lokalizacja  on samochod.id_lokalizacja = lokalizacja.id_lokalizacja\n"
+                + "full join lokalizacja as lokalizacja_stala on samochod.id_lokalizacja_stala = lokalizacja_stala.id_lokalizacja\n"
+                + "full join rodzaj_pojazdu on samochod.id_rodzaj_pojazdu = rodzaj_pojazdu.id_rodzaj_pojazdu\n"
+                + "full join karta_parkingowa on samochod.id_karta_parkingowa = karta_parkingowa.id_karta_parkingowa\n"
+                + "full join karta_paliwowa on samochod.id_karta_paliwowa = karta_paliwowa.id_karta_paliwowa\n"
+                + "full join pracownik on samochod.id_samochod = pracownik.id_samochod\n"
+                + "full join ubezpieczenie on samochod.id_samochod = ubezpieczenie.id_samochodu\n"
+                + "full join gps on samochod.id_gps = gps.id_gps\n"
+                + "full join typ_samochod on samochod.id_typ_samochod = typ_samochod.id_typ_samochod\n"
+                + "full join grupa_limit on samochod.id_grupa_limit = grupa_limit.id_grupa_limit\n"
+                
+                
+                + "where samochod.id_samochod is not null\n";
 
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
 
-                Samochod samochod = new Samochod();
+               Samochod samochod = new Samochod();
                 samochod.setId_samochod(rs.getInt("id"));
                 samochod.setLokalizacja(rs.getString("lok"));
                 samochod.setModel(rs.getString("model"));
@@ -376,6 +377,7 @@ public class WyszukajSamochod {
                 samochod.setId_grupa_limit(rs.getString("id_grupa_limit"));
                 samochod.setNr_umowy_leasingu(rs.getString("nr_umowy_leasingu"));
                 samochod.setNr_umowy_serwis(rs.getString("nr_umowy_serwis"));
+
                 samochod.setMpk(rs.getString("mpk"));
                 samochod.setPrv_umowa(rs.getString("prv_umowa"));
                 samochod.setUmowa_z_dnia(rs.getString("umowa_z_dnia"));
