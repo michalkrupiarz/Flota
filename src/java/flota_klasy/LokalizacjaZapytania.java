@@ -33,7 +33,8 @@ public class LokalizacjaZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully lokalizacja");
+            c.setAutoCommit(false);
+            
             stmt = c.createStatement();
             String sql = "Select * from lokalizacja";
             ResultSet rs = stmt.executeQuery(sql);
@@ -72,7 +73,8 @@ public class LokalizacjaZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully");
+            c.setAutoCommit(false);
+            
             stmt = c.createStatement();
             String sql = "Select * from lokalizacja";
             ResultSet rs = stmt.executeQuery(sql);
@@ -110,7 +112,7 @@ public class LokalizacjaZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully");
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             String sql = "Select max(id_lokalizacja) as ilosc_lok from lokalizacja";
             ResultSet rs = stmt.executeQuery(sql);

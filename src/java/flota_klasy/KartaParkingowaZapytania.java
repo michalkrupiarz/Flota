@@ -32,7 +32,8 @@ public class KartaParkingowaZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully");
+            c.setAutoCommit(false);
+            
             stmt = c.createStatement();
             String sql = "Select * from karta_parkingowa where karta_parkingowa.id_status_parkingowa = 1";
             ResultSet rs = stmt.executeQuery(sql);

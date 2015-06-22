@@ -30,22 +30,24 @@ public class SamochodZapytania {
      * 
      * Creates a new instance of SamochodZapytania
      */
-    public static String sprawdzUnikalnoscDanych(String nazwaPola, String nazwaTabeli, String zmienna) {
+    public static boolean sprawdzUnikalnoscDanych(String nazwaPola, String nazwaTabeli, String zmienna) {
 
-        String sprawdz;
+        
         Connection c = null;
         String sql;
         Statement stmt = null;
         ResultSet rs = null;
         String wynikzbazy = "a";
 
-        sql = "select " + nazwaPola + " as wynik from " + nazwaTabeli + " where " + nazwaPola + " = '" + zmienna + "'";
-        System.out.println("zlozone zapytanie weryfikacyjne "+ sql);
+        sql = "select " + nazwaPola + " as wynik from " + nazwaTabeli + " where " + nazwaPola + " ilike ('" + zmienna + "')";
+        System.out.println(sql);
+        
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
+            c.setAutoCommit(false);
 
             stmt = c.createStatement();
 
@@ -60,11 +62,7 @@ public class SamochodZapytania {
             System.exit(0);
         }
 
-        if (wynikzbazy.isEmpty()) {
-            sprawdz = "tak";
-        } else {
-            sprawdz = "nie";
-        }
+        
         
         try {
             c.commit();
@@ -72,7 +70,8 @@ public class SamochodZapytania {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return sprawdz;
+        System.out.println("wynik wyszukiwania w bazie "+wynikzbazy.equalsIgnoreCase(zmienna));
+        return !wynikzbazy.equalsIgnoreCase(zmienna);
     }
     
     
@@ -85,6 +84,7 @@ public class SamochodZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             String sql = "INSERT INTO samochod(\n"
                     + "             nazwa, marka, model, oznaczenie_producenta, paliwo, \n"

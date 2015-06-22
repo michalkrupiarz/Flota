@@ -33,7 +33,8 @@ public class GPSZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully with gps ");
+            c.setAutoCommit(false);
+            
             stmt = c.createStatement();
             String sql = "Select * from gps";
             ResultSet rs = stmt.executeQuery(sql);

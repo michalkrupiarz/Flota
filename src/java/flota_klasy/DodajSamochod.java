@@ -56,6 +56,8 @@ public class DodajSamochod {
     private String dodajUmowaZDnia;
     private String dodajMiejsceParkingowe;
     private String dodajRozmiarOpon;
+    
+    private boolean nazwaSamochoduBlad=false;
 
     public String getDodajmodelSamochodu() {
         return dodajmodelSamochodu;
@@ -341,44 +343,29 @@ public class DodajSamochod {
         return "dodajSamochod";
     }
 
+    public boolean isNazwaSamochoduBlad() {
+        return nazwaSamochoduBlad;
+    }
+
+    public void setNazwaSamochoduBlad(boolean nazwaSamochoduBlad) {
+        this.nazwaSamochoduBlad = nazwaSamochoduBlad;
+    }
+    
     public void dodajSamochod() {
+        System.out.println("adasda");
+        System.out.println("Nowa nazwa samochodu "+WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", getDodajnazwaSamochodu()));
+        isCzyWyswietlicNazweSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", getDodajnazwaSamochodu()));
 
-        ArrayList<Boolean> listaBledow = new ArrayList<Boolean>();
-
-        String[][] tablicaUnikalnychPol;
-        String[][] tablicaPolZDlugoscia;
-        Samochod dodawanySamochod = new Samochod();
-
-        dodawanySamochod = zczytajDane();
-
-       
-        Field[] declaredFields = dodawanySamochod.getClass().getDeclaredFields();
-        try {
-            int i = 0;
-            for (Field field:declaredFields) {
-                
-                field.setAccessible(true);
-                System.out.println("Nazwa pola "+field.getName()+String.valueOf(" wartosc pola "+field.get(dodawanySamochod)));
-                System.out.println("Czy puste "+WeryfikacjaDanych.czyWprowadzono(String.valueOf(field.get(dodawanySamochod))));
-                listaBledow.add(WeryfikacjaDanych.czyWprowadzono(String.valueOf(field.get(dodawanySamochod))));
-                i=i+1;
-               // System.out.println(String.valueOf("wartosc pola "+field.get(dodawanySamochod)));
-            }
-        }  catch (IllegalAccessException x) {
-            x.printStackTrace();
-        }
-        
-        
-
-      
     }
-    
-    public boolean isCzyWyswietlic(){
-        boolean wynik = true;     
+
+    public String isCzyWyswietlicNazweSamochoduBlad(boolean zmienna) {
         
-        return wynik;
+        System.out.println(nazwaSamochoduBlad);
+        setNazwaSamochoduBlad(!zmienna);
+        System.out.println(nazwaSamochoduBlad);
+        return "dodajSamochod";
     }
-    
+
     public Samochod zczytajDane() {
         Samochod dodawanySamochod = new Samochod();
         dodawanySamochod.setId_samochod(1);

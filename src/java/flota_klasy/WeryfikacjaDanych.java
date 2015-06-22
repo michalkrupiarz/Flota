@@ -34,13 +34,9 @@ public class WeryfikacjaDanych {
         return sprawdz;
     }
 
-    public static String czyUnikalny(String nazwaPola, String nazwaTabeli, String nazwaZmienna) {
-
-        String sprawdz;
-
-        sprawdz = SamochodZapytania.sprawdzUnikalnoscDanych(nazwaPola, nazwaTabeli, nazwaZmienna);
-
-        return sprawdz;
+    public static boolean czyUnikalny(String nazwaPola, String nazwaTabeli, String nazwaZmienna) {
+        System.out.println("czy unikalny "+SamochodZapytania.sprawdzUnikalnoscDanych(nazwaPola, nazwaTabeli, nazwaZmienna));
+        return SamochodZapytania.sprawdzUnikalnoscDanych(nazwaPola, nazwaTabeli, nazwaZmienna);
     }
 
 }

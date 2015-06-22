@@ -30,6 +30,7 @@ public class WypozyczenieZapytania {
         try{
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/","postgres","ponczus21");
+            c.setAutoCommit(false);
             stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             

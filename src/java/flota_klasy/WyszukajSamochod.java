@@ -219,6 +219,7 @@ public class WyszukajSamochod {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
+            c.setAutoCommit(false);
 
             stmt = c.createStatement();
 
@@ -311,6 +312,7 @@ public class WyszukajSamochod {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
+            c.setAutoCommit(false);
 
             stmt = c.createStatement();
             String sql = "select samochod.id_samochod as id, samochod.nazwa as nazwa, samochod.marka as marka, samochod.model as model,\n"

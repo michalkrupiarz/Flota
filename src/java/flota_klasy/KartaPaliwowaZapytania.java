@@ -32,7 +32,8 @@ public class KartaPaliwowaZapytania {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
-            System.out.println("Opened database successfully");
+            c.setAutoCommit(false);
+            
             stmt = c.createStatement();
             String sql = "Select * from karta_paliwowa where karta_paliwowa.id_status_paliwowa = 1";
             ResultSet rs = stmt.executeQuery(sql);
