@@ -32,81 +32,74 @@
             $(document).ready(function () {
 
                 (function () {
-                    var date = new Date();
-                    var d = date.getDate();
-                    var m = date.getMonth();
-                    var y = date.getFullYear();
+                    var today = new Date();
+                    var d = today.getDate();
+                    var m = today.getMonth();
+                    var y = today.getFullYear();
+
                     $('#fullcalendar').fullCalendar({
                         editable: true,
+                        dayRender: function (date, cell) {
+                            var thisday = new Date();
+                            alert(moment().diff(date,'days'));
+                            if (moment().diff(date, 'days') === 0) {
+                                
+                                
+                            }
+                        },
                         header: {
                             left: 'title',
                             center: '',
                             right: 'today, prev,next'
                         },
                         eventClick: function (calEvent, jsEvent, view) {
-
-                            $("#dialog").dialog({
-                                autoOpen: false,
-                                modal: true,
-                                position: {my: "left top"},
-                                buttons: [{
-                                        text: "ok",
-                                        icons: {
-                                            primary: "ui-icon-heart"
-                                        },
-                                        click: function () {
-                                            $(this).dialog("close");
-                                        }
-                                    }]
-                            }
-
-                            )
-                            $("#name").val(calEvent.id);
-                            $("#title").val(calEvent.title);
-                            $("#dialog").dialog('open');
+                            var thisday = new Date();
+                            $("#name").html(calEvent.id);
+                            $("#title").html(calEvent.title);
+                            $("#myModal").modal();
+                            alert('date ' + thisday.getDate());
                         },
-
-                        events:"/Flota_dodawanie_pojazdu/KalendarzJsonServlet"
+                        events: "/flota_from_git_hub/KalendarzJsonServlet"
 
                                 /*[   
-                                    {
-                                        title: 'All Day Event',
-                                        start: '2015-06-01'
-                                    },
-                                    {
-                                        title: 'Long Event',
-                                        start: '2014-06-07',
-                                        end: '2015-06-10'
-                                    },
-                                    {
-                                        id: 999,
-                                        title: 'Repeating Event',
-                                        start: '2015-06-09T16:00:00'
-                                    },
-                                    {
-                                        id: 999,
-                                        title: 'Repeating Event',
-                                        start: '2015-06-16T16:00:00'
-                                    },
-                                    {
-                                        title: 'Meeting',
-                                        start: '2014-06-12T10:30:00',
-                                        end: '2015-06-12T12:30:00'
-                                    },
-                                    {
-                                        title: 'Lunch',
-                                        start: '2015-06-12T12:00:00'
-                                    },
-                                    {
-                                        title: 'Birthday Party',
-                                        start: '2015-06-13T07:00:00'
-                                    },
-                                    {
-                                        title: 'Click for Google',
-                                        url: 'http://google.com/',
-                                        start: '2015-06-28'
-                                    }
-                                ]*/
+                                 {
+                                 title: 'All Day Event',
+                                 start: '2015-06-01'
+                                 },
+                                 {
+                                 title: 'Long Event',
+                                 start: '2014-06-07',
+                                 end: '2015-06-10'
+                                 },
+                                 {
+                                 id: 999,
+                                 title: 'Repeating Event',
+                                 start: '2015-06-09T16:00:00'
+                                 },
+                                 {
+                                 id: 999,
+                                 title: 'Repeating Event',
+                                 start: '2015-06-16T16:00:00'
+                                 },
+                                 {
+                                 title: 'Meeting',
+                                 start: '2014-06-12T10:30:00',
+                                 end: '2015-06-12T12:30:00'
+                                 },
+                                 {
+                                 title: 'Lunch',
+                                 start: '2015-06-12T12:00:00'
+                                 },
+                                 {
+                                 title: 'Birthday Party',
+                                 start: '2015-06-13T07:00:00'
+                                 },
+                                 {
+                                 title: 'Click for Google',
+                                 url: 'http://google.com/',
+                                 start: '2015-06-28'
+                                 }
+                                 ]*/
                     });
                 }());
             });
@@ -173,14 +166,32 @@
         <div id="fullcalendar"></div>
 
         <div id="dialog" title="My dialog" style="display:none;">
-            <form>
-                <fieldset>
-                    <label for="Id">Id</label>
-                    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"/>
-                    <label for="Id">Title</label>
-                    <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all"/>
-                </fieldset>
-            </form>
+
+        </div>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div  class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="name"></h4>
+                    </div>
+                    <div id = "title" class="modal-body">
+                        <br></br>
+                        <div> razdwatrzytest</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </body>
 </html>
