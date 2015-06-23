@@ -5,8 +5,9 @@
  */
 package flota_klasy;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -56,11 +57,56 @@ public class DodajSamochod {
     private String dodajUmowaZDnia;
     private String dodajMiejsceParkingowe;
     private String dodajRozmiarOpon;
-    
-    private boolean nazwaSamochoduBlad=false;
+
+    private boolean nazwaSamochoduBlad = false;
+    private boolean NrRejSamochoduBlad = false;
+    private boolean nr_umowy_leasingBlad = false;
+    private boolean nr_umowy_serwisBlad = false;
+    private boolean nr_vinBlad = false;
+    private boolean prv_umowaBlad = false;
 
     public String getDodajmodelSamochodu() {
         return dodajmodelSamochodu;
+    }
+
+    public boolean isNr_umowy_leasingBlad() {
+        return nr_umowy_leasingBlad;
+    }
+
+    public void setNr_umowy_leasingBlad(boolean nr_umowy_leasingBlad) {
+        this.nr_umowy_leasingBlad = nr_umowy_leasingBlad;
+    }
+
+    public boolean isNr_umowy_serwisBlad() {
+        return nr_umowy_serwisBlad;
+    }
+
+    public void setNr_umowy_serwisBlad(boolean nr_umowy_serwisBlad) {
+        this.nr_umowy_serwisBlad = nr_umowy_serwisBlad;
+    }
+
+    public boolean isNr_vinBlad() {
+        return nr_vinBlad;
+    }
+
+    public void setNr_vinBlad(boolean nr_vinBlad) {
+        this.nr_vinBlad = nr_vinBlad;
+    }
+
+    public boolean isPrv_umowaBlad() {
+        return prv_umowaBlad;
+    }
+
+    public void setPrv_umowaBlad(boolean prv_umowaBlad) {
+        this.prv_umowaBlad = prv_umowaBlad;
+    }
+
+    public boolean isNrRejSamochoduBlad() {
+        return NrRejSamochoduBlad;
+    }
+
+    public void setNrRejSamochoduBlad(boolean NrRejSamochoduBlad) {
+        this.NrRejSamochoduBlad = NrRejSamochoduBlad;
     }
 
     public void setDodajmodelSamochodu(String dodajmodelSamochodu) {
@@ -350,20 +396,45 @@ public class DodajSamochod {
     public void setNazwaSamochoduBlad(boolean nazwaSamochoduBlad) {
         this.nazwaSamochoduBlad = nazwaSamochoduBlad;
     }
-    
+
     public void dodajSamochod() {
-        System.out.println("adasda");
-        System.out.println("Nowa nazwa samochodu "+WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", getDodajnazwaSamochodu()));
-        isCzyWyswietlicNazweSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", getDodajnazwaSamochodu()));
+
+        int iloscNieUnikalnychDanych = 0;
+        Samochod dodawanySamochod = new Samochod();
+        List<Boolean> listaWeryfikacyjnaDlaSamochodu = new ArrayList<Boolean>();
+
+        dodawanySamochod = zczytajDane();
+
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", dodawanySamochod.getNazwa()));
+        setNazwaSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", dodawanySamochod.getNazwa()));
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("nr_rej", "samochod", dodawanySamochod.getNr_rej()));
+        setNrRejSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nr_rej", "samochod", dodawanySamochod.getNr_rej()));
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", dodawanySamochod.getNr_vin()));
+        setNr_vinBlad(!WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", dodawanySamochod.getNr_vin()));
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("nr_umowy_leasingu", "samochod", dodawanySamochod.getNr_umowy_leasingu()));
+        setNr_umowy_leasingBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_leasingu", "samochod", dodawanySamochod.getNr_umowy_leasingu()));
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", dodawanySamochod.getNr_umowy_serwis()));
+        setNr_umowy_serwisBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", dodawanySamochod.getNr_umowy_serwis()));
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", dodawanySamochod.getPrv_umowa()));
+        setPrv_umowaBlad(!WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", dodawanySamochod.getPrv_umowa()));
+        
+        System.out.println(dodawanySamochod.getId_gps());
+        
+        if (!czyJestFalse(listaWeryfikacyjnaDlaSamochodu)){
+            System.out.println("Wszystko jest unikalne.");
+            SamochodZapytania.dodajSamochod(dodawanySamochod);
+        }
 
     }
-
-    public String isCzyWyswietlicNazweSamochoduBlad(boolean zmienna) {
-        
-        System.out.println(nazwaSamochoduBlad);
-        setNazwaSamochoduBlad(!zmienna);
-        System.out.println(nazwaSamochoduBlad);
-        return "dodajSamochod";
+    
+    public boolean czyJestFalse(List<Boolean> listaBooleanow){
+        boolean flaga = false;
+        for (Boolean item:listaBooleanow){
+            if (!item){
+                flaga=true;
+            }
+        }
+        return flaga;
     }
 
     public Samochod zczytajDane() {

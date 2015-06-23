@@ -96,7 +96,12 @@ and open the template in the editor.
                                                           id="nr_rej" 
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru rejestracyjnego."/></td>
-                        <td class="col-md-2"><h:message for="nr_rej"></h:message></td>
+                        <td class="col-md-2"><h:message for="nr_rej"></h:message>
+                            <h:form rendered="#{dodajSamochod.nrRejSamochoduBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> </td>
 
                     </tr>
 
@@ -110,7 +115,11 @@ and open the template in the editor.
                                 <f:validateRegex pattern="[0-9a-zA-Z].{16}" for="nr_vin"/>
                             </h:inputText></td>
                         <td class="col-md-2"><h:message for="nr_vin"></h:message>
-
+                            <h:form rendered="#{dodajSamochod.nr_vinBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> 
                         </td>
                         <td class="col-md-2">Status Pojazdu</td>
                         <td class="col-md-2">
@@ -361,7 +370,11 @@ and open the template in the editor.
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru leasingu."/></td>
                         <td class="col-md-2">
-                            <h:message for ="nr_leasing"/>
+                            <h:message for ="nr_leasing"/><h:form rendered="#{dodajSamochod.nr_umowy_leasingBlad}">
+                                <div class="alert alert-danger">
+                                    Taka nazwa pojazdu już istnieje, podaj inną.
+                                </div>
+                            </h:form> 
                         </td>
 
                         <td class="col-md-2">Numer Umowy Serwisu</td>
@@ -370,7 +383,11 @@ and open the template in the editor.
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru umowy serwisu."/></td>
                         <td class="col-md-2">
-                            <h:message for ="nr_umowy_serwis"/>
+                            <h:message for ="nr_umowy_serwis"/><h:form rendered="#{dodajSamochod.nr_umowy_serwisBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> 
                         </td>
 
                     </tr>
@@ -392,6 +409,11 @@ and open the template in the editor.
                                                           requiredMessage="Nie podano nr umowy PRV."/></td>
                         <td class="col-md-2">
                             <h:message for="prv_umowa"/>
+                            <h:form rendered="#{dodajSamochod.prv_umowaBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> 
                         </td>
 
                     </tr>
