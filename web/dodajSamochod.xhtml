@@ -353,10 +353,15 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Grupa Limit</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajIdGrupaLimit}"
-                                                          id="grupa_limit"
-                                                          required="true"
-                                                          requiredMessage="Nie podano grupy limit."/></td>
+                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodajIdGrupaLimit}"
+                                             style="color: black; width: fit-content" 
+                                             id="grupa_limit" 
+                                             required="true" 
+                                             requiredMessage="Nie podano typu samochodu">
+                                <f:selectItems value="#{grupaLimitZapytania.grupaLimitZapytaniaList}" var="tpl"
+                                               itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
+                                <f:validateRegex pattern="[^-]+" for="typ_samochodu"/>
+                            </h:selectOneMenu></td>
                         <td class="col-md-2">
                             <h:message for="grupa_limit"/>
                         </td>
