@@ -12,14 +12,67 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-      rel="stylesheet" />
-       
+              rel="stylesheet" />
+        <style>
+            body{
+                color: white;
+            }
+            table{
+                border: 0px;
+                color: white;
+                padding:0;
+                text-align: left;
+                table-layout: fixed;
 
-       
+
+                border-collapse: collapse;
+            }
+            tr:hover{
+                font-weight: bold;
+                background: #959EA7;
+
+            }
+            td{
+                padding: 0;
+                border:0px    ;
+                padding: 2px;
+
+            }
+            tr:nth-child(even){
+                background:#4e5d6c;
+                border-color: #4e5d6c;
+                padding:0;
+                border:0px;
+
+            }
+            tr:nth-child(even):hover {
+                background: #959EA7;
+            }
+
+
+            .ui-panelgrid tr:nth-child(even) {
+                background: #2b3e50;
+                border-color: #2b3e50;
+                border-style: none;
+            }
+            .ui-panelgrid tr:nth-child(odd){
+                border-style:none;
+                border-color: #2b3e50;
+                background:#2b3e50;
+                color: white;
+            }
+            .ui-panelgrid tr:nth-child(even):hover {
+
+            }
+
+
+
+
+        </style>
         <title>Facelets Template</title>
     </h:head>
 
-    <h:body style="background-color: grey">
+    <h:body style="background-color: #2b3e50" >
 
 
         <div id="top">
@@ -29,44 +82,37 @@
                 <p:commandButton action="#{wyswietlSamochod.pokazWszystkieSamochody()}" value="Powrot" type="button">
                     <span class="glyphicon glyphicon-backward"></span></p:commandButton> 
             </h:form>
+        <br/>
+        <br/>
+            <h:form>
+                <p:growl id ="messages"/> 
+                <p:menubar>
+                    <p:submenu label="Samochod" > 
+                        <p:menuitem value="Dodaj Samochód" action="#{dodajSamochod.wywietldodajSamochod()}" icon="ui-icon-circle-plus"/>
+                        <p:menuitem value="Wyszukaj Samochód" action="#{wyswietlSamochod.wyszukajSamochod()}" icon="ui-icon-search"/>      
+                        <p:menuitem value ="Edytuj Samochód" action="#{edytujSamochod.wyswietlEdytujSamochod()}" icon="ui-icon-pencil"/>
+                        <p:menuitem value ="Usuń Samochód" action="#{usunSamochod.wyswietlUsunSamochod()}" icon="ui-icon-circle-minus"/>
+                    </p:submenu>
+                </p:menubar>
+            </h:form>
         </div>
-        
-       
-        
+
+
+
         <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
-            <div>
-                <div id="right">
-                    <ui:insert name="right">Right</ui:insert>
-                </div>
-                <div id="content" class="right_content">
+
+           
+
+                
 
 
-                    <div>
-
-                        <h:form>
-                            <p:growl id ="messages"/> 
-                            <p:menubar>
-                                <p:submenu label="Samochod" > 
-                                    <p:menuitem value="Dodaj Samochód" action="#{dodajSamochod.wywietldodajSamochod()}" icon="ui-icon-circle-plus"/>
-                                    <p:menuitem value="Wyszukaj Samochód" action="#{wyswietlSamochod.wyszukajSamochod()}" icon="ui-icon-search"/>      
-                                    <p:menuitem value ="Edytuj Samochód" action="#{edytujSamochod.wyswietlEdytujSamochod()}" icon="ui-icon-pencil"/>
-                                    <p:menuitem value ="Usuń Samochód" action="#{usunSamochod.wyswietlUsunSamochod()}" icon="ui-icon-circle-minus"/>
-                                </p:submenu>
-                            </p:menubar>
-                        </h:form>
-
-
-
-                    </div>
-                    <div class="col-sm-3"></div>
+                    
+                   
                     <br/>
                     <br/>
                     <ui:insert name="body">Content</ui:insert>
-                </div>
-            </div>
+                
+            
         </div>
         <div id="bottom">
 

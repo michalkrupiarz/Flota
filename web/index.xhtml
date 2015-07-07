@@ -9,6 +9,9 @@
         <title>Facelet Title</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <style>
+            
+        </style>
     </h:head>
 
     <ui:composition template="./template.xhtml">
@@ -25,195 +28,100 @@
                         <div class="col-sm-6" align="left">Wyszukaj pojazd</div>
                     </div>
                     <br/>
-                    
-                    <p:panelGrid style="border-style: none">
-                        <p:row style="background-color: gray">
-                            <p:column >Model </p:column>
-                            <p:column>Numer Rejestracyjny</p:column>
-                            <p:column>Numer VIN</p:column>
-                        </p:row>
-                        <p:row style="background-color: gray">
-                            <p:column><p:inputText class="input-sm" id="podaj_model" value="#{wyswietlSamochod.modelSamochodu}"></p:inputText></p:column>
-                            <p:column> <p:inputText size="50" class="input-sm" id="podaj_nr_rej" value="#{wyswietlSamochod.nrrejSamochodu}"></p:inputText></p:column>
-                            <p:column><p:inputText size="50" class="input-sm" id="podaj_vin" value="#{wyswietlSamochod.vinSamochodu}"></p:inputText></p:column>
-                        </p:row>
-                         <p:row style="background-color: gray">
-                            <p:column >Numer Ubezpieczenia </p:column>
-                            <p:column>Nazwa</p:column>
-                            <p:column>Lokalizacja</p:column>
-                        </p:row>
-                        <p:row style="background-color: gray">
-                            <p:column><p:inputText size="50" class="input-sm" id="podaj_nazwe" value="#{wyswietlSamochod.nazwaSamochodu}"></p:inputText></p:column>
-                            <p:column> <p:inputText size="50" class="input-sm" id="podaj_lokalizacja" value="#{wyswietlSamochod.lokalizacjaSamochodu}"></p:inputText></p:column>
-                            <p:column><p:inputText size="50" class="input-sm" id="podaj_pracownik" value="#{wyswietlSamochod.pracownikSamochodu}"></p:inputText></p:column>
-                        </p:row>
-                        
-                    </p:panelGrid>
-                    
-                    
-                    <div class="row">
-                        <div class="col-sm-3">
+                    <div >
+                        <p:panelGrid style="width: 100%; " >
 
-                            <label  for="podaj_nr_ubezpieczenia"></label>
-                            <p:inputText size="50" class="input-sm" id="podaj_nr_ubezpieczenia" ></p:inputText>
-
-                        </div>
-
-                        <div class="col-sm-3">
-
-                            <label  for="podaj_nazwe_label"></label>
-                            
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="podaj_lokalizacja_label"></label>
-                           
-
-                        </div>
-
-                        <div class="col-sm-3">
-
-                            <label  for="podaj_pracownik_label">Pracownik</label>
-                            
-
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-sm-3">
-
-                            <label  for="model_label">Oznaczenie Producenta</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_oznaczenie_producenta" value="#{wyswietlSamochod.oznaczenieproducentaSamochodu}"></p:inputText>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="marka_label">Marka</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_marke" value="#{wyswietlSamochod.markaSamochodu}"></p:inputText>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="paliwo_label">Rodzaj Paliwa</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_paliwo" value="#{wyswietlSamochod.paliwoSamochodu}"></p:inputText>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="marka_label">Lokalizacja Stala</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_lokalizacje_stala" value="#{wyswietlSamochod.lokalizacjaStalaSamochodu}"></p:inputText>
-
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-sm-3">
-
-                            <label  for="rodzaj_label">Rodzaj Samochodu</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_rodzaj_samochodu" value="#{wyswietlSamochod.rodzajSamochodu}"></p:inputText>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="karta_parkignowa_label">Numer Karty Parkingowej</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_numer_karty_parkingowej" value="#{wyswietlSamochod.kartaParkingowa}"></p:inputText>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="karta_paliwowa_label">Numer Karty Paliwowej</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_numer_karty_paliwowej" value="#{wyswietlSamochod.kartaPaliwowa}"></p:inputText>
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label  for="przebieg_samochodu_label">Przebieg Samochodu</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_przebieg_pojazdu" value="#{wyswietlSamochod.przebiegSamochodu}"></p:inputText>
-
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label  for="podaj_status_label">Dostępność</label>
-                            <p:inputText size="50" class="input-sm" id="podaj_status" value="#{wyswietlSamochod.statusSamochodu}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="data_przyjecia_pojazdu_label">Data przyjęcia pojazdu</label>
-                            <p:inputText size="50" class="input-sm" id="data_przyjecia_pojazdu" value="#{wyswietlSamochod.data_przyjecia}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="data_pierwszej_rejestracji_label">Data pierwszej rejestracji</label>
-                            <p:inputText size="50" class="input-sm" id="data_pierwszej_rejestracji" value="#{wyswietlSamochod.data_pierwszej_rejestracji}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="numer_gps_label">Numer GPS</label>
-                            <p:inputText size="50" class="input-sm" id="id_gps" value="#{wyswietlSamochod.id_gps}"></p:inputText>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label  for="kilometry_label">Kilometry</label>
-                            <p:inputText size="50" class="input-sm" id="kilometry" value="#{wyswietlSamochod.kilometry}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="kolor_lakieru_label">Kolor lakieru</label>
-                            <p:inputText size="50" class="input-sm" id="kolor_lakieru" value="#{wyswietlSamochod.kolor}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="wersja_label">Wersja pojazdu</label>
-                            <p:inputText size="50" class="input-sm" id="wersja" value="#{wyswietlSamochod.wersja}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="id_typ_pojazdu">Typ pojazdu</label>
-                            <p:inputText size="50" class="input-sm" id="id_typ_pojazdu" value="#{wyswietlSamochod.id_typ_samochodu}"></p:inputText>
-                        </div>                                 
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label  for="VAT">VAT</label>
-                            <p:inputText size="50" class="input-sm" id="vat" value="#{wyswietlSamochod.vat}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="id_grupa_limit">Grupa Limit</label>
-                            <p:inputText size="50" class="input-sm" id="id_grupa_limit" value="#{wyswietlSamochod.id_grupa_limit}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="nr_umowy_leasingu">Nr umowy leasingu</label>
-                            <p:inputText size="50" class="input-sm" id="nr_umowy_leasingu" value="#{wyswietlSamochod.nr_umowy_leasingu}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="nr_umowy_serwisu">Nr umowy serwisu</label>
-                            <p:inputText size="50" class="input-sm" id="nr_umowy_serwisu" value="#{wyswietlSamochod.nr_umowy_serwis}"></p:inputText>
-                        </div>                                 
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label  for="MPK">MPK</label>
-                            <p:inputText size="50" class="input-sm" id="mpk" value="#{wyswietlSamochod.mpk}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="Prv_umowa">PRV Umowa</label>
-                            <p:inputText size="50" class="input-sm" id="prv_umowa" value="#{wyswietlSamochod.prv_umowa}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="Umowa_z_dnia">Umowa z dnia</label>
-                            <p:inputText size="50" class="input-sm" id="umowa_z_dnia" value="#{wyswietlSamochod.umowa_z_dnia}"></p:inputText>
-                        </div>
-                        <div class="col-sm-3">
-                            <label  for="miejsce_parkingowe">Miejsce Parkingowe</label>
-                            <p:inputText size="50" class="input-sm" id="miejsce_parkingowe" value="#{wyswietlSamochod.miejsce_parkingowe}"></p:inputText>
-                        </div>                                 
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label  for="Rozmiar_opon">Rozmiar Opon</label>
-                            <p:inputText size="50" class="input-sm" id="rozmiar_opon" value="#{wyswietlSamochod.rozmiar_opon}"></p:inputText>
-                        </div>
+                            <p:row  >
+                                <p:column >Model </p:column>
+                                <p:column>Numer Rejestracyjny</p:column>
+                                <p:column>Numer VIN</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_model" value="#{wyswietlSamochod.modelSamochodu}"></p:inputText></p:column>
+                                <p:column> <p:inputText size="50" class="input-sm" id="podaj_nr_rej" value="#{wyswietlSamochod.nrrejSamochodu}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_vin" value="#{wyswietlSamochod.vinSamochodu}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >Numer Ubezpieczenia </p:column>
+                                <p:column>Nazwa</p:column>
+                                <p:column>Lokalizacja</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_nazwe" value="#{wyswietlSamochod.nazwaSamochodu}"></p:inputText></p:column>
+                                <p:column> <p:inputText size="50" class="input-sm" id="podaj_lokalizacja" value="#{wyswietlSamochod.lokalizacjaSamochodu}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_pracownik" value="#{wyswietlSamochod.pracownikSamochodu}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >Oznaczenie Producenta </p:column>
+                                <p:column>Marka</p:column>
+                                <p:column>Rodzaj Paliwa</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_oznaczenie_producenta" value="#{wyswietlSamochod.oznaczenieproducentaSamochodu}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_marke" value="#{wyswietlSamochod.markaSamochodu}"></p:inputText></p:column>
+                                <p:column> <p:inputText size="50" class="input-sm" id="podaj_paliwo" value="#{wyswietlSamochod.paliwoSamochodu}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >Rodzaj Samochodu </p:column>
+                                <p:column>Numer Karty Parkingowej</p:column>
+                                <p:column>Numer Karty Paliwowej</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_rodzaj_samochodu" value="#{wyswietlSamochod.rodzajSamochodu}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_numer_karty_parkingowej" value="#{wyswietlSamochod.kartaParkingowa}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_numer_karty_paliwowej" value="#{wyswietlSamochod.kartaPaliwowa}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >Dostępność </p:column>
+                                <p:column>Data przyjęcia pojazdu</p:column>
+                                <p:column>Data pierwszej rejestracji</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="podaj_status" value="#{wyswietlSamochod.statusSamochodu}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="data_przyjecia_pojazdu" value="#{wyswietlSamochod.data_przyjecia}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="data_pierwszej_rejestracji" value="#{wyswietlSamochod.data_pierwszej_rejestracji}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >Kilometry </p:column>
+                                <p:column>Kolor lakieru</p:column>
+                                <p:column>Wersja pojazdu</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="kilometry" value="#{wyswietlSamochod.kilometry}"></p:inputText></p:column>
+                                <p:column>  <p:inputText size="50" class="input-sm" id="kolor_lakieru" value="#{wyswietlSamochod.kolor}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="wersja" value="#{wyswietlSamochod.wersja}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >VAT</p:column>
+                                <p:column>Grupa Limit</p:column>
+                                <p:column>Nr umowy leasingu</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="vat" value="#{wyswietlSamochod.vat}"></p:inputText></p:column>
+                                <p:column>  <p:inputText size="50" class="input-sm" id="id_grupa_limit" value="#{wyswietlSamochod.id_grupa_limit}"></p:inputText></p:column>
+                                <p:column> <p:inputText size="50" class="input-sm" id="nr_umowy_leasingu" value="#{wyswietlSamochod.nr_umowy_leasingu}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >MPK</p:column>
+                                <p:column>PRV Umowa</p:column>
+                                <p:column>Umowa z dnia</p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="mpk" value="#{wyswietlSamochod.mpk}"></p:inputText></p:column>
+                                <p:column>  <p:inputText size="50" class="input-sm" id="prv_umowa" value="#{wyswietlSamochod.prv_umowa}"></p:inputText></p:column>
+                                <p:column><p:inputText size="50" class="input-sm" id="umowa_z_dnia" value="#{wyswietlSamochod.umowa_z_dnia}"></p:inputText></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column >Rozmiar Opon</p:column>
+                                <p:column></p:column>
+                                <p:column></p:column>
+                            </p:row>
+                            <p:row  >
+                                <p:column><p:inputText size="50" class="input-sm" id="rozmiar_opon" value="#{wyswietlSamochod.rozmiar_opon}"></p:inputText></p:column>
+                                <p:column>  </p:column>
+                                <p:column></p:column>
+                            </p:row>
+                        </p:panelGrid>
                     </div>
 
 
@@ -225,57 +133,57 @@
                 </h:form>
                 <hr></hr>
                 <h:form>
-                    <h:dataTable value="#{wyswietlSamochod.wyswietlWszystkieSamochody}" var="item" class="table table-hover table-striped">
-                        <h:column>
+                    <p:dataTable value="#{wyswietlSamochod.wyswietlWszystkieSamochody}" var="item" style="width: 100%">
+                        <p:column>
                             <f:facet name="header">
                                 L.p.
                             </f:facet>
                             <h:outputText value="#{item.id_samochod}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 Model
                             </f:facet>
                             <h:outputText value="#{item.model}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 Nr rejestracyjny
                             </f:facet>
                             <h:outputText value="#{item.nr_rej}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 Nazwa
                             </f:facet>
                             <h:outputText value="#{item.nazwa}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 Dostępność
                             </f:facet>
                             <h:outputText value="#{item.id_status}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 Lokalizacja
                             </f:facet>
                             <h:outputText value = "#{item.lokalizacja}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 Pracownik
                             </f:facet>
                             <h:outputText value="#{item.pracownik_uzywajacy}"/>
-                        </h:column>
-                        <h:column>
-                            <Button type="button" class="btn btn-default btn-sm">
-                                <h:commandButton value="Przegladaj" action="#{wyswietlSamochod.pokazSamochod()}" class="btn-primary" id="Przegladaj" >
-                                    <span class="glyphicon glyphicon-search"></span></h:commandButton>
-                            </Button>
-                        </h:column>
-
-                    </h:dataTable>
+                        </p:column>
+                        <p:column>
+                            
+                                <p:commandButton value="Przegladaj" action="#{wyswietlSamochod.pokazSamochod()}" class="btn-primary" id="Przegladaj" >
+                                    <span class="glyphicon glyphicon-search"></span></p:commandButton>
+                          
+                        </p:column>
+                        
+                    </p:dataTable>
                 </h:form>
             </f:view>
 
