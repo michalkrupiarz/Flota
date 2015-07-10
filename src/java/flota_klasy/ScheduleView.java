@@ -66,7 +66,7 @@ public class ScheduleView implements Serializable {
         listaWypozyczen = WypozyczenieZapytania.listaWypozyczen();
        for (Wypozyczenie wypozyczenie:listaWypozyczen){
            c.setTime(wypozyczenie.getData_zakonczenia_zlecenia());
-           c.add(Calendar.DATE, 1);
+           c.add(Calendar.DATE, 0);
         
        eventModel.addEvent(new DefaultScheduleEvent(wypozyczenie.getTresc_zlecenia(), 
                wypozyczenie.getData_zlecenia(),
