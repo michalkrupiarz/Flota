@@ -28,9 +28,9 @@
                     document.getElementById(zmienna).disabled = false;
 
                 }
-                function fieldChange(zmienna2) {
-                    var x = document.getElementById(zmienna2).id;
-                    document.getElementById(zmienna2).innerHTML = "x";
+                function fieldChange(zmienna2,inputField) {
+                    var x = document.getElementById(inputField).value;
+                    document.getElementById(zmienna2).innerHTML = x;
 
                 }
 
@@ -51,7 +51,7 @@
                             </button></td>
                         <td><input type="text" disabled="true"  id="opony" ></input></td>
 
-                        <td><button  type='button' value="Zatwierdz"  class="btn-default btn-xs" onclick="fieldChange('formId:nazwaSamochodu')" >Zatwierdz</button></td>
+                        <td><button  type='button' value="Zatwierdz"  class="btn-default btn-xs" onclick="fieldChange('formId:nazwaSamochodu','opony')" >Zatwierdz</button></td>
 
 
                     </tr>
