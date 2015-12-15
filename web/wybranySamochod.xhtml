@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -28,6 +29,9 @@
                     document.getElementById(zmienna).disabled = false;
 
                 }
+                function fieldDisable(zmienna){
+                    document.getElementById(zmienna).disabled = true;
+                }
                 function fieldChange(zmienna2,inputField) {
                     var x = document.getElementById(inputField).value;
                     document.getElementById(zmienna2).innerHTML = x;
@@ -44,14 +48,29 @@
                 <table class="table table-hover">
                     <tr>
                         <td>Nazwa pojazdu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.nazwa}" id="nazwaSamochodu"/></td>
+                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.nazwa}" 
+                                          id="nazwaSamochodu"/>
+                        </td>
                         <td>
-                            <button type='button'   class="btn-default btn-xs" onclick="fieldEnable('opony')">Edycja
+                            <button type='button'   
+                                    class="btn-default btn-xs" 
+                                    onclick="fieldEnable('nazwaSamochoduInput')">Edycja
                                 <span class="glyphicon glyphicon-edit"></span>
-                            </button></td>
-                        <td><input type="text" disabled="true"  id="opony" ></input></td>
-
-                        <td><button  type='button' value="Zatwierdz"  class="btn-default btn-xs" onclick="fieldChange('formId:nazwaSamochodu','opony')" >Zatwierdz</button></td>
+                            </button>
+                        </td>
+                        <td><input type="text" 
+                                   disabled="true"  
+                                   id="nazwaSamochoduInput" 
+                                   value ="#{edytujSamochod.edytowanySamochod.nazwa}">
+                            </input>
+                        </td>
+                        
+                        <td><h:commandButton  type='button' 
+                                              value="Zatwierdz"  
+                                              class="btn-default btn-xs" 
+                                              onclick="fieldChange('formId:nazwaSamochodu','nazwaSamochoduInput'),fieldDisable('nazwaSamochoduInput')"
+                                              ></h:commandButton>
+                        </td>
 
 
                     </tr>
@@ -59,7 +78,7 @@
                         <td>Marka pojazdu</td>
                         <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.marka}"/></td>
                         <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                            <h:commandButton  value="Edycja" class="btn-default btn-xs" ></h:commandButton>
                         </td>
                     </tr>
                     <tr>
@@ -309,7 +328,9 @@
 
                 </table>
                 <hr></hr>
-
+                <br/>
+                <br/>
+                <h:commandButton action="#{edytujSamochod.zapiszWyedytowanySamochod}" value="Zatwierdz edycje"></h:commandButton>
             </h:form>
         </ui:define>
         <ui:define name="bottom">
