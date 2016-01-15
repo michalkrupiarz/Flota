@@ -58,18 +58,19 @@
                                 <span class="glyphicon glyphicon-edit"></span>
                             </button>
                         </td>
-                        <td><input type="text" 
-                                   disabled="true"  
+                        <td><h:inputText rendered="true"
+                                    
                                    id="nazwaSamochoduInput" 
-                                   value ="#{edytujSamochod.edytowanySamochod.nazwa}">
-                            </input>
+                                   value ="#{edytujSamochod.wyedytowanySamochod.nazwa}">
+                            </h:inputText>>
                         </td>
                         
-                        <td><h:commandButton  type='button' 
+                        <td><h:commandButton  
                                               value="Zatwierdz"  
                                               class="btn-default btn-xs" 
                                               onclick="fieldChange('formId:nazwaSamochodu','nazwaSamochoduInput'),fieldDisable('nazwaSamochoduInput')"
-                                              ></h:commandButton>
+                                              action="#{edytujSamochod.zapiszWyedytowanySamochod()}">
+                            </h:commandButton>
                         </td>
 
 

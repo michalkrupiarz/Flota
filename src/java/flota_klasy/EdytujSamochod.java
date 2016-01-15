@@ -7,6 +7,8 @@ package flota_klasy;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
 
 /**
  *
@@ -15,10 +17,16 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class EdytujSamochod {
-    Samochod edytowanySamochod = new Samochod();
-    public String zapiszWyedytowanySamochod(){
-        
-        System.out.println(edytowanySamochod.getNazwa());
-        return"index";
+    private Samochod wyedytowanySamochod = new Samochod();
+    
+
+    
+    public Samochod getWyedytowanySamochod(){
+        return wyedytowanySamochod;
+    }
+       
+    public String zapiszWyedytowanySamochod(){  
+        System.out.println("nowa nazwa samochodu"+wyedytowanySamochod.getNazwa());
+        return "index";
     }
 }
