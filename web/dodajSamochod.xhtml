@@ -107,7 +107,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Numer VIN <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajvinSamochodu}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.nr_vin}" 
                                                           id="nr_vin" 
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru VIN."
@@ -124,7 +124,7 @@ and open the template in the editor.
                         <td class="col-md-2">Status Pojazdu</td>
                         <td class="col-md-2">
 
-                            <h:selectOneMenu value="#{dodajSamochod.dodajstatusSamochodu}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_status}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{samochodStatusZapytania.samochodStatusList}" var="lok"
                                                itemLabel="#{lok.nazwa_samochod_status}" itemValue="#{lok.nazwa_samochod_status}"/>
                             </h:selectOneMenu></td>
@@ -135,7 +135,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Rodzaj Opon <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodajoponystatusSamochodu}" style="color: black; width: fit-content" >
+                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_opony_satus}" style="color: black; width: fit-content" >
                                 <f:selectItem itemValue="Letnie" itemLabel="Letnie"/>
                                 <f:selectItem itemValue="Zimowe" itemLabel="Zimowe"/>
                             </h:selectOneMenu> </td>
@@ -147,7 +147,7 @@ and open the template in the editor.
 
 
 
-                            <h:selectOneMenu value="#{dodajSamochod.dodajlokalizacjaSamochodu}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.idlokalizacja}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
                                                itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
                             </h:selectOneMenu>
@@ -165,7 +165,7 @@ and open the template in the editor.
                         <td class="col-md-2">
 
 
-                            <h:selectOneMenu value="#{dodajSamochod.dodajlokalizacjaStalaSamochodu}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_lokalizacja_stala}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaStalaList}" var="lok_st"
                                                itemLabel="#{lok_st.nazwa_lokalizacja}" itemValue="#{lok_st.nazwa_lokalizacja}"/>
                             </h:selectOneMenu>
@@ -178,7 +178,7 @@ and open the template in the editor.
 
                         </td>
                         <td class="col-md-2">Rodzaj Pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodajrodzajSamochodu}" style="color: black; width: fit-content" >
+                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_rodzaj_pojazdu}" style="color: black; width: fit-content" >
                                 <f:selectItem itemValue="Własny" itemLabel="Własny"/>
                                 <f:selectItem itemValue="Wypożyczalnia" itemLabel="Wypożyczalnia"/>
                             </h:selectOneMenu></td>
@@ -190,7 +190,7 @@ and open the template in the editor.
                     <tr>
                         <td class="col-md-2">Numer Karty Parkingowej</td>
                         <td class="col-md-2">
-                            <h:selectOneMenu value="#{dodajSamochod.dodajkartaParkingowa}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_karta_parkingowa}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="kparkingowa"
                                                itemLabel="#{kparkingowa.numer_karta_parkingowa}" itemValue="#{kparkingowa.numer_karta_parkingowa}"/>
                             </h:selectOneMenu></td>
@@ -199,7 +199,7 @@ and open the template in the editor.
                         </td>
                         <td class="col-md-2">Numer Karty Paliwowej</td>
                         <td class="col-md-2">
-                            <h:selectOneMenu value="#{dodajSamochod.dodajkartaPaliwowa}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_karta_paliwowa}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="kpaliwowa"
                                                itemLabel="#{kpaliwowa.numer_Karty}" itemValue="#{kpaliwowa.numer_Karty}"/>
                             </h:selectOneMenu></td>
@@ -212,7 +212,7 @@ and open the template in the editor.
 
                         <td class="col-md-2">Pracownik Używajacy</td>
                         <td class="col-md-2">
-                            <h:selectOneMenu value="#{dodajSamochod.dodajpracownikSamochodu}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.pracownik_uzywajacy}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{pracownikZapytania.listaPracownik}" var="lok"
                                                itemLabel="#{lok.imieNazwisko}" itemValue="#{lok.imieNazwisko}"/>
                             </h:selectOneMenu></td>
@@ -230,7 +230,9 @@ and open the template in the editor.
 
                         </td>
                         <td class="col-md-2">Pojemność Silnika</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajpojemnoscSilnika}" id="poj_silnika" required="true" requiredMessage="Nie podano pojemnosci silnika."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.poj_silnika}" 
+                                                          id="poj_silnika" required="true" 
+                                                          requiredMessage="Nie podano pojemnosci silnika."/></td>
                         <td class="col-md-2"><h:message for="poj_silnika"></h:message>
 
                         </td>
@@ -238,7 +240,7 @@ and open the template in the editor.
                     </tr>
                     <tr><td class="col-md-2">Rok Produkcji</td>
                         <td class="col-md-2">
-                            <h:inputText value="#{dodajSamochod.dodajrokProdukcji}" 
+                            <h:inputText value="#{dodajSamochod.dodawanySamochod.rok_produkcji}" 
                                          id="rok_prod"                
                                          required="true" 
                                          requiredMessage="Nie podano roku produkcji."  
@@ -252,7 +254,7 @@ and open the template in the editor.
                         </td>
                         <td class="col-md-2">Data Przyjęcia Do Firmy</td>
                         <td class="col-md-2">
-                            <h:inputText value="#{dodajSamochod.dodajdataPrzyjecia}" 
+                            <h:inputText value="#{dodajSamochod.dodawanySamochod.data_przyjecia}" 
                                          id="data_przyjecia" 
                                          required="true" 
                                          requiredMessage="Nie podano daty przyjęcia do firmy."
@@ -267,7 +269,7 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td class="col-md-2">Data Pierwszej Rejestracji</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajdataPierwszejRejestracji}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.data_pierwszej_rejestracji}" 
                                                           id="data_pierw_rej" 
                                                           required="true" 
                                                           requiredMessage="Nie podano daty pierwszej rejestracji."
@@ -282,7 +284,7 @@ and open the template in the editor.
 
                         <td class="col-md-2">Numer GPS</td>
                         <td class="col-md-2">
-                            <h:selectOneMenu value="#{dodajSamochod.dodajIdGps}" style="color: black; width: fit-content">
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_gps}" style="color: black; width: fit-content">
                                 <f:selectItems value="#{gPSZapytania.GPSList}" var="lok"
                                                itemLabel="#{lok.gps_numer}" itemValue="#{lok.gps_numer}"/>
                             </h:selectOneMenu>
@@ -295,7 +297,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Przebieg</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKilometry}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.kilometry}" 
                                                           id="przebieg" 
                                                           required="true" 
                                                           requiredMessage="Nie podano przebiegu."
@@ -308,7 +310,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Kolor Nadwozia</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajKolor}" id="kolor" required="true" requiredMessage="Nie podano koloru nadwozia."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.kolor}" id="kolor" required="true" requiredMessage="Nie podano koloru nadwozia."/></td>
                         <td class="col-md-2">
                             <h:message for="kolor"/>
                         </td>
@@ -317,7 +319,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Wersja Pojazdu</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajWersja}" id="wersja" required="true" requiredMessage="Nie podano wersji pojazdu."/></td>
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.wersja}" id="wersja" required="true" requiredMessage="Nie podano wersji pojazdu."/></td>
                         <td class="col-md-2">
                             <h:message for="wersja"/>
                         </td>
@@ -325,7 +327,7 @@ and open the template in the editor.
                         <td class="col-md-2">Typ Samochodu</td>
                         <td class="col-md-2">
 
-                            <h:selectOneMenu value="#{dodajSamochod.dodajIdTypSamochodu}"
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_typ_samochodu}"
                                              style="color: black; width: fit-content" 
                                              id="typ_samochodu" 
                                              required="true" 
@@ -344,7 +346,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">VAT</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajVat}"
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.vat}"
                                                           id="dodaj_Vat"
                                                           required="true"
                                                           requiredMessage="Nie podanu VAT."/></td>
@@ -353,7 +355,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Grupa Limit</td>
-                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodajIdGrupaLimit}"
+                        <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_grupa_limit}"
                                              style="color: black; width: fit-content" 
                                              id="grupa_limit" 
                                              required="true" 
@@ -370,27 +372,27 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Numer Umowy Leasingu</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowyLeasingu}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.nr_umowy_leasingu}" 
                                                           id="nr_leasing" 
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru leasingu."/></td>
                         <td class="col-md-2">
                             <h:message for ="nr_leasing"/><h:form rendered="#{dodajSamochod.nr_umowy_leasingBlad}">
                                 <div class="alert alert-danger">
-                                    Taka nazwa pojazdu już istnieje, podaj inną.
+                                   Taki numer leasingu juz istnieje.
                                 </div>
                             </h:form> 
                         </td>
 
                         <td class="col-md-2">Numer Umowy Serwisu</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajNrUmowySerwis}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.nr_umowy_serwis}" 
                                                           id="nr_umowy_serwis" 
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru umowy serwisu."/></td>
                         <td class="col-md-2">
                             <h:message for ="nr_umowy_serwis"/><h:form rendered="#{dodajSamochod.nr_umowy_serwisBlad}">
                                 <div class="alert alert-danger">
-                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                    Taki numer umowy serwisowej juz istnieje.
                                 </div>
                             </h:form> 
                         </td>
@@ -399,7 +401,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">MPK</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMpk}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.mpk}" 
                                                           id="mpk" 
                                                           required="true" 
                                                           requiredMessage="Nie podano MPK."/></td>
@@ -408,7 +410,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Numer Umowy PRV</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajPrvUmowa}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.prv_umowa}" 
                                                           id="prv_umowa" 
                                                           required="true" 
                                                           requiredMessage="Nie podano nr umowy PRV."/></td>
@@ -425,7 +427,7 @@ and open the template in the editor.
                     <tr>
                         <td class="col-md-2">Umowa Z Dnia</td>
                         <td class="col-md-2">
-                            <h:inputText value="#{dodajSamochod.dodajUmowaZDnia}" 
+                            <h:inputText value="#{dodajSamochod.dodawanySamochod.umowa_z_dnia}" 
                                          id="umowa_z_dnia" 
                                          required="true" requiredMessage="Nie podano daty umowy z dnia."
                                          pt:placeholder="rrrr-mm-dd"
@@ -440,7 +442,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Miejsce Parkingowe</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajMiejsceParkingowe}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.miejsce_parkingowe}" 
                                                           id="miejsce_parkingowe"/></td>
                         <td class="col-md-2">
 
@@ -449,7 +451,7 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td class="col-md-2">Rozmiar Opon</td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajRozmiarOpon}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.rozmiar_opon}" 
                                                           id="rozm_opon" 
                                                           required="true" 
                                                           requiredMessage="Nie podano rozmiaru opon."
