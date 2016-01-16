@@ -30,36 +30,15 @@ public class WyszukajSamochod {
 
     }
 
-    public static List getListaSamochodowWyszukanych(String statusSamochodu, String nrrejSamochodu,
-            String modelSamochodu, String lokalizacjaSamochodu, String pracownikSamochodu,
-            String nazwaSamochodu, String oponystatusSamochodu, String oznaczenieproducentaSamochodu,
-            String vinSamochodu, String markaSamochodu, String paliwoSamochodu,
-            String lokalizacjaStalaSamochodu, String rodzajSamochodu, String kartaParkingowa,
-            String kartaPaliwowa, String przebiegSamochodu, String ubezpieczenieSamochodu,
-            String poj_silnika,
-            String rok_produkcji,
-            String data_przyjecia,
-            String data_pierwszej_rejestracji,
-            String id_gps,
-            String kilometry,
-            String kolor,
-            String wersja,
-            String id_typ_samochodu,
-            String vat,
-            String id_grupa_limit,
-            String nr_umowy_leasingu,
-            String nr_umowy_serwis,
-            String mpk,
-            String prv_umowa,
-            String umowa_z_dnia,
-            String miejsce_parkingowe,
-            String rozmiar_opon) {
+    public static List getListaSamochodowWyszukanych(
+            Samochod przekazanySamochod
+            ) {
 
         Connection c = null;
         String sql;
         List<Samochod> listaSamochodow = new ArrayList<Samochod>();
         Statement stmt = null;
-
+        
         sql = "select samochod.id_samochod as id, samochod.nazwa as nazwa, samochod.marka as marka, samochod.model as model,\n"
                 + "samochod.oznaczenie_producenta as oznaczenie_producenta, samochod.paliwo as paliwo, samochod.nr_rej as nr_rej,\n"
                 + "samochod.nr_vin as nr_vin, samochod_status.nazwa_samochod_status as status, opony_status.nazwa_opony_status as opony_status,\n"
@@ -88,131 +67,129 @@ public class WyszukajSamochod {
                 
                 + "where samochod.id_samochod is not null\n";
 
-        if (!modelSamochodu.isEmpty()) {
-            sql = sql + " and samochod.model ilike('" + modelSamochodu + "')\n";
+        if (!przekazanySamochod.getModel().isEmpty()) {
+            sql = sql + " and samochod.model ilike('" + przekazanySamochod.getModel() + "')\n";
         }
 
-        if (!statusSamochodu.isEmpty()) {
-            sql = sql + " and samochod.model ilike('" + statusSamochodu + "')\n";
+        if (!przekazanySamochod.getId_status().isEmpty()) {
+            sql = sql + " and samochod.model ilike('" + przekazanySamochod.getId_status()+ "')\n";
         }
 
-        if (!pracownikSamochodu.isEmpty()) {
-            sql = sql + " and concat(pracownik.imie ,' ', pracownik.nazwisko) ilike ('" + pracownikSamochodu + "')\n";
+        if (!przekazanySamochod.getPracownik_uzywajacy().isEmpty()) {
+            sql = sql + " and concat(pracownik.imie ,' ', pracownik.nazwisko) ilike ('" + przekazanySamochod.getPracownik_uzywajacy() + "')\n";
         }
 
-        if (!nrrejSamochodu.isEmpty()) {
-            sql = sql + " and samochod.nr_rej ilike('" + nrrejSamochodu + "')\n";
+        if (!przekazanySamochod.getNr_rej().isEmpty()) {
+            sql = sql + " and samochod.nr_rej ilike('" + przekazanySamochod.getNr_rej() + "')\n";
         }
 
-        if (!lokalizacjaSamochodu.isEmpty()) {
-            sql = sql + " and lokalizacja.nazwa_lokalizacja ilike ('" + lokalizacjaSamochodu + "')\n";
+        if (!przekazanySamochod.getIdlokalizacja().isEmpty()) {
+            sql = sql + " and lokalizacja.nazwa_lokalizacja ilike ('" + przekazanySamochod.getIdlokalizacja() + "')\n";
         }
 
-        if (!nazwaSamochodu.isEmpty()) {
-            sql = sql + " and samochod.nazwa ilike('" + nazwaSamochodu + "')\n";
+        if (!przekazanySamochod.getNazwa().isEmpty()) {
+            sql = sql + " and samochod.nazwa ilike('" + przekazanySamochod.getNazwa() + "')\n";
         }
 
-        if (!oponystatusSamochodu.isEmpty()) {
-            sql = sql + " and opony_status.nazwa_opony_status ilike('" + oponystatusSamochodu + "')\n";
+        if (!przekazanySamochod.getId_opony_satus().isEmpty()) {
+            sql = sql + " and opony_status.nazwa_opony_status ilike('" + przekazanySamochod.getId_opony_satus() + "')\n";
         }
 
-        if (!oznaczenieproducentaSamochodu.isEmpty()) {
-            sql = sql + " and samochod.oznaczenie_producenta ilike('" + oznaczenieproducentaSamochodu + "')\n";
+        if (!przekazanySamochod.getOznaczenie_producenta().isEmpty()) {
+            sql = sql + " and samochod.oznaczenie_producenta ilike('" + przekazanySamochod.getOznaczenie_producenta() + "')\n";
         }
 
-        if (!vinSamochodu.isEmpty()) {
-            sql = sql + " and samochod.nr_vin ilike('" + vinSamochodu + "')\n";
+        if (!przekazanySamochod.getNr_vin().isEmpty()) {
+            sql = sql + " and samochod.nr_vin ilike('" + przekazanySamochod.getNr_vin() + "')\n";
         }
 
-        if (!markaSamochodu.isEmpty()) {
-            sql = sql + " and samochod.marka ilike('" + markaSamochodu + "')\n";
+        if (!przekazanySamochod.getMarka().isEmpty()) {
+            sql = sql + " and samochod.marka ilike('" + przekazanySamochod.getMarka() + "')\n";
         }
-        if (!paliwoSamochodu.isEmpty()) {
-            sql = sql + " and samochod.paliwo ilike('" + paliwoSamochodu + "')\n";
+        if (!przekazanySamochod.getPaliwo().isEmpty()) {
+            sql = sql + " and samochod.paliwo ilike('" + przekazanySamochod.getPaliwo() + "')\n";
         }
-        if (!lokalizacjaStalaSamochodu.isEmpty()) {
-            sql = sql + " and lokalizacja.nazwa_lokalizacja ilike('" + lokalizacjaStalaSamochodu + "')\n";
+        if (!przekazanySamochod.getId_lokalizacja_stala().isEmpty()) {
+            sql = sql + " and lokalizacja.nazwa_lokalizacja ilike('" +przekazanySamochod.getId_lokalizacja_stala() + "')\n";
         }
-        if (!rodzajSamochodu.isEmpty()) {
-            sql = sql + " and rodzaj_pojazdu.nazwa ilike('" + rodzajSamochodu + "')\n";
+        if (!przekazanySamochod.getId_rodzaj_pojazdu().isEmpty()) {
+            sql = sql + " and rodzaj_pojazdu.nazwa ilike('" + przekazanySamochod.getId_rodzaj_pojazdu() + "')\n";
         }
-        if (!kartaParkingowa.isEmpty()) {
-            sql = sql + " and karta_parkingowa.numer_karta_parkingowa ilike('" + kartaParkingowa + "')\n";
+        if (!przekazanySamochod.getId_karta_parkingowa().isEmpty()) {
+            sql = sql + " and karta_parkingowa.numer_karta_parkingowa ilike('" + przekazanySamochod.getId_karta_parkingowa() + "')\n";
         }
-        if (!kartaPaliwowa.isEmpty()) {
-            sql = sql + " and karta_paliwowa.numer_karty ilike('" + kartaPaliwowa + "')\n";
+        if (!przekazanySamochod.getId_karta_paliwowa().isEmpty()) {
+            sql = sql + " and karta_paliwowa.numer_karty ilike('" + przekazanySamochod.getId_karta_paliwowa() + "')\n";
         }
-        if (przebiegSamochodu.matches("[0-9]+")) {
-            sql = sql + " and samochod.przebieg_calkowity =('" + Double.parseDouble(przebiegSamochodu) + "')\n";
+        if (przekazanySamochod.getPrzebieg_calkowity().matches("[0-9]+")) {
+            sql = sql + " and samochod.przebieg_calkowity =('" + Double.parseDouble(przekazanySamochod.getPrzebieg_calkowity()) + "')\n";
         } //dla tabeli kilometry
-        if (!ubezpieczenieSamochodu.isEmpty()) {
-            sql = sql + " and ubezpieczenie.numer_polisy ilike('" + ubezpieczenieSamochodu + "')\n";
+        if (!przekazanySamochod.getId_ubezpieczenia().isEmpty()) {
+            sql = sql + " and ubezpieczenie.numer_polisy ilike('" + przekazanySamochod.getId_ubezpieczenia() + "')\n";
+        }
+        if (!przekazanySamochod.getPoj_silnika().isEmpty() ) {
+            sql = sql + " and samochod.poj_silnika ilike('" + przekazanySamochod.getPoj_silnika() + "')\n";
         }
 
-        if (!poj_silnika.isEmpty()) {
-            sql = sql + " and samochod.poj_silnika ilike('" + poj_silnika + "')\n";
+        if (przekazanySamochod.getRok_produkcji().matches("[0-9]+")) {
+            sql = sql + " and samochod.rok_produkcji = ('" + Integer.parseInt(przekazanySamochod.getRok_produkcji()) + "')\n";
         }
 
-        if (rok_produkcji.matches("[0-9]+")) {
-            sql = sql + " and samochod.rok_produkcji = ('" + Integer.parseInt(rok_produkcji) + "')\n";
+        if (przekazanySamochod.getData_przyjecia().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
+            sql = sql + " and samochod.data_przyjecia = ('" + przekazanySamochod.getData_przyjecia() + "')\n";
+        }
+        if (przekazanySamochod.getData_pierwszej_rejestracji().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
+            sql = sql + " and samochod.data_przyjecia = ('" + przekazanySamochod.getData_pierwszej_rejestracji() + "')\n";
+        }
+        if (!przekazanySamochod.getId_gps().isEmpty()) {
+            sql = sql + "and gps.gps_numer ilike ('" + przekazanySamochod.getId_gps() + "')\n";
         }
 
-        if (data_przyjecia.matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
-            sql = sql + " and samochod.data_przyjecia = ('" + data_przyjecia + "')\n";
+        if (przekazanySamochod.getKilometry().matches("[0-9]+")) {
+            sql = sql + "and samochod.kilometry =('" + Double.parseDouble(przekazanySamochod.getKilometry()) + "')\n";
         }
-        if (data_pierwszej_rejestracji.matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
-            sql = sql + " and samochod.data_przyjecia = ('" + data_pierwszej_rejestracji + "')\n";
+        if (!przekazanySamochod.getKolor().isEmpty()) {
+            sql = sql + "and samochod.kolor ilike('" + przekazanySamochod.getKolor()  + "')\n";
         }
-        if (!id_gps.isEmpty()) {
-            sql = sql + "and gps.gps_numer ilike ('" + id_gps + "')\n";
+        if (!przekazanySamochod.getWersja().isEmpty()) {
+            sql = sql + "and samochod.wersja ilike ('" + przekazanySamochod.getWersja() + "')\n";
         }
-
-        if (kilometry.matches("[0-9]+")) {
-            sql = sql + "and samochod.kilometry =('" + Double.parseDouble(kilometry) + "')\n";
-        }
-        if (!kolor.isEmpty()) {
-            sql = sql + "and samochod.kolor ilike('" + kolor + "')\n";
-        }
-        if (!wersja.isEmpty()) {
-            sql = sql + "and samochod.wersja ilike ('" + wersja + "')\n";
-        }
-        if (!id_typ_samochodu.isEmpty()) {
-            sql = sql + "and typ_samochod.nazwa ilike('" + id_typ_samochodu + "')\n";
+        if (!przekazanySamochod.getId_typ_samochodu().isEmpty()) {
+            sql = sql + "and typ_samochod.nazwa ilike('" + przekazanySamochod.getId_typ_samochodu() + "')\n";
         }
 
-        if (!vat.isEmpty()) {
-            sql = sql + "and samochod.vat ilike('" + vat + "')\n";
+        if (!przekazanySamochod.getVat().isEmpty()) {
+            sql = sql + "and samochod.vat ilike('" + przekazanySamochod.getVat() + "')\n";
         }
-        if (!id_grupa_limit.isEmpty()) {
-            sql = sql + "and grupa_limit.nazwa ilike('" + id_grupa_limit + "')\n";
+        if (!przekazanySamochod.getId_grupa_limit().isEmpty()) {
+            sql = sql + "and grupa_limit.nazwa ilike('" + przekazanySamochod.getId_grupa_limit() + "')\n";
         }
-        if (!nr_umowy_leasingu.isEmpty()) {
-            sql = sql + "and samochod.nr_umowy_leasingu ilike ('" + nr_umowy_leasingu + "')\n";
+        if (!przekazanySamochod.getNr_umowy_leasingu().isEmpty()) {
+            sql = sql + "and samochod.nr_umowy_leasingu ilike ('" + przekazanySamochod.getNr_umowy_leasingu() + "')\n";
         }
-        if (!nr_umowy_serwis.isEmpty()) {
-            sql = sql + "and samochod.nr_umowy_serwis ilike ('" + nr_umowy_serwis + "')\n";
-        }
-
-        if (!mpk.isEmpty()) {
-            sql = sql + "and samochod.mpk ilike('" + mpk + "')\n";
-        }
-        if (!prv_umowa.isEmpty()) {
-            sql = sql + "and samochod.prv_umowa ilike ('" + prv_umowa + "')\n";
+        if (!przekazanySamochod.getNr_umowy_serwis().isEmpty()) {
+            sql = sql + "and samochod.nr_umowy_serwis ilike ('" + przekazanySamochod.getNr_umowy_serwis() + "')\n";
         }
 
-        if (umowa_z_dnia.matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
-            sql = sql + "and samochod.umowa_z_dnia =('" + umowa_z_dnia + "')\n";
+        if (!przekazanySamochod.getMpk().isEmpty()) {
+            sql = sql + "and samochod.mpk ilike('" + przekazanySamochod.getMpk() + "')\n";
         }
-        if (!miejsce_parkingowe.isEmpty()) {
-            sql = sql + "and samochod.miejsce_parkingowe ilike ('" + miejsce_parkingowe + "')\n";
-        }
-
-        if (rozmiar_opon.matches("[0-9]+")) {
-            sql = sql + "and samochod.rozmiar_opon =('" + Double.parseDouble(rozmiar_opon) + "')\n";
+        if (!przekazanySamochod.getPrv_umowa().isEmpty()) {
+            sql = sql + "and samochod.prv_umowa ilike ('" + przekazanySamochod.getPrv_umowa() + "')\n";
         }
 
-        System.out.println(przebiegSamochodu);
-        System.out.println(sql);
+        if (przekazanySamochod.getUmowa_z_dnia().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
+            sql = sql + "and samochod.umowa_z_dnia =('" + przekazanySamochod.getUmowa_z_dnia() + "')\n";
+        }
+        if (!przekazanySamochod.getMiejsce_parkingowe().isEmpty()) {
+            sql = sql + "and samochod.miejsce_parkingowe ilike ('" + przekazanySamochod.getMiejsce_parkingowe() + "')\n";
+        }
+
+        if (przekazanySamochod.getRozmiar_opon().matches("[0-9]+")) {
+            sql = sql + "and samochod.rozmiar_opon =('" + Double.parseDouble(przekazanySamochod.getRozmiar_opon()) + "')\n";
+        }
+
+        
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -278,30 +255,7 @@ public class WyszukajSamochod {
         return listaSamochodow;
     }
 
-    public static List getListaSamochodowNowa(String statusSamochodu, String nrrejSamochodu,
-            String modelSamochodu, String lokalizacjaSamochodu, String pracownikSamochodu,
-            String nazwaSamochodu, String oponystatusSamochodu, String oznaczenieproducentaSamochodu,
-            String vinSamochodu, String markaSamochodu, String paliwoSamochodu,
-            String lokalizacjaStalaSamochodu, String rodzajSamochodu, String kartaParkingowa,
-            String kartaPaliwowa, String przebiegSamochodu, String ubezpieczenieSamochodu,
-            String poj_silnika,
-            String rok_produkcji,
-            String data_przyjecia,
-            String data_pierwszej_rejestracji,
-            String id_gps,
-            String kilometry,
-            String kolor,
-            String wersja,
-            String id_typ_samochodu,
-            String vat,
-            String id_grupa_limit,
-            String nr_umowy_leasingu,
-            String nr_umowy_serwis,
-            String mpk,
-            String prv_umowa,
-            String umowa_z_dnia,
-            String miejsce_parkingowe,
-            String rozmiar_opon) {
+    public static List getListaSamochodowNowa() {
         Connection c = null;
 
         List<Samochod> listaSamochodow = new ArrayList<Samochod>();

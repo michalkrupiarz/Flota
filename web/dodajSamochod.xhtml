@@ -33,7 +33,7 @@ and open the template in the editor.
                 <table class="table table-hover" >
                     <tr>
                         <td class="col-md-2" style="vertical-align: middle">Nazwa pojazdu <span class="glyphicon glyphicon-star" /></td>
-                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{dodajSamochod.dodajnazwaSamochodu}" 
+                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{dodajSamochod.dodawanySamochod.nazwa}" 
                                                                                          id="nazwa_pojazdu" 
                                                                                          required="true" 
                                                                                          requiredMessage="Nie podano nazwy pojazdu."/> 
@@ -47,7 +47,7 @@ and open the template in the editor.
 
                         </td>
                         <td class="col-md-2" style="vertical-align: middle">Marka pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{dodajSamochod.dodajmarkaSamochodu}" 
+                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{dodajSamochod.dodawanySamochod.marka}" 
                                                           id= "marka_pojazdu" 
                                                           required="true" 
                                                           requiredMessage="Nie podano marki pojazdu." /></td>
@@ -59,7 +59,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2">Model pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajmodelSamochodu}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.model}" 
                                                           id="model_pojazdu" label="model_pojazdu" 
                                                           required="true" 
                                                           requiredMessage="Nie podano modelu pojazdu"/>
@@ -70,7 +70,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Oznaczenie producenta pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajoznaczenieproducentaSamochodu}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.oznaczenie_producenta}" 
                                                           id="oznaczenie_producenta_pojazdu" 
                                                           required="true" 
                                                           requiredMessage="Nie podano oznaczenia pojazdu."/></td>
@@ -80,7 +80,7 @@ and open the template in the editor.
                     <tr>
                         <td class="col-md-2">Rodzaj Paliwa</td>
                         <td class="col-md-2" >
-                            <h:selectOneMenu value="#{dodajSamochod.dodajpaliwoSamochodu}" 
+                            <h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.paliwo}" 
                                              style="color: black; width: fit-content" >
                                 <f:selectItem itemValue="Benzyna" itemLabel="Benzyna"/>
                                 <f:selectItem itemValue="Diesel" itemLabel="Diesel"/>
@@ -92,7 +92,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="col-md-2">Numer rejestracyjny <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodajnrrejSamochodu}" 
+                        <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.nr_rej}" 
                                                           id="nr_rej" 
                                                           required="true" 
                                                           requiredMessage="Nie podano numeru rejestracyjnego."/></td>

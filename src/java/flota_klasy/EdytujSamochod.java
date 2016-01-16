@@ -27,6 +27,6 @@ public class EdytujSamochod {
        
     public String zapiszWyedytowanySamochod(){  
         System.out.println("nowa nazwa samochodu"+wyedytowanySamochod.getNazwa());
-        return "index";
+        return null;
     }
 }
