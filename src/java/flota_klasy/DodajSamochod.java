@@ -419,7 +419,9 @@ public class DodajSamochod {
         dodawanySamochod.setMiejsce_parkingowe(dodajMiejsceParkingowe);
         dodawanySamochod.setRozmiar_opon(dodajRozmiarOpon);
         dodawanySamochod.setId_lokalizacja_stala(dodajlokalizacjaStalaSamochodu);
-
+        
+        
+        
         return dodawanySamochod;
     }
 

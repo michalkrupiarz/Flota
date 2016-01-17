@@ -27,7 +27,8 @@ public class WyswietlSamochod {
     Samochod samochod;
 
     private Samochod aktualnySamochod;
-
+    public Samochod edytowanySamochod;
+    
     private String modelSamochodu = "%";
     private String statusSamochodu = "%";
     private String nrrejSamochodu = "%";

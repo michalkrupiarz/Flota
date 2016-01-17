@@ -14,7 +14,7 @@
             <h:panelGrid columnClasses="value">
                 <h3 style="margin-top: 0">Editable Schedule</h3>
                 <p:schedule id="schedule" value="#{scheduleView.eventModel}" widgetVar="myschedule"  resizable="true"  draggable="true"
-                            timeZone="UTC" ignoreTimezone="false">
+                            timeZone="GMT+2" ignoreTimezone="false">
 
                     <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                     <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
@@ -37,7 +37,7 @@
                     </p:inputMask>
                     
                     <h:outputLabel for="to" value="To:" />
-                    <p:calendar  id="to" value="#{scheduleView.event.endDate}" pattern="yyyy-MM-dd HH:mm:ss" showOn="button" mask="9999-99-99"/>
+                    <p:calendar  id="to" value="#{scheduleView.event.endDate}" pattern="yyyy-MM-dd" showOn="button" mask="9999-99-99"/>
                     
                         
                     

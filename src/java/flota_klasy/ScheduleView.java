@@ -65,12 +65,10 @@ public class ScheduleView implements Serializable {
         List <Wypozyczenie> listaWypozyczen = new ArrayList<Wypozyczenie>();
         listaWypozyczen = WypozyczenieZapytania.listaWypozyczen();
        for (Wypozyczenie wypozyczenie:listaWypozyczen){
-           c.setTime(wypozyczenie.getData_zakonczenia_zlecenia());
-           c.add(Calendar.DATE, 0);
-        
+           
        eventModel.addEvent(new DefaultScheduleEvent(wypozyczenie.getTresc_zlecenia(), 
                wypozyczenie.getData_zlecenia(),
-               c.getTime()));
+               wypozyczenie.getData_zakonczenia_zlecenia()));
         
         }    
     }
