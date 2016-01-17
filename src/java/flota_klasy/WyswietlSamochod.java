@@ -5,12 +5,9 @@
  */
 package flota_klasy;
 
-import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -31,23 +28,28 @@ public class WyswietlSamochod {
 
     private Samochod aktualnySamochod;
 
-    
-    
-    public Samochod getWyszukanySamochod(){
+    private Samochod wyedytowanySamochod = new Samochod();
+
+    public Samochod getWyedytowanySamochod() {
+        return wyedytowanySamochod;
+    }
+
+    public void nadpisz(String nadpisz) {
+        aktualnySamochod.setNazwa(nadpisz);
+    }
+
+    public Samochod getWyszukanySamochod() {
         return wyszukanySamochod;
     }
-    
-   
-    public String pokazWszystkieSamochody() {
 
-        
+    public String pokazWszystkieSamochody() {
 
         return "index";
     }
 
     public String pokazSamochod() {
         aktualnySamochod = (Samochod) listaSamochodowNowa.getRowData();
-
+        wyedytowanySamochod = aktualnySamochod;
         return "wybranySamochod";
     }
 
@@ -69,7 +71,7 @@ public class WyswietlSamochod {
     }
 
     public String wyszukajSamochod() {
-        
+
         return "wyszukaneSamochody";
     }
 
@@ -86,4 +88,11 @@ public class WyswietlSamochod {
         return listaSamochodowNowa;
     }
     
+    public String zapiszWyedytowanySamochod(){  
+        aktualnySamochod = wyedytowanySamochod;        
+    
+        System.out.println("nowa nazwa samochodu"+aktualnySamochod.getNazwa());
+        
+        return null;
+    }
 }

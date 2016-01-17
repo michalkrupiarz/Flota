@@ -59,70 +59,19 @@ public class Samochod {
     private String pracownik_uzywajacy;
     private String id_ubezpieczenia;
 
-    public Samochod() {
-
+    boolean editable;
+    
+   
+    
+    public boolean isEditable() {
+        return editable;
     }
 
-    public Samochod(long id_samochod, String nazwa, String marka, String model, String oznaczenie_producenta,
-            String paliwo, String nr_rej, String nr_vin, String id_status, String id_opony_status,
-            String lokalizacja, String id_lokalizacja_stala, String id_rodzaj_pojazdu, String id_karta_parkingowa,
-            String id_karta_paliwowa, String przebieg_calkowity, String pracownik_uzywajacy, String id_ubezpieczenia,
-            String poj_silnika,
-            String rok_produkcji,
-            String data_przyjecia,
-            String data_pierwszej_rejestracji,
-            String id_gps,
-            String kilometry,
-            String kolor,
-            String wersja,
-            String id_typ_samochodu,
-            String vat,
-            String id_grupa_limit,
-            String nr_umowy_leasingu,
-            String nr_umowy_serwis,
-            String mpk,
-            String prv_umowa,
-            String umowa_z_dnia,
-            String miejsce_parkingowe,
-            String rozmiar_opon) {
-        this.id_samochod = id_samochod;
-        this.nazwa = nazwa;
-        this.marka = marka;
-        this.model = model;
-        this.oznaczenie_producenta = oznaczenie_producenta;
-        this.paliwo = paliwo;
-        this.nr_rej = nr_rej;
-        this.nr_vin = nr_vin;
-        this.id_status = id_status;
-        this.id_opony_satus = id_opony_status;
-        this.idlokalizacja = lokalizacja;
-        this.id_lokalizacja_stala = id_lokalizacja_stala;
-        this.id_rodzaj_pojazdu = id_rodzaj_pojazdu;
-        this.id_karta_parkingowa = id_karta_parkingowa;
-        this.id_karta_paliwowa = id_karta_paliwowa;
-        this.przebieg_calkowity = przebieg_calkowity;
-        this.pracownik_uzywajacy = pracownik_uzywajacy;
-        this.id_ubezpieczenia = id_ubezpieczenia;
-        this.poj_silnika = poj_silnika;
-        this.rok_produkcji = rok_produkcji;
-        this.data_przyjecia = data_przyjecia;
-        this.data_pierwszej_rejestracji = data_pierwszej_rejestracji;
-        this.id_gps = id_gps;
-        this.kilometry = kilometry;
-        this.kolor = kolor;
-        this.wersja = wersja;
-        this.id_typ_samochodu = id_typ_samochodu;
-        this.vat = vat;
-        this.id_grupa_limit = id_grupa_limit;
-        this.nr_umowy_leasingu = nr_umowy_leasingu;
-        this.nr_umowy_serwis = nr_umowy_serwis;
-        this.mpk = mpk;
-        this.prv_umowa = prv_umowa;
-        this.umowa_z_dnia = umowa_z_dnia;
-        this.miejsce_parkingowe = miejsce_parkingowe;
-        this.rozmiar_opon = rozmiar_opon;
-
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
+
+    
 
     public String getNazwa() {
         return nazwa;
