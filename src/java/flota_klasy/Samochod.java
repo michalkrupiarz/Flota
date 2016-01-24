@@ -5,16 +5,16 @@
  */
 package flota_klasy;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 /**
  *
  * @author M
  */
 @ManagedBean
 @SessionScoped
-public class Samochod {
+public class Samochod implements Cloneable{
 
     private long id_samochod;
     private String nazwa;
@@ -59,17 +59,10 @@ public class Samochod {
     private String pracownik_uzywajacy;
     private String id_ubezpieczenia;
 
-    boolean editable;
-    
+   
    
     
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-    }
+   
 
     
 
@@ -369,7 +362,10 @@ public class Samochod {
     public void setRozmiar_opon(String rozmiar_opon) {
         this.rozmiar_opon = rozmiar_opon;
     }
-
+    @Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
     
    }
 

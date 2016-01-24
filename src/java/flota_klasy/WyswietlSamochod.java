@@ -5,12 +5,13 @@
  */
 package flota_klasy;
 
+import java.text.NumberFormat.Field;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-
+import static org.apache.commons.lang.SerializationUtils.clone;
 /**
  *
  * @author M
@@ -26,16 +27,13 @@ public class WyswietlSamochod {
     Samochod samochod;
     private Samochod wyszukanySamochod = new Samochod();
 
-    private Samochod aktualnySamochod;
+    private Samochod aktualnySamochod = new Samochod();
 
     private Samochod wyedytowanySamochod = new Samochod();
 
     public Samochod getWyedytowanySamochod() {
-        return wyedytowanySamochod;
-    }
 
-    public void nadpisz(String nadpisz) {
-        aktualnySamochod.setNazwa(nadpisz);
+        return wyedytowanySamochod;
     }
 
     public Samochod getWyszukanySamochod() {
@@ -47,9 +45,9 @@ public class WyswietlSamochod {
         return "index";
     }
 
-    public String pokazSamochod() {
+    public String pokazSamochod() throws CloneNotSupportedException {
         aktualnySamochod = (Samochod) listaSamochodowNowa.getRowData();
-        wyedytowanySamochod = aktualnySamochod;
+        wyedytowanySamochod = (Samochod) aktualnySamochod.clone();
         return "wybranySamochod";
     }
 
@@ -87,12 +85,16 @@ public class WyswietlSamochod {
 
         return listaSamochodowNowa;
     }
-    
-    public String zapiszWyedytowanySamochod(){  
-        aktualnySamochod = wyedytowanySamochod;        
-    
-        System.out.println("nowa nazwa samochodu"+aktualnySamochod.getNazwa());
+
+    public String zapiszWyedytowanySamochod(String pole) {
+        // poprzez metode klonowania mamy klona i rozne wartoisc, teraz nalezy tylko to odpowiednio obrobic 
+        System.out.println(pole);
+        System.out.println("czy unikalny " + WeryfikacjaDanych.czyUnikalny(pole, "samochod", wyedytowanySamochod.getNazwa()));
+        System.out.println("nowa nazwa samochodu " + aktualnySamochod.getNazwa());
+        System.out.println("nowa nazwa samochodu " + wyedytowanySamochod.getNazwa());
         
+        System.out.println("nowa nazwa samochodu " + aktualnySamochod.getMarka());
+        System.out.println("nowa nazwa samochodu " + wyedytowanySamochod.getMarka());
         return null;
     }
 }
