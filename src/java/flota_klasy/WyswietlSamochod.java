@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import static org.apache.commons.lang.SerializationUtils.clone;
+
 /**
  *
  * @author M
@@ -20,7 +21,14 @@ import static org.apache.commons.lang.SerializationUtils.clone;
 @SessionScoped
 public class WyswietlSamochod {
 
+    private boolean nazwaSamochoduBlad = false;
+    private boolean NrRejSamochoduBlad = false;
+    private boolean nr_umowy_leasingBlad = false;
+    private boolean nr_umowy_serwisBlad = false;
+    private boolean nr_vinBlad = false;
+    private boolean prv_umowaBlad = false;
     long id;
+    public boolean isFlaga;
     List<Lokalizacja> listaLokalizacji;
     List<Samochod> listaSamochodow;
     DataModel listaSamochodowNowa;
@@ -34,6 +42,62 @@ public class WyswietlSamochod {
     public Samochod getWyedytowanySamochod() {
 
         return wyedytowanySamochod;
+    }
+
+    public boolean isIsFlaga() {
+        return isFlaga;
+    }
+
+    public void setIsFlaga(boolean isFlaga) {
+        this.isFlaga = isFlaga;
+    }
+
+    public boolean isNazwaSamochoduBlad() {
+        return nazwaSamochoduBlad;
+    }
+
+    public void setNazwaSamochoduBlad(boolean nazwaSamochoduBlad) {
+        this.nazwaSamochoduBlad = nazwaSamochoduBlad;
+    }
+
+    public boolean isNrRejSamochoduBlad() {
+        return NrRejSamochoduBlad;
+    }
+
+    public void setNrRejSamochoduBlad(boolean NrRejSamochoduBlad) {
+        this.NrRejSamochoduBlad = NrRejSamochoduBlad;
+    }
+
+    public boolean isNr_umowy_leasingBlad() {
+        return nr_umowy_leasingBlad;
+    }
+
+    public void setNr_umowy_leasingBlad(boolean nr_umowy_leasingBlad) {
+        this.nr_umowy_leasingBlad = nr_umowy_leasingBlad;
+    }
+
+    public boolean isNr_umowy_serwisBlad() {
+        return nr_umowy_serwisBlad;
+    }
+
+    public void setNr_umowy_serwisBlad(boolean nr_umowy_serwisBlad) {
+        this.nr_umowy_serwisBlad = nr_umowy_serwisBlad;
+    }
+
+    public boolean isNr_vinBlad() {
+        return nr_vinBlad;
+    }
+
+    public void setNr_vinBlad(boolean nr_vinBlad) {
+        this.nr_vinBlad = nr_vinBlad;
+    }
+
+    public boolean isPrv_umowaBlad() {
+        return prv_umowaBlad;
+    }
+
+    public void setPrv_umowaBlad(boolean prv_umowaBlad) {
+        this.prv_umowaBlad = prv_umowaBlad;
     }
 
     public Samochod getWyszukanySamochod() {
@@ -90,11 +154,23 @@ public class WyswietlSamochod {
         // poprzez metode klonowania mamy klona i rozne wartoisc, teraz nalezy tylko to odpowiednio obrobic 
         System.out.println(pole);
         System.out.println("czy unikalny " + WeryfikacjaDanych.czyUnikalny(pole, "samochod", wyedytowanySamochod.getNazwa()));
-        System.out.println("nowa nazwa samochodu " + aktualnySamochod.getNazwa());
+        System.out.println("stara nazwa samochodu " + aktualnySamochod.getNazwa());
         System.out.println("nowa nazwa samochodu " + wyedytowanySamochod.getNazwa());
-        
-        System.out.println("nowa nazwa samochodu " + aktualnySamochod.getMarka());
+
+        System.out.println("stara nazwa samochodu " + aktualnySamochod.getMarka());
         System.out.println("nowa nazwa samochodu " + wyedytowanySamochod.getMarka());
+        setIsFlaga(true);
         return null;
+    }
+
+    public String weryfikacjaDanych() {
+        if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
+            setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
+            System.out.println(nazwaSamochoduBlad);
+        } else {
+            setNazwaSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
+            System.out.println(nazwaSamochoduBlad);
+        }
+        return "wybranySamochod";
     }
 }

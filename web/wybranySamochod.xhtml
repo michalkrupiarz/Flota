@@ -46,62 +46,32 @@
             <h:form id="formId">
                 <br/>
                 <table class="table table-hover">
+
                     <tr>
+                        <td>Nazwa pojazdu</td>
+
                         <td>
-                            <p:inplace id="basic" editor="true" label="#{wyswietlSamochod.aktualnySamochod.nazwa}" >
+                            <p:inplace id="basic" editor="true" label="#{wyswietlSamochod.wyedytowanySamochod.nazwa}" >
                                 <p:ajax event="save" listener="#{wyswietlSamochod.zapiszWyedytowanySamochod('nazwa')}"/>
 
                                 <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.nazwa}"
                                              id="nazwa_pojazdu" 
-                                             required="true" 
-                                             requiredMessage="Nie podano nazwy pojazdu."/>
+                                             required="true">
+
+                                </p:inputText> 
+
 
                             </p:inplace>
                         </td>
                         <td class="col-md-2" style="vertical-align: middle"><h:message  for="nazwa_pojazdu"></h:message>
-                            <h:form rendered="false">
+
+
+                        </td>
+                        <td><h:form rendered="#{wyswietlSamochod.nazwaSamochoduBlad}">
                                 <div class="alert alert-danger">
                                     Taka nazwa pojazdu już istnieje, podaj inną.
                                 </div>
-                            </h:form> 
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nazwa pojazdu</td>
-                        <td>
-
-                            <h:outputText value="#{wyswietlSamochod.aktualnySamochod.nazwa}" 
-                                          id="nazwaSamochodu"/>
-                        </td>
-                        <td>
-                            <h:commandButton type='button'
-                                             rendered="true"
-                                             class="btn-default btn-xs" 
-                                             value="Edycja"
-                                             >
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </h:commandButton>
-                        </td>
-                        <td><h:inputText 
-
-                                id="nazwaPojazdu"
-
-
-                                required="true"
-                                requiredMessage="Nie podano nazwy pojazdu.">
-
-                            </h:inputText>
-                            <td><h:message  for="nazwaPojazdu"></h:message></td>
-                        </td>
-
-                        <td><h:commandButton  
-                                value="Zatwierdz"  
-                                class="btn-default btn-xs" 
-                                onclick="fieldChange('formId:nazwaSamochodu', 'nazwaSamochoduInput'), fieldDisable('nazwaSamochoduInput')"
-                                >
-                            </h:commandButton>
-                        </td>
+                            </h:form> </td>
 
 
                     </tr>
@@ -369,7 +339,7 @@
 
                     <tr>
                         <td>Rozmiar Opon</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.rozmiar_opon}"/></td>
+                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.rozmiar_opon}" /></td>
                         <td>
                             <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
                         </td>
@@ -380,7 +350,10 @@
                 <hr></hr>
                 <br/>
                 <br/>
-                <h:commandButton  value="Zatwierdz edycje"></h:commandButton>
+
+            </h:form>
+            <h:form>
+                <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych()}"></h:commandButton>
             </h:form>
         </ui:define>
         <ui:define name="bottom">
