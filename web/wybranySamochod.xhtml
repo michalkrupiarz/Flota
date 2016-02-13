@@ -45,67 +45,98 @@
             <hr></hr>
             <h:form id="formId">
                 <br/>
+                <p:growl id="growl" showDetail="true" sticky="true" />
                 <table class="table table-hover">
 
-                    <tr>
-                        <td>Nazwa pojazdu</td>
-
-                        <td>
-                            <p:inplace id="basic" editor="true" label="#{wyswietlSamochod.wyedytowanySamochod.nazwa}" >
-                                <p:ajax event="save" listener="#{wyswietlSamochod.zapiszWyedytowanySamochod('nazwa')}"/>
-
-                                <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.nazwa}"
-                                             id="nazwa_pojazdu" 
-                                             required="true">
-
-                                </p:inputText> 
-
-
-                            </p:inplace>
+                    <tr>                     
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Nazwa pojazdu
+                            </p>
                         </td>
-                        <td class="col-md-2" style="vertical-align: middle"><h:message  for="nazwa_pojazdu"></h:message>
-
-
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nazwa_pojazdu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.nazwa}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_nazwy_pojazdu"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.nazwa}"
+                                                 id="nazwa_pojazdu" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano nazwy pojazdu">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
                         </td>
-                        <td><h:form rendered="#{wyswietlSamochod.nazwaSamochoduBlad}">
-                                <div class="alert alert-danger">
-                                    Taka nazwa pojazdu już istnieje, podaj inną.
-                                </div>
-                            </h:form> </td>
-
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <h:message id="brak_nazwy_pojazdu" 
+                                       for="nazwa_pojazdu"></h:message>                 
+                        </td>
 
                     </tr>
+
                     <tr>
-                        <td>Marka pojazdu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.marka}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs" ></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Marka pojazdu
+                            </p>
                         </td>
-
-                        <td><h:inputText rendered="true"
-
-                                         id="markaPojazdu" 
-
-                                         required="true" 
-                                         requiredMessage="Nie podano nazwy pojazdu.">
-
-                            </h:inputText>
-                            <td><h:message  for="markaPojazdu"></h:message></td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_marka_pojazdu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.marka}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_marki_pojazdu"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.marka}"
+                                                 id="marka_pojazdu" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano marki pojazdu">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
                         </td>
-
-                        <td><h:commandButton  
-                                value="Zatwierdz"  
-                                class="btn-default btn-xs" 
-                                onclick="fieldChange('formId:nazwaSamochodu', 'nazwaSamochoduInput'), fieldDisable('nazwaSamochoduInput')"
-                                >
-                            </h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_marki_pojazdu" 
+                                            for="marka_pojazdu"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Model pojazdu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.model}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Model pojazdu</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                 <p:inplace id="inplace_model_pojazdu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.model}">
+                                      <p:ajax event="save"  
+                                            update ="brak_modelu_pojazdu"/>
+                                       <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.model}"
+                                                 id="model_pojazdu" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano modelu pojazdu">
+                                    </p:inputText> 
+                                 </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_modelu_pojazdu" 
+                                            for="model_pojazdu"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -353,7 +384,7 @@
 
             </h:form>
             <h:form>
-                <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych()}"></h:commandButton>
+                <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych()}" ></h:commandButton>
             </h:form>
         </ui:define>
         <ui:define name="bottom">

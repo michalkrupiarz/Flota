@@ -5,13 +5,13 @@
  */
 package flota_klasy;
 
-import java.text.NumberFormat.Field;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import static org.apache.commons.lang.SerializationUtils.clone;
 
 /**
  *
@@ -20,7 +20,15 @@ import static org.apache.commons.lang.SerializationUtils.clone;
 @ManagedBean
 @SessionScoped
 public class WyswietlSamochod {
+    private String growlMessage;
 
+    public String getGrowlMessage() {
+        return growlMessage;
+    }
+
+    public void setGrowlMessage(String growlMessage) {
+        this.growlMessage = growlMessage;
+    }
     private boolean nazwaSamochoduBlad = false;
     private boolean NrRejSamochoduBlad = false;
     private boolean nr_umowy_leasingBlad = false;
@@ -166,11 +174,22 @@ public class WyswietlSamochod {
     public String weryfikacjaDanych() {
         if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
             setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
-            System.out.println(nazwaSamochoduBlad);
+            //System.out.println(nazwaSamochoduBlad);
         } else {
             setNazwaSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
-            System.out.println(nazwaSamochoduBlad);
+           //    System.out.println(nazwaSamochoduBlad);
         }
+        System.out.println("Status bledu dla samochod "+nazwaSamochoduBlad);
+        if (nazwaSamochoduBlad){
+            saveMessage("Nazwa juz występuje");
+        }
+        saveMessage("Kartofelki)");
         return "wybranySamochod";
+    }
+    public void saveMessage(String message) {
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage(message) );
+        
     }
 }
