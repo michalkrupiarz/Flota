@@ -20,6 +20,7 @@ import javax.faces.model.ListDataModel;
 @ManagedBean
 @SessionScoped
 public class WyswietlSamochod {
+
     private String growlMessage;
 
     public String getGrowlMessage() {
@@ -171,25 +172,32 @@ public class WyswietlSamochod {
         return null;
     }
 
-    public String weryfikacjaDanych() {
+    public String weryfikacjaDanych() {            
+        
         if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
             setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
-            //System.out.println(nazwaSamochoduBlad);
         } else {
             setNazwaSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
-           //    System.out.println(nazwaSamochoduBlad);
         }
-        System.out.println("Status bledu dla samochod "+nazwaSamochoduBlad);
-        if (nazwaSamochoduBlad){
-            saveMessage("Nazwa juz występuje");
+        
+        if (aktualnySamochod.getNr_vin().equals(wyedytowanySamochod.getNr_vin())){
+            setNr_vinBlad(WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", wyedytowanySamochod.getNr_vin()));
+        } else {
+            setNr_vinBlad(!WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", wyedytowanySamochod.getNr_vin()));
         }
-        saveMessage("Kartofelki)");
+        
+        if (nr_vinBlad){
+            saveMessage("Nr VIN samochodu wystepuje juz w bazie danych!");
+        }
+        
+        if (nazwaSamochoduBlad) {
+            saveMessage("Nazwa samochodu juz występuje!");
+        }
         return "wybranySamochod";
     }
+
     public void saveMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
-         
-        context.addMessage(null, new FacesMessage(message) );
-        
+        context.addMessage(null, new FacesMessage(message));
     }
 }
