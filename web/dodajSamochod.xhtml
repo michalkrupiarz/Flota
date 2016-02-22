@@ -37,7 +37,7 @@ and open the template in the editor.
                                                                                          id="nazwa_pojazdu" 
                                                                                          required="true" 
                                                                                          requiredMessage="Nie podano nazwy pojazdu."/> 
-                            </td>
+                        </td>
                         <td class="col-md-2" style="vertical-align: middle"><h:message  for="nazwa_pojazdu"></h:message>
                             <h:form rendered="#{dodajSamochod.nazwaSamochoduBlad}">
                                 <div class="alert alert-danger">
@@ -48,11 +48,11 @@ and open the template in the editor.
                         </td>
                         <td class="col-md-2" style="vertical-align: middle">Marka pojazdu <span class="glyphicon glyphicon-star"/></td>
                         <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{dodajSamochod.dodawanySamochod.marka}" 
-                                                          id= "marka_pojazdu" 
-                                                          required="true" 
-                                                          requiredMessage="Nie podano marki pojazdu." /></td>
+                                                                                         id= "marka_pojazdu" 
+                                                                                         required="true" 
+                                                                                         requiredMessage="Nie podano marki pojazdu." /></td>
                         <td class="col-md-2" style="vertical-align: middle"><h:message  for="marka_pojazdu"></h:message>
-                          
+
 
                         </td>
                     </tr>
@@ -356,10 +356,10 @@ and open the template in the editor.
 
                         <td class="col-md-2">Grupa Limit</td>
                         <td class="col-md-2"><h:selectOneMenu value="#{dodajSamochod.dodawanySamochod.id_grupa_limit}"
-                                             style="color: black; width: fit-content" 
-                                             id="grupa_limit" 
-                                             required="true" 
-                                             requiredMessage="Nie podano typu samochodu">
+                                                              style="color: black; width: fit-content" 
+                                                              id="grupa_limit" 
+                                                              required="true" 
+                                                              requiredMessage="Nie podano typu samochodu">
                                 <f:selectItems value="#{grupaLimitZapytania.grupaLimitZapytaniaList}" var="tpl"
                                                itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
                                 <f:validateRegex pattern="[^-]+" for="typ_samochodu"/>
@@ -379,7 +379,7 @@ and open the template in the editor.
                         <td class="col-md-2">
                             <h:message for ="nr_leasing"/><h:form rendered="#{dodajSamochod.nr_umowy_leasingBlad}">
                                 <div class="alert alert-danger">
-                                   Taki numer leasingu juz istnieje.
+                                    Taki numer leasingu juz istnieje.
                                 </div>
                             </h:form> 
                         </td>

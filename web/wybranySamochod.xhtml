@@ -335,7 +335,7 @@
                             <p class="text-center">
                                 <p:inplace id="inplace_lokalizacja_pojazdu" 
                                            editor="true" 
-                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_status}">
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.idlokalizacja}">
                                     <p:ajax event="save"  
                                             update ="brak_lokalizacji_pojazdu"/>
                                     <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.idlokalizacja}"
@@ -344,7 +344,7 @@
                                                      requiredMessage="Nie wybrano lokalizacji pojazdu.">
                                         <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
                                                itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
-                                    </h:selectOneMenu>> 
+                                    </h:selectOneMenu>
                                 </p:inplace>
                             </p>    
                         </td>
@@ -357,45 +357,189 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Lokalizacja Stała Pojazdu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_lokalizacja_stala}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                       <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Lokalizacja stała pojazduj</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_lokalizacja_stala_pojazdu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_lokalizacja_stala}">
+                                    <p:ajax event="save"  
+                                            update ="brak_lokalizacji_stalej_pojazdu"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_lokalizacja_stala}"
+                                                     id="lokalizacja_stala_pojazdu" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano lokalizacji stalej pojazdu.">
+                                        <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
+                                               itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_lokalizacji_stalej_pojazdu" 
+                                            for="lokalizacja_stala_pojazdu"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Rodzaj Pojazdu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_rodzaj_pojazdu}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Rodzaj pojazdu</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_rodzaj_pojazdu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_rodzaj_pojazdu}">
+                                    <p:ajax event="save"  
+                                            update ="brak_rodzaju_pojazdu"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_rodzaj_pojazdu}"
+                                                     id="rodzaj_pojazdu" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano rodzaju pojazdu.">
+                                        <f:selectItem class="text-primary" itemValue="Własny" itemLabel="Własny"/>
+                                        <f:selectItem class="text-primary" itemValue="Wypożyczony" itemLabel="Wypożyczony"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_rodzaju_pojazdu" 
+                                            for="rodzaj_pojazdu"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Numer Karty Parkingowej</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_karta_parkingowa}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Numer karty parkingowej.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nr_karty_parkingowej" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_karta_parkingowa}">
+                                    <p:ajax event="save"  
+                                            update ="brak_nr_karty_parkingowej"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_karta_parkingowa}"
+                                                     id="nr_karty_parkingowej" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano numeru karty parkingowej.">
+                                        <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="kparkingowa"
+                                                       itemLabel="#{kparkingowa.numer_karta_parkingowa}" itemValue="#{kparkingowa.numer_karta_parkingowa}"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_nr_karty_parkingowej" 
+                                            for="nr_karty_parkingowej"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Numer Karty Paliwowej</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_karta_paliwowa}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Numer karty paliwowej.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nr_karty_paliwowej" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_karta_paliwowa}">
+                                    <p:ajax event="save"  
+                                            update ="brak_nr_karty_paliwowej"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_karta_paliwowa}"
+                                                     id="nr_karty_paliwowej" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano numeru karty paliwowej.">
+                                        <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="kpaliwowa"
+                                                       itemLabel="#{kpaliwowa.numer_Karty}" itemValue="#{kpaliwowa.numer_Karty}"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_nr_karty_paliwowej" 
+                                            for="nr_karty_paliwowej"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Przebieg</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.kilometry}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Przebieg</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_przebieg" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.przebieg_calkowity}">
+                                    <p:ajax event="save"  
+                                            update ="brak_przebiegu"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.przebieg_calkowity}"
+                                                 id="przebieg" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano przebiegu pojazdu."
+                                                 validatorMessage="Podano błędny przebieg.">
+                                        <f:validateRegex pattern="[0-9]+" for="przebieg"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_przebiegu" 
+                                            for="przebieg"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Pracownik Używajacy</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.pracownik_uzywajacy}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Pracownik używający.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_pracownik_uzywajacy" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.pracownik_uzywajacy}">
+                                    <p:ajax event="save"  
+                                            update ="brak_pracownika_uzywajacego"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.pracownik_uzywajacy}"
+                                                     id="pracownik_uzywajacy" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano pracownika uzywajacego.">
+                                        <f:selectItems value="#{pracownikZapytania.listaPracownik}" var="pracownik"
+                                                       itemLabel="#{pracownik.imieNazwisko}" itemValue="#{pracownik.imieNazwisko}"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_pracownika_uzywajacego" 
+                                            for="pracownik_uzywajacy"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -438,14 +582,8 @@
                     </tr>
 
 
-
-                    <tr>
-                        <td>Kilometry</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.kilometry}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
-                        </td>
-                    </tr>
+<!-- Usunieto kilometry - wielkosc tylko do dodawania do przebiegu, niepotrzeba wyswietlac tutaj -->
+                    
 
                     <tr>
                         <td>Kolor lakieru</td>

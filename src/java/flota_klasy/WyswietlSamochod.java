@@ -193,6 +193,7 @@ public class WyswietlSamochod {
         if (nazwaSamochoduBlad) {
             saveMessage("Nazwa samochodu juz występuje!");
         }
+        
         return "wybranySamochod";
     }
 

@@ -109,11 +109,25 @@ public class SamochodZapytania {
                     + "            (select typ_samochod.id_typ_samochod from typ_samochod where typ_samochod.nazwa ilike('" + samochod.getId_typ_samochodu() + "')), \n"
                     + "            '" + samochod.getVat() + "',\n"
                     + "            (select grupa_limit.id_grupa_limit from grupa_limit where grupa_limit.nazwa ilike ('" + samochod.getId_grupa_limit() + "')),\n"
-                    + "            '"+samochod.getNr_umowy_leasingu()+"', '"+samochod.getNr_umowy_serwis()+"', '"+samochod.getMpk()+"', \n"
-                    + "            '"+samochod.getPrv_umowa()+"', '"+samochod.getUmowa_z_dnia()+"', '"+samochod.getMiejsce_parkingowe()+"',"+samochod.getRozmiar_opon()+")";
-                    
-                    System.out.println(sql);
-                    stmt.executeUpdate(sql);
+                    + "            '" + samochod.getNr_umowy_leasingu() + "', '" + samochod.getNr_umowy_serwis() + "', '" + samochod.getMpk() + "', \n"
+                    + "            '" + samochod.getPrv_umowa() + "', '" + samochod.getUmowa_z_dnia() + "', '" + samochod.getMiejsce_parkingowe() + "'," + samochod.getRozmiar_opon() + ")";
+
+            String sql_zmiana_statusu_karty_parkingowej = "UPDATE karta_parkingowa"
+                    + "set karta_parkingowa.id_status_parkingowa=2"
+                    + "where karta_parkingowa.id_karta_parkingowa = '" + samochod.getId_karta_parkingowa() + "'";
+            String sql_zmiana_statusu_karty_paliwowej = "UPDATE karta_paliwowa"
+                    + "set karta_parkingowa.id_status_paliwowa=2"
+                    + "where karta_parkingowa.id_karta_paliwowa = '" + samochod.getId_karta_paliwowa() + "'";
+
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            if (!samochod.getId_karta_paliwowa().isEmpty()) {
+                stmt.executeUpdate(sql_zmiana_statusu_karty_paliwowej);
+            }
+            if (!samochod.getId_karta_parkingowa().isEmpty()) {
+                stmt.executeUpdate(sql_zmiana_statusu_karty_parkingowej);
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
