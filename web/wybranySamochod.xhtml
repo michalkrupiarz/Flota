@@ -343,7 +343,7 @@
                                                      required="true"
                                                      requiredMessage="Nie wybrano lokalizacji pojazdu.">
                                         <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
-                                               itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+                                                       itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
                                     </h:selectOneMenu>
                                 </p:inplace>
                             </p>    
@@ -357,7 +357,7 @@
                         </td>
                     </tr>
                     <tr>
-                       <td class="col-md-4" 
+                        <td class="col-md-4" 
                             style="vertical-align: middle">
                             <p class="text-center">Lokalizacja stała pojazduj</p>
                         </td>
@@ -374,7 +374,7 @@
                                                      required="true"
                                                      requiredMessage="Nie wybrano lokalizacji stalej pojazdu.">
                                         <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
-                                               itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+                                                       itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
                                     </h:selectOneMenu>
                                 </p:inplace>
                             </p>    
@@ -543,24 +543,98 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Rok produkcji</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.rok_produkcji}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Rok produkcji</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_rok_produkcji" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.rok_produkcji}">
+                                    <p:ajax event="save"  
+                                            update ="brak_roku_produkcji"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.rok_produkcji}"
+                                                 id="rok_produkcji" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano roku produkcji."
+                                                 pt:placeholder="rrrr" 
+                                                 validatorMessage="Podano błędny rok produkcji.">
+                                        <f:validateRegex pattern="[0-9].{3}" for="rok_produkcji"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_roku_produkcji" 
+                                            for="rok_produkcji"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Numer Ubezpieczenia</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_ubezpieczenia}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Numer ubezpieczenia.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_numer_ubezpieczenia" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_ubezpieczenia}">
+                                    <p:ajax event="save"  
+                                            update ="brak_numeru_ubezpieczenia"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_ubezpieczenia}"
+                                                     id="numer_ubezpieczenia" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano numeru ubezpieczenia.">
+                                        <f:selectItems value="#{ubezpieczenieZapytania.ubezpieczeniaList}" var="ubezp"
+                                                       itemLabel="#{ubezp.numer_polisy}" itemValue="#{ubezp.numer_polisy}"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_numeru_ubezpieczenia" 
+                                            for="numer_ubezpiecznia"></h:message>
+                            </p>
                         </td>
                     </tr>
                     <tr>
-                        <td>Data przyjęcia na stan</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.data_przyjecia}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Data przyjęcia na stan.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_data_przyjecia" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.data_przyjecia}">
+                                    <p:ajax event="save"  
+                                            update ="brak_daty_przyjecia"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.data_przyjecia}"
+                                                 id="data_przyjecia" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano daty przyjęcia."
+                                                 pt:placeholder="rrrr-mm-dd" 
+                                                 validatorMessage="Podano błędną datę przyjęcia.">
+                                        <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_przyjecia"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_daty_przyjecia" 
+                                            for="data_przyjecia"></h:message>
+                            </p>
                         </td>
                     </tr>
 
@@ -582,8 +656,8 @@
                     </tr>
 
 
-<!-- Usunieto kilometry - wielkosc tylko do dodawania do przebiegu, niepotrzeba wyswietlac tutaj -->
-                    
+                    <!-- Usunieto kilometry - wielkosc tylko do dodawania do przebiegu, niepotrzeba wyswietlac tutaj -->
+
 
                     <tr>
                         <td>Kolor lakieru</td>

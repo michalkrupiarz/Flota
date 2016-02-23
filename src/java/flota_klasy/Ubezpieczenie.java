@@ -5,6 +5,7 @@
  */
 package flota_klasy;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -18,7 +19,7 @@ public class Ubezpieczenie {
     private Date data_zakonczenia;
     private Date data_zawarcia;
     private String ubezpieczyciel;
-    private float skladka;
+    private BigDecimal skladka;
     private int id_operator_zawierajacy;
     private String notatka;
     private String numer_polisy;
@@ -29,7 +30,7 @@ public class Ubezpieczenie {
         
     }
 
-    public Ubezpieczenie(long id_ubezpieczenia, int id_samochodu, Date data_rozpoczecia, Date data_zakonczenia, Date data_zawarcia, String ubezpieczyciel, float skladka, int id_operator_zawierajacy, String notatka, String numer_polisy, String nazwa_sprzedawcy, String kontakt) {
+    public Ubezpieczenie(long id_ubezpieczenia, int id_samochodu, Date data_rozpoczecia, Date data_zakonczenia, Date data_zawarcia, String ubezpieczyciel, BigDecimal skladka, int id_operator_zawierajacy, String notatka, String numer_polisy, String nazwa_sprzedawcy, String kontakt) {
         this.id_ubezpieczenia = id_ubezpieczenia;
         this.id_samochodu = id_samochodu;
         this.data_rozpoczecia = data_rozpoczecia;
@@ -92,11 +93,11 @@ public class Ubezpieczenie {
         this.ubezpieczyciel = ubezpieczyciel;
     }
 
-    public float getSkladka() {
+    public BigDecimal getSkladka() {
         return skladka;
     }
 
-    public void setSkladka(float skladka) {
+    public void setSkladka(BigDecimal skladka) {
         this.skladka = skladka;
     }
 

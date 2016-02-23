@@ -30,8 +30,8 @@ public class UbezpieczenieZapytania {
         String sql;
         List <Ubezpieczenie> listaUbezpieczen = new ArrayList<Ubezpieczenie>();
         Statement stmt = null;
-        
-        sql ="select * from ubezpieczenie where ubezpieczenie.id_samochodu is null";
+        System.out.print("weszklo do tworzenia zapytania");
+        sql ="select * from ubezpieczenie where ubezpieczenie.id_samochodu is not null";
         
         try{
             Class.forName("org.postgresql.Driver");
@@ -42,13 +42,13 @@ public class UbezpieczenieZapytania {
             
             while (rs.next()){
                 Ubezpieczenie ubezpieczenie = new Ubezpieczenie();
-                ubezpieczenie.setId_ubezpieczenia(rs.getLong("id_ubezpieczenia"));
+                ubezpieczenie.setId_ubezpieczenia(rs.getLong("id_ubezpieczenie"));
                 ubezpieczenie.setId_samochodu(rs.getInt("id_samochodu"));
                 ubezpieczenie.setData_rozpoczecia(rs.getDate("data_rozpoczecia"));
                 ubezpieczenie.setData_zakonczenia(rs.getDate("data_zakonczenia"));
                 ubezpieczenie.setData_zawarcia(rs.getDate("data_zawarcia"));
                 ubezpieczenie.setUbezpieczyciel(rs.getString("ubezpieczyciel"));
-                ubezpieczenie.setSkladka(rs.getFloat("skladka"));
+                ubezpieczenie.setSkladka(rs.getBigDecimal("skladka"));
                 ubezpieczenie.setId_operator_zawierajacy(rs.getInt("id_operator_zawierajacy"));
                 ubezpieczenie.setNotatka(rs.getString("notatka"));
                 ubezpieczenie.setNumer_polisy(rs.getString("numer_polisy"));
