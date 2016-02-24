@@ -640,18 +640,67 @@
 
 
                     <tr>
-                        <td>Data pierwszej rejestracji</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.data_pierwszej_rejestracji}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Data pierwszej rejestracji.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_data_pierwszej_rejestracji" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.data_pierwszej_rejestracji}">
+                                    <p:ajax event="save"  
+                                            update ="brak_daty_pierwszej_rejestracji"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.data_pierwszej_rejestracji}"
+                                                 id="data_pierwszej_rejestracji" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano daty pierwszej rejestracji."
+                                                 pt:placeholder="rrrr-mm-dd" 
+                                                 validatorMessage="Podano błędną datę pierwszej rejestracji.">
+                                        <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_pierwszej_rejestracji"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_daty_pierwszej_rejestracji" 
+                                            for="data_pierwszej_rejestracji"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Numer seryjny GPS</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_gps}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Numer seryjny GPS.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_numer_gps" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_gps}">
+                                    <p:ajax event="save"  
+                                            update ="brak_numeru_gps"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_gps}"
+                                                     id="numer_gps" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano numeru gps.">
+                                        <f:selectItems value="#{gPSZapytania.GPSList}" var="item"
+                                                       itemLabel="#{item.gps_numer}" itemValue="#{item.gps_numer}"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_numeru_gps" 
+                                            for="numer_gps"></h:message>
+                            </p>
                         </td>
                     </tr>
 
@@ -660,10 +709,33 @@
 
 
                     <tr>
-                        <td>Kolor lakieru</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.kolor}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Kolor nadwozia.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_kolor_nadwozia" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.kolor}">
+                                    <p:ajax event="save"  
+                                            update ="brak_koloru_nadwozia"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.kolor}"
+                                                 id="kolor_nadwozia" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano koloru nadwozia.">
+
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_koloru_nadwozia" 
+                                            for="kolor_nadwozia"></h:message>
+                            </p>
                         </td>
                     </tr>
 
