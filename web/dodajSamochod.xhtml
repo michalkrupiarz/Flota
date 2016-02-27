@@ -362,7 +362,7 @@ and open the template in the editor.
                                                               requiredMessage="Nie podano typu samochodu">
                                 <f:selectItems value="#{grupaLimitZapytania.grupaLimitZapytaniaList}" var="tpl"
                                                itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
-                                <f:validateRegex pattern="[^-]+" for="typ_samochodu"/>
+                                <f:validateRegex pattern="[^-]+" for="grupa_limit"/>
                             </h:selectOneMenu></td>
                         <td class="col-md-2">
                             <h:message for="grupa_limit"/>
@@ -418,7 +418,7 @@ and open the template in the editor.
                             <h:message for="prv_umowa"/>
                             <h:form rendered="#{dodajSamochod.prv_umowaBlad}">
                                 <div class="alert alert-danger">
-                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                    Taki numer PRV umowy już istnieje, podaj inny.
                                 </div>
                             </h:form> 
                         </td>
@@ -445,7 +445,12 @@ and open the template in the editor.
                         <td class="col-md-2"><h:inputText value="#{dodajSamochod.dodawanySamochod.miejsce_parkingowe}" 
                                                           id="miejsce_parkingowe"/></td>
                         <td class="col-md-2">
-
+                             <h:message for="miejsce_parkingowe"/>
+                            <h:form rendered="#{dodajSamochod.prv_umowaBlad}">
+                                <div class="alert alert-danger">
+                                    To miejsce parkingowe jest już przydzielone innemu pojazdowi.
+                                </div>
+                            </h:form>
                         </td>
 
                     </tr>

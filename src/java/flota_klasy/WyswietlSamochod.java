@@ -36,6 +36,7 @@ public class WyswietlSamochod {
     private boolean nr_umowy_serwisBlad = false;
     private boolean nr_vinBlad = false;
     private boolean prv_umowaBlad = false;
+    private boolean nr_miejsca_parkingowegoBlad = false;
     long id;
     public boolean isFlaga;
     List<Lokalizacja> listaLokalizacji;
@@ -51,6 +52,14 @@ public class WyswietlSamochod {
     public Samochod getWyedytowanySamochod() {
 
         return wyedytowanySamochod;
+    }
+
+    public boolean isNr_miejsca_parkingowego() {
+        return nr_miejsca_parkingowegoBlad;
+    }
+
+    public void setNr_miejsca_parkingowego(boolean nr_miejsca_parkingowego) {
+        this.nr_miejsca_parkingowegoBlad = nr_miejsca_parkingowego;
     }
 
     public boolean isIsFlaga() {
@@ -172,28 +181,66 @@ public class WyswietlSamochod {
         return null;
     }
 
-    public String weryfikacjaDanych() {            
-        
+    public String weryfikacjaDanych() {
+
         if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
             setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
         } else {
             setNazwaSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
         }
-        
-        if (aktualnySamochod.getNr_vin().equals(wyedytowanySamochod.getNr_vin())){
+
+        if (aktualnySamochod.getNr_vin().equals(wyedytowanySamochod.getNr_vin())) {
             setNr_vinBlad(WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", wyedytowanySamochod.getNr_vin()));
         } else {
             setNr_vinBlad(!WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", wyedytowanySamochod.getNr_vin()));
         }
-        
-        if (nr_vinBlad){
-            saveMessage("Nr VIN samochodu wystepuje juz w bazie danych!");
+
+        if (aktualnySamochod.getNr_umowy_leasingu().equals(wyedytowanySamochod.getNr_umowy_leasingu())) {
+            setNr_umowy_leasingBlad(WeryfikacjaDanych.czyUnikalny("nr_umowy_leasingu", "samochod", wyedytowanySamochod.getNr_umowy_leasingu()));
+        } else {
+            setNr_umowy_leasingBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_leasingu", "samochod", wyedytowanySamochod.getNr_umowy_leasingu()));
+        }
+
+        if (aktualnySamochod.getNr_umowy_serwis().equals(wyedytowanySamochod.getNr_umowy_serwis())) {
+            setNr_umowy_serwisBlad(WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", wyedytowanySamochod.getNr_umowy_serwis()));
+        } else {
+            setNr_umowy_serwisBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", wyedytowanySamochod.getNr_umowy_serwis()));
+        }
+
+        if (aktualnySamochod.getPrv_umowa().equals(wyedytowanySamochod.getPrv_umowa())) {
+            setPrv_umowaBlad(WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", wyedytowanySamochod.getPrv_umowa()));
+        } else {
+            setPrv_umowaBlad(!WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", wyedytowanySamochod.getPrv_umowa()));
         }
         
+        if (aktualnySamochod.getMiejsce_parkingowe().equals(wyedytowanySamochod.getMiejsce_parkingowe())) {
+            setNr_miejsca_parkingowego(WeryfikacjaDanych.czyUnikalny("miejsce_parkingowe", "samochod", wyedytowanySamochod.getMiejsce_parkingowe()));
+        } else {
+            setNr_miejsca_parkingowego(!WeryfikacjaDanych.czyUnikalny("miejsce_parkingowe", "samochod", wyedytowanySamochod.getMiejsce_parkingowe()));
+        }
+        if (nr_miejsca_parkingowegoBlad){
+            saveMessage("Nr miejsca parkingowego jest już przypisany do innego pojazdu!");
+        }
+        if (prv_umowaBlad) {
+            saveMessage("Nr umowy PRV wystęuje już w bazie danych!");
+        }
+
+        if (nr_umowy_serwisBlad) {
+            saveMessage("Nr umowy serwisowej występuje już w bazie danych!");
+        }
+
+        if (nr_umowy_leasingBlad) {
+            saveMessage("Nr umowy leasingu występuje już w bazie danych!");
+        }
+
+        if (nr_vinBlad) {
+            saveMessage("Nr VIN samochodu wystepuje juz w bazie danych!");
+        }
+
         if (nazwaSamochoduBlad) {
             saveMessage("Nazwa samochodu juz występuje!");
         }
-        
+        SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
         return "wybranySamochod";
     }
 

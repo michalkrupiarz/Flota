@@ -35,6 +35,15 @@ public class DodajSamochod {
     private boolean nr_umowy_serwisBlad = false;
     private boolean nr_vinBlad = false;
     private boolean prv_umowaBlad = false;
+    private boolean miejsce_parkingoweBlad = false;
+
+    public boolean isMiejsce_parkingoweBlad() {
+        return miejsce_parkingoweBlad;
+    }
+
+    public void setMiejsce_parkingoweBlad(boolean miejsce_parkingoweBlad) {
+        this.miejsce_parkingoweBlad = miejsce_parkingoweBlad;
+    }
 
    
 
@@ -112,6 +121,8 @@ public class DodajSamochod {
         setNr_umowy_serwisBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", dodawanySamochod.getNr_umowy_serwis()));
         listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", dodawanySamochod.getPrv_umowa()));
         setPrv_umowaBlad(!WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", dodawanySamochod.getPrv_umowa()));
+        listaWeryfikacyjnaDlaSamochodu.add(WeryfikacjaDanych.czyUnikalny("miejsce_parkingowe", "samochod", dodawanySamochod.getMiejsce_parkingowe()));
+        setMiejsce_parkingoweBlad(!WeryfikacjaDanych.czyUnikalny("miejsce_parkingowe", "samochod", dodawanySamochod.getMiejsce_parkingowe()));
         
         System.out.println(dodawanySamochod.getId_gps());
         

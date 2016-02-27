@@ -740,90 +740,348 @@
                     </tr>
 
                     <tr>
-                        <td>Wersja pojazdu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.wersja}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Wersja pojazdu.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_wersja_pojazdu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.wersja}">
+                                    <p:ajax event="save"  
+                                            update ="brak_wersji_pojazdu"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.wersja}"
+                                                 id="wersja_pojazdu" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano wersji pojazdu">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_wersji_pojazdu" 
+                                            for="wersja_pojazdu"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Typ samochodu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_typ_samochodu}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Typ samochodu.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_typ_samochodu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_typ_samochodu}">
+                                    <p:ajax event="save"  
+                                            update ="brak_typu_samochodu"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_typ_samochodu}"
+                                                     id="typ_samnochodu" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano typu samochodu.">
+                                        <f:selectItems value="#{typPojazduZapytania.typPojazduList}" var="item"
+                                                       itemLabel="#{item.nazwa}" itemValue="#{item.nazwa}"/>
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_typu_samochodu" 
+                                            for="typ_samochodu"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>VAT</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.vat}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">VAT.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_vat" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.vat}">
+                                    <p:ajax event="save"  
+                                            update ="brak_vat"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.vat}"
+                                                     id="vat" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano VATu.">
+                                        <f:selectItem class="text-primary" itemValue="TAK" itemLabel="TAK"/>
+                                        <f:selectItem class="text-primary" itemValue="NIE" itemLabel="NIE"/>
+                                    </h:selectOneMenu>
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_vat" 
+                                            for="vat"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Grupa Limit</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.id_grupa_limit}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Grupa limit.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_grupa_limit" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.id_grupa_limit}">
+                                    <p:ajax event="save"  
+                                            update ="brak_grupy_limit"/>
+                                    <h:selectOneMenu value="#{wyswietlSamochod.wyedytowanySamochod.id_grupa_limit}"
+                                                     id="grupa_limit" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano grupy limit.">
+                                        <f:selectItems value="#{grupaLimitZapytania.grupaLimitZapytaniaList}" var="item"
+                                                       itemLabel="#{item.nazwa}" itemValue="#{item.nazwa}"/>
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_grupy_limit" 
+                                            for="grupa_limit"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Nr umowy leasingu</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.nr_umowy_leasingu}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Nr umowy leasingu.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_numer_umowy_leasingu" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.nr_umowy_leasingu}">
+                                    <p:ajax event="save"  
+                                            update ="brak_numeru_umowy_leasingu"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.nr_umowy_leasingu}"
+                                                 id="numer_umowy_leasingu" 
+                                                 required="true"
+                                                 requiredMessage="Nie podanu nr umowy leasingu">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_numeru_umowy_leasingu" 
+                                            for="numer_umowy_leasingu"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Nr umowy serwisowej</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.nr_umowy_serwis}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Nr umowy serwis.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_numer_umowy_serwis" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.nr_umowy_serwis}">
+                                    <p:ajax event="save"  
+                                            update ="brak_numeru_umowy_serwisu"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.nr_umowy_serwis}"
+                                                 id="numer_umowy_serwis" 
+                                                 required="true"
+                                                 requiredMessage="Nie podanu nr umowy serwisu">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_numeru_umowy_serwisu" 
+                                            for="numer_umowy_serwis"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>MPK</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.mpk}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">MPK.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_mpk" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.mpk}">
+                                    <p:ajax event="save"  
+                                            update ="brak_mpk"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.mpk}"
+                                                 id="mpk" 
+                                                 required="true"
+                                                 requiredMessage="Nie podanu nr MPK.">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_mpk" 
+                                            for="mpk"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>PRV Umowa</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.prv_umowa}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">PRV umowa.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_PRV_umowa" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.prv_umowa}">
+                                    <p:ajax event="save"  
+                                            update ="brak_prv_umowy"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.prv_umowa}"
+                                                 id="PRV_umowa" 
+                                                 required="true"
+                                                 requiredMessage="Nie wybrano numeru PRV umowy.">
+
+                                    </p:inputText>> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_prv_umowy" 
+                                            for="PRV_umowas"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Data podpisania umowy</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.umowa_z_dnia}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Umowa z dnia.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_umowa_z_dnia" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.umowa_z_dnia}">
+                                    <p:ajax event="save"  
+                                            update ="brak_umowy_z_dnia"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.umowa_z_dnia}"
+                                                 id="umowa_z_dnia" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano daty umowy."
+                                                 pt:placeholder="rrrr-mm-dd" 
+                                                 validatorMessage="Podano błędną datę umowy.">
+                                        <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="umowa_z_dnia"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_umowy_z_dnia" 
+                                            for="umowa_z_dnia"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- to do
+                   
+                    2) miejsce parkingowe ma byc unikalne per samochod, sprawdzic czy jest w bazie danych miejsce - brak, oraz sprawdzic czy to char czy to int
+                    3) rozmiar opon - zniesc validacje i zobaczyc czy ma to byc numer - jak tak zmienic na char - rozmiar opon ma byc spisany z opony jako ten dziwny ciaqg znakow
+                    -->
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">NR miejsca parkingowego.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nr_miejsca_parkingowego" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.miejsce_parkingowe}">
+                                    <p:ajax event="save"  
+                                            update ="brak_nr_miejsca_parkingowego"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.miejsce_parkingowe}"
+                                                 id="nr_miejsca_parkingowego" 
+                                                 required="true"
+                                                 requiredMessage="Nie wybrano nr miejsca parkingowego.">
+
+                                    </p:inputText>> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_nr_miejsca_parkingowego" 
+                                            for="nr_miejsca_parkingowego"></h:message>
+                            </p>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>NR miejsca parkingowego</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.miejsce_parkingowe}"/></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Rozmiar opon.</p>
                         </td>
-                    </tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_rozmiar_opon" 
+                                           editor="true" 
+                                           label="#{wyswietlSamochod.wyedytowanySamochod.rozmiar_opon}">
+                                    <p:ajax event="save"  
+                                            update ="brak_rozmiaru_opon"/>
+                                    <p:inputText value="#{wyswietlSamochod.wyedytowanySamochod.rozmiar_opon}"
+                                                 id="rozmiar_opon" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano rozmiaru opon.">
 
-                    <tr>
-                        <td>Rozmiar Opon</td>
-                        <td><h:outputText value="#{wyswietlSamochod.aktualnySamochod.rozmiar_opon}" /></td>
-                        <td>
-                            <h:commandButton  value="Edycja" class="btn-default btn-xs"></h:commandButton>
+                                    </p:inputText>> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_rozmiaru_opon" 
+                                            for="rozmiar_opon"></h:message>
+                            </p>
                         </td>
                     </tr>
 
