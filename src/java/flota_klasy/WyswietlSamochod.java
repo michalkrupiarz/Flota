@@ -5,6 +5,7 @@
  */
 package flota_klasy;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -181,44 +182,48 @@ public class WyswietlSamochod {
         return null;
     }
 
-    public String weryfikacjaDanych() {
+    public String weryfikacjaDanych(Samochod edytSamochod, Samochod aktSamochod) {
+
+        List<Boolean> listaWeryfikacyjna = new ArrayList<Boolean>();
 
         if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
             setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
         } else {
             setNazwaSamochoduBlad(!WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
         }
+        listaWeryfikacyjna.add(nazwaSamochoduBlad);
 
         if (aktualnySamochod.getNr_vin().equals(wyedytowanySamochod.getNr_vin())) {
             setNr_vinBlad(WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", wyedytowanySamochod.getNr_vin()));
         } else {
             setNr_vinBlad(!WeryfikacjaDanych.czyUnikalny("nr_vin", "samochod", wyedytowanySamochod.getNr_vin()));
         }
-
+        listaWeryfikacyjna.add(nr_vinBlad);
         if (aktualnySamochod.getNr_umowy_leasingu().equals(wyedytowanySamochod.getNr_umowy_leasingu())) {
             setNr_umowy_leasingBlad(WeryfikacjaDanych.czyUnikalny("nr_umowy_leasingu", "samochod", wyedytowanySamochod.getNr_umowy_leasingu()));
         } else {
             setNr_umowy_leasingBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_leasingu", "samochod", wyedytowanySamochod.getNr_umowy_leasingu()));
         }
-
+        listaWeryfikacyjna.add(nr_umowy_leasingBlad);
         if (aktualnySamochod.getNr_umowy_serwis().equals(wyedytowanySamochod.getNr_umowy_serwis())) {
             setNr_umowy_serwisBlad(WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", wyedytowanySamochod.getNr_umowy_serwis()));
         } else {
             setNr_umowy_serwisBlad(!WeryfikacjaDanych.czyUnikalny("nr_umowy_serwis", "samochod", wyedytowanySamochod.getNr_umowy_serwis()));
         }
-
+        listaWeryfikacyjna.add(nr_umowy_leasingBlad);
         if (aktualnySamochod.getPrv_umowa().equals(wyedytowanySamochod.getPrv_umowa())) {
             setPrv_umowaBlad(WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", wyedytowanySamochod.getPrv_umowa()));
         } else {
             setPrv_umowaBlad(!WeryfikacjaDanych.czyUnikalny("prv_umowa", "samochod", wyedytowanySamochod.getPrv_umowa()));
         }
-        
+        listaWeryfikacyjna.add(prv_umowaBlad);
         if (aktualnySamochod.getMiejsce_parkingowe().equals(wyedytowanySamochod.getMiejsce_parkingowe())) {
             setNr_miejsca_parkingowego(WeryfikacjaDanych.czyUnikalny("miejsce_parkingowe", "samochod", wyedytowanySamochod.getMiejsce_parkingowe()));
         } else {
             setNr_miejsca_parkingowego(!WeryfikacjaDanych.czyUnikalny("miejsce_parkingowe", "samochod", wyedytowanySamochod.getMiejsce_parkingowe()));
         }
-        if (nr_miejsca_parkingowegoBlad){
+        listaWeryfikacyjna.add(nr_miejsca_parkingowegoBlad);
+        if (nr_miejsca_parkingowegoBlad) {
             saveMessage("Nr miejsca parkingowego jest już przypisany do innego pojazdu!");
         }
         if (prv_umowaBlad) {
@@ -240,12 +245,27 @@ public class WyswietlSamochod {
         if (nazwaSamochoduBlad) {
             saveMessage("Nazwa samochodu juz występuje!");
         }
-        SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
-        return "wybranySamochod";
+
+        if (!czyJestFalse(listaWeryfikacyjna)) {
+            System.out.println("Wszystko jest unikalne.");
+            SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
+        }
+
+        return "index";
     }
 
     public void saveMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(message));
+    }
+
+    public boolean czyJestFalse(List<Boolean> listaBooleanow) {
+        boolean flaga = false;
+        for (Boolean item : listaBooleanow) {
+            if (!item) {
+                flaga = true;
+            }
+        }
+        return flaga;
     }
 }
