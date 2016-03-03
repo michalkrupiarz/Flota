@@ -5,6 +5,7 @@
  */
 package flota_klasy;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -192,10 +193,13 @@ public class WyswietlSamochod {
         return null;
     }
 
-    public String weryfikacjaDanych() {
+    public String weryfikacjaDanych() throws IllegalAccessException, InstantiationException {
 
         List<Boolean> listaWeryfikacyjna = new ArrayList<Boolean>();
-
+        List<Object> aktualnySamochodLista = new ArrayList<Object>();
+        List<Object> wyedytowanySamochodLista = new ArrayList<Object>();
+        List<Object> listaRoznic = new ArrayList<Object>();
+        
         if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
             setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
         } else {
@@ -263,13 +267,36 @@ public class WyswietlSamochod {
         if (!czyJestTrue(listaWeryfikacyjna)) {
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('dlg1').show();");
+
+            for (Field field : aktualnySamochod.getClass().getDeclaredFields()) {
+                field.setAccessible(true); // You might want to set modifier to public first.
+                Object value = field.get(aktualnySamochod);
+                aktualnySamochodLista.add(value);
+                
+                Object value2 = field.get(wyedytowanySamochod);
+                wyedytowanySamochodLista.add(value2);
+                 
+               
+            }
+            
             return null;
         } else {
             return "wybranySamochod";
         }
 
     }
-
+    
+    public List<Integer> porownajDwieListy(List<Object> wzor, List<Object> kopia){
+        int i = 0;
+        for (Object item:wzor){
+            if (!item.equals(kopia.get(i))){
+                
+            }
+            i=i+1;
+        }
+        return null;
+    }
+    
     public void saveMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(message));
