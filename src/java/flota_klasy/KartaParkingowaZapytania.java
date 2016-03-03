@@ -35,7 +35,7 @@ public class KartaParkingowaZapytania {
             c.setAutoCommit(false);
             
             stmt = c.createStatement();
-            String sql = "Select * from karta_parkingowa where karta_parkingowa.id_status_parkingowa = 1";
+            String sql = "Select * from karta_parkingowa where (karta_parkingowa.id_status_parkingowa = 1 or karta_parkingowa.id_status_parkingowa=6)";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {

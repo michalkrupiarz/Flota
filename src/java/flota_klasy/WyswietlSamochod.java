@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -38,6 +39,7 @@ public class WyswietlSamochod {
     private boolean nr_vinBlad = false;
     private boolean prv_umowaBlad = false;
     private boolean nr_miejsca_parkingowegoBlad = false;
+    private boolean showSaveDialog = true;
     long id;
     public boolean isFlaga;
     List<Lokalizacja> listaLokalizacji;
@@ -57,6 +59,14 @@ public class WyswietlSamochod {
 
     public boolean isNr_miejsca_parkingowego() {
         return nr_miejsca_parkingowegoBlad;
+    }
+
+    public boolean isShowSaveDialog() {
+        return showSaveDialog;
+    }
+
+    public void setShowSaveDialog(boolean showSaveDialog) {
+        this.showSaveDialog = showSaveDialog;
     }
 
     public void setNr_miejsca_parkingowego(boolean nr_miejsca_parkingowego) {
@@ -182,7 +192,7 @@ public class WyswietlSamochod {
         return null;
     }
 
-    public String weryfikacjaDanych(Samochod edytSamochod, Samochod aktSamochod) {
+    public String weryfikacjaDanych() {
 
         List<Boolean> listaWeryfikacyjna = new ArrayList<Boolean>();
 
@@ -246,12 +256,18 @@ public class WyswietlSamochod {
             saveMessage("Nazwa samochodu juz występuje!");
         }
 
-        if (!czyJestFalse(listaWeryfikacyjna)) {
+        if (!czyJestTrue(listaWeryfikacyjna)) {
             System.out.println("Wszystko jest unikalne.");
             SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
         }
+        if (!czyJestTrue(listaWeryfikacyjna)) {
+            RequestContext context = RequestContext.getCurrentInstance();
+            context.execute("PF('dlg1').show();");
+            return null;
+        } else {
+            return "wybranySamochod";
+        }
 
-        return "index";
     }
 
     public void saveMessage(String message) {
@@ -259,10 +275,15 @@ public class WyswietlSamochod {
         context.addMessage(null, new FacesMessage(message));
     }
 
-    public boolean czyJestFalse(List<Boolean> listaBooleanow) {
+    public void showMessage() {
+        RequestContext context = RequestContext.getCurrentInstance();
+        context.execute("PF('dlg1').show();");
+    }
+
+    public boolean czyJestTrue(List<Boolean> listaBooleanow) {
         boolean flaga = false;
         for (Boolean item : listaBooleanow) {
-            if (!item) {
+            if (item) {
                 flaga = true;
             }
         }

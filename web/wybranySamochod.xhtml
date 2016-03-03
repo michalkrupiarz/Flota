@@ -8,41 +8,17 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
 
     </h:head>
 
     <ui:composition template="./template.xhtml">
 
         <ui:define name="top">
-            <h:form>
-                <Button type="button" class="btn btn-default btn-sm">
-                    <h:commandButton action="#{wyswietlSamochod.pokazWszystkieSamochody()}" value="Powrot" class="btn-default btn-sm">
-                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
-                </Button>
-            </h:form>
+           
         </ui:define>    
 
-        <ui:define name="body">
-            <script>
-                function fieldEnable(zmienna) {
-
-                    document.getElementById(zmienna).disabled = false;
-
-                }
-                function fieldDisable(zmienna) {
-                    document.getElementById(zmienna).disabled = true;
-                }
-                function fieldChange(zmienna2, inputField) {
-                    var x = document.getElementById(inputField).value;
-                    document.getElementById(zmienna2).innerHTML = x;
-
-                }
-
-            </script>
-
-
+        <ui:define name="body">      
             <br/>
             <hr></hr>
             <h:form id="formId">
@@ -1095,6 +1071,13 @@
             <h:form>
                 <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych()}" ></h:commandButton>
             </h:form>
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" appendTo="@(body)" modal="true">
+                <h:form id="potwierdzEdycjeId">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+                <br/>
+                <p:commandButton value="Potwierdz edycje"/>
+                </h:form>
+            </p:dialog>
         </ui:define>
         <ui:define name="bottom">
             <h:form>

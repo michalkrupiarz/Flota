@@ -35,7 +35,7 @@ public class KartaPaliwowaZapytania {
             c.setAutoCommit(false);
             
             stmt = c.createStatement();
-            String sql = "Select * from karta_paliwowa where karta_paliwowa.id_status_paliwowa = 1";
+            String sql = "Select * from karta_paliwowa where (karta_paliwowa.id_status_paliwowa = 1 or karta_paliwowa.id_status_paliwowa = 6)";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
