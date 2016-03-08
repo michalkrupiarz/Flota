@@ -7,6 +7,7 @@ package flota_klasy;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import static java.util.Arrays.asList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -52,6 +53,94 @@ public class WyswietlSamochod {
     private Samochod aktualnySamochod = new Samochod();
 
     private Samochod wyedytowanySamochod = new Samochod();
+    private List<Object> listaRoznicWzor = new ArrayList<Object>();
+    private List<Object> listaRoznicKopia = new ArrayList<Object>();
+    private List<String> listaPolZRoznicami = new ArrayList<String>();
+    private List<String> listaPolDoWyswietlenia = new ArrayList<String>();
+    private List<String> listaPol = asList("Id pola",
+            "Nazwa pojazdu",
+            "Marka pojazdu",
+            "Model pojazdu",
+            "Oznaczenie producenta pojazdu",
+            "Rodzaj paliwa",
+            "Nr rejesracyjny",
+            "Nr VIN",
+            "Status pojazdu",
+            "Rodzaj opon",
+            "Lokalizacja pojazduj",
+            "Lokalizacja stała pojazduj",
+            "Rodzaj pojazdu",
+            "Numer karty parkingowej.",
+            "Numer karty paliwowej.",
+            "Przebieg",
+            "Pracownik używający.",
+            "Rok produkcji",
+            "Numer ubezpieczenia.",
+            "Data przyjęcia na stan.",
+            "Data pierwszej rejestracji.",
+            "Numer seryjny GPS.",
+            "Kolor nadwozia.",
+            "Wersja pojazdu.",
+            "Typ samochodu.",
+            "VAT.",
+            "Grupa limit.",
+            "Nr umowy leasingu.",
+            "Nr umowy serwis.",
+            "MPK.",
+            "PRV umowa.",
+            "Umowa z dnia.",
+            "NR miejsca parkingowego.",
+            "Rozmiar opon.");
+    
+    private List<Roznice> listaRoznicSamochod = new ArrayList <Roznice>();
+
+    public List<Roznice> getListaRoznicSamochod() {
+        return listaRoznicSamochod;
+    }
+
+    public void setListaRoznicSamochod(List<Roznice> listaRoznicSamochod) {
+        this.listaRoznicSamochod = listaRoznicSamochod;
+    }
+    
+    public List<String> getListaPol() {
+        return listaPol;
+    }
+
+    public List<String> getListaPolDoWyswietlenia() {
+        return listaPolDoWyswietlenia;
+    }
+
+    public void setListaPolDoWyswietlenia(List<String> listaPolDoWyswietlenia) {
+        this.listaPolDoWyswietlenia = listaPolDoWyswietlenia;
+    }
+
+    public void setListaPol(List<String> listaPol) {
+        this.listaPol = listaPol;
+    }
+
+    public List<Object> getListaRoznicWzor() {
+        return listaRoznicWzor;
+    }
+
+    public void setListaRoznicWzor(List<Object> listaRoznicWzor) {
+        this.listaRoznicWzor = listaRoznicWzor;
+    }
+
+    public List<Object> getListaRoznicKopia() {
+        return listaRoznicKopia;
+    }
+
+    public void setListaRoznicKopia(List<Object> listaRoznicKopia) {
+        this.listaRoznicKopia = listaRoznicKopia;
+    }
+
+    public List<String> getListaPolZRoznicami() {
+        return listaPolZRoznicami;
+    }
+
+    public void setListaPolZRoznicami(List<String> listaPolZRoznicami) {
+        this.listaPolZRoznicami = listaPolZRoznicami;
+    }
 
     public Samochod getWyedytowanySamochod() {
 
@@ -180,17 +269,11 @@ public class WyswietlSamochod {
         return listaSamochodowNowa;
     }
 
-    public String zapiszWyedytowanySamochod(String pole) {
-        // poprzez metode klonowania mamy klona i rozne wartoisc, teraz nalezy tylko to odpowiednio obrobic 
-        System.out.println(pole);
-        System.out.println("czy unikalny " + WeryfikacjaDanych.czyUnikalny(pole, "samochod", wyedytowanySamochod.getNazwa()));
-        System.out.println("stara nazwa samochodu " + aktualnySamochod.getNazwa());
-        System.out.println("nowa nazwa samochodu " + wyedytowanySamochod.getNazwa());
-
-        System.out.println("stara nazwa samochodu " + aktualnySamochod.getMarka());
-        System.out.println("nowa nazwa samochodu " + wyedytowanySamochod.getMarka());
-        setIsFlaga(true);
-        return null;
+    public String zapiszWyedytowanySamochod() {
+        
+        SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
+        return "index";
+        
     }
 
     public String weryfikacjaDanych() throws IllegalAccessException, InstantiationException {
@@ -198,8 +281,8 @@ public class WyswietlSamochod {
         List<Boolean> listaWeryfikacyjna = new ArrayList<Boolean>();
         List<Object> aktualnySamochodLista = new ArrayList<Object>();
         List<Object> wyedytowanySamochodLista = new ArrayList<Object>();
-        List<Object> listaRoznic = new ArrayList<Object>();
-        
+        List<Integer> listaRoznic = new ArrayList<Integer>();
+
         if (aktualnySamochod.getNazwa().equals(wyedytowanySamochod.getNazwa())) {
             setNazwaSamochoduBlad(WeryfikacjaDanych.czyUnikalny("nazwa", "samochod", wyedytowanySamochod.getNazwa()));
         } else {
@@ -260,43 +343,48 @@ public class WyswietlSamochod {
             saveMessage("Nazwa samochodu juz występuje!");
         }
 
-        if (!czyJestTrue(listaWeryfikacyjna)) {
-            System.out.println("Wszystko jest unikalne.");
-            SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
-        }
+               
         if (!czyJestTrue(listaWeryfikacyjna)) {
             RequestContext context = RequestContext.getCurrentInstance();
-            context.execute("PF('dlg1').show();");
+            
 
             for (Field field : aktualnySamochod.getClass().getDeclaredFields()) {
                 field.setAccessible(true); // You might want to set modifier to public first.
                 Object value = field.get(aktualnySamochod);
+                System.out.println("pole " + field.getName() + " wartosc " + value);
                 aktualnySamochodLista.add(value);
-                
+
                 Object value2 = field.get(wyedytowanySamochod);
                 wyedytowanySamochodLista.add(value2);
-                 
-               
+
             }
-            
+            listaRoznic.clear();            
+            listaRoznic = porownajDwieListy(aktualnySamochodLista, wyedytowanySamochodLista);
+            if (listaRoznic.isEmpty()){
+                return "index";
+            }else{
+            listaRoznicSamochod = Roznice.stworzListeRoznic(aktualnySamochodLista, wyedytowanySamochodLista, listaRoznic, listaPol);
+            context.execute("PF('dlg1').show();");
             return null;
+            }
         } else {
             return "wybranySamochod";
         }
 
     }
     
-    public List<Integer> porownajDwieListy(List<Object> wzor, List<Object> kopia){
+    public List<Integer> porownajDwieListy(List<Object> wzor, List<Object> kopia) {
         int i = 0;
-        for (Object item:wzor){
-            if (!item.equals(kopia.get(i))){
-                
+        List<Integer> listaRoznychDanych = new ArrayList<Integer>();
+        for (Object item : wzor) {
+            if (!item.equals(kopia.get(i))) {
+                listaRoznychDanych.add(i);
             }
-            i=i+1;
+            i = i + 1;
         }
-        return null;
+        return listaRoznychDanych;
     }
-    
+
     public void saveMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(message));

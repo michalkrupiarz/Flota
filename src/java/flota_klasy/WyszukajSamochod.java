@@ -242,7 +242,8 @@ public class WyszukajSamochod {
                 samochod.setUmowa_z_dnia(rs.getString("umowa_z_dnia"));
                 samochod.setMiejsce_parkingowe(rs.getString("miejsce_parkingowe"));
                 samochod.setRozmiar_opon(rs.getString("rozmiar_opon"));
-
+                samochod.setPoj_silnika(rs.getString("poj_silnika"));
+                System.out.println(samochod);
                 listaSamochodow.add(samochod);
 
             }
@@ -339,6 +340,7 @@ public class WyszukajSamochod {
                 samochod.setUmowa_z_dnia(rs.getString("umowa_z_dnia"));
                 samochod.setMiejsce_parkingowe(rs.getString("miejsce_parkingowe"));
                 samochod.setRozmiar_opon(rs.getString("rozmiar_opon"));
+                samochod.setPoj_silnika(rs.getString("poj_silnika"));
                 listaSamochodow.add(samochod);
 
             }

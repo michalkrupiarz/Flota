@@ -195,19 +195,33 @@ public class SamochodZapytania {
                     + "     WHERE "
                     + "     id_samochod=" + samochod.getId_samochod();
             System.out.println(sql);
-            //stmt.executeUpdate(sql);
+            
+            String sql_zmiana_statusu_karty_parkingowej = "UPDATE karta_parkingowa"
+                    + "set karta_parkingowa.id_status_parkingowa=2"
+                    + "where karta_parkingowa.id_karta_parkingowa = '" + samochod.getId_karta_parkingowa() + "'";
+            String sql_zmiana_statusu_karty_paliwowej = "UPDATE karta_paliwowa"
+                    + "set karta_parkingowa.id_status_paliwowa=2"
+                    + "where karta_parkingowa.id_karta_paliwowa = '" + samochod.getId_karta_paliwowa() + "'";
+            
+            stmt.executeUpdate(sql);
+            if (!samochod.getId_karta_paliwowa().isEmpty()) {
+                stmt.executeUpdate(sql_zmiana_statusu_karty_paliwowej);
+            }
+            if (!samochod.getId_karta_parkingowa().isEmpty()) {
+                stmt.executeUpdate(sql_zmiana_statusu_karty_parkingowej);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
 
-//        try {
-//            c.commit();
-//            c.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return "zapisano";
     }
     private static String znajdzImie(String pracownik) {
