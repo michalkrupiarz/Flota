@@ -62,4 +62,36 @@ public class KartaPaliwowaZapytania {
         }
         return listaKartPaliwowych;
     }
+     
+    public static void zmienStatusKartyPaliwowej(String idKarty, Long statusKarty){
+           
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sqlKartaPaliwowaNowa = "UPDATE karta_paliwowa "
+                        + "SET id_status_paliwowa="+statusKarty+" "
+                        + "WHERE id_karta_paliwowa=(select karta_paliwowa.id_karta_paliwowa from karta_paliwowa where karta_paliwowa.numer_karty ilike ('" + idKarty + "'))";
+                stmt.executeUpdate(sqlKartaPaliwowaNowa);
+           } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+            System.out.println("XXX ZAPISANIE WYEDYTOWANEGO POJAZDU POWIODŁO SIE");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+             
+    } 
 }

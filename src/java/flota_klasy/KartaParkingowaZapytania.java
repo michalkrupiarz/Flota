@@ -61,4 +61,36 @@ public class KartaParkingowaZapytania {
         }
         return listaKartParkingowych;
     }
+    public static void zmienStatusKartyParkingowej(String idKarty, Long statusKarty){
+           
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sqlKartaParkingowaNowa ="UPDATE karta_parkingowa "
+                        + "SET id_karta_parkingowa="+statusKarty+" "
+                        + "WHERE id_karta_parkingowa=(select karta_parkingowa.id_karta_parkingowa from karta_parkingowa where karta_parkingowa.numer_karta_parkingowa ilike ('" + idKarty + "'))";
+               
+                stmt.executeUpdate(sqlKartaParkingowaNowa);
+           } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+            System.out.println("XXX ZAPISANIE WYEDYTOWANEGO POJAZDU POWIODŁO SIE");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

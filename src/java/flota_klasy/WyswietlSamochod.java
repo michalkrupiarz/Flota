@@ -48,6 +48,7 @@ public class WyswietlSamochod {
     List<Samochod> listaSamochodow;
     DataModel listaSamochodowNowa;
     Samochod samochod;
+    private Samochod usuwanySamochod =new Samochod();
     private Samochod wyszukanySamochod = new Samochod();
 
     private Samochod aktualnySamochod = new Samochod();
@@ -228,6 +229,14 @@ public class WyswietlSamochod {
         return "index";
     }
 
+    public Samochod getUsuwanySamochod() {
+        return usuwanySamochod;
+    }
+
+    public void setUsuwanySamochod(Samochod usuwanySamochod) {
+        this.usuwanySamochod = usuwanySamochod;
+    }
+    
     public String pokazSamochod() throws CloneNotSupportedException {
         aktualnySamochod = (Samochod) listaSamochodowNowa.getRowData();
         wyedytowanySamochod = (Samochod) aktualnySamochod.clone();
@@ -270,8 +279,8 @@ public class WyswietlSamochod {
     }
 
     public String zapiszWyedytowanySamochod() {
-        
-        SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod);
+          System.out.println("XXX ODPALONO ZAPISYWANIE EDYTOWANEGO SAMOCHODU");
+       SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod, aktualnySamochod);
         return "index";
         
     }
@@ -365,7 +374,7 @@ public class WyswietlSamochod {
             }else{
             listaRoznicSamochod = Roznice.stworzListeRoznic(aktualnySamochodLista, wyedytowanySamochodLista, listaRoznic, listaPol);
             context.execute("PF('dlg1').show();");
-            return null;
+            return "wybranySamochod";
             }
         } else {
             return "wybranySamochod";
@@ -403,5 +412,17 @@ public class WyswietlSamochod {
             }
         }
         return flaga;
+    }
+    
+    public String usunPojazd(){
+        usuwanySamochod = (Samochod) listaSamochodowNowa.getRowData();
+         RequestContext context = RequestContext.getCurrentInstance();
+         context.execute("PF('potwierdzUsuwanie').show();");
+        return "index";
+    }
+    
+    public String potwierdzUsunieciePojazdu(){
+        SamochodZapytania.usunPojazd(usuwanySamochod);
+        return "index";
     }
 }
