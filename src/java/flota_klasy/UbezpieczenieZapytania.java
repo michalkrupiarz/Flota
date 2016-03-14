@@ -72,5 +72,34 @@ public class UbezpieczenieZapytania {
         
         return listaUbezpieczen;
     }
-    
+    public static void usunUbezpieczenie(Long idSamochodu){
+        Connection c = null;
+        String sql;
+        List <Ubezpieczenie> listaUbezpieczen = new ArrayList<Ubezpieczenie>();
+        Statement stmt = null;
+        System.out.print("weszklo do tworzenia zapytania");
+        sql = "DELETE FROM ubezpieczenie where id_samochodu="+idSamochodu;
+        
+        try{
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/","postgres","ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+            
+           
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+":"+e.getMessage());
+            System.exit(0);
+        }
+       
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -222,10 +222,12 @@ public class SamochodZapytania {
                             "postgres", "ponczus21");
             c.setAutoCommit(false);
             stmt = c.createStatement();
+            
             KartaPaliwowaZapytania.zmienStatusKartyPaliwowej(samochod.getId_karta_paliwowa(), 1L);
-            KartaParkingowaZapytania.zmienStatusKartyParkingowej(samochod.getId_karta_parkingowa(), 1L);    
+            KartaParkingowaZapytania.zmienStatusKartyParkingowej(samochod.getId_karta_parkingowa(), 1L);
+            UbezpieczenieZapytania.usunUbezpieczenie(samochod.getId_samochod());
             String sql = "DELETE FROM samochod where id_samochod="+samochod.getId_samochod();
-               
+           
 
             stmt.executeUpdate(sql);
 
@@ -238,7 +240,7 @@ public class SamochodZapytania {
         try {
             c.commit();
             c.close();
-            System.out.println("XXX ZAPISANIE WYEDYTOWANEGO POJAZDU POWIODŁO SIE");
+            System.out.println("XXX USUWANUE POJAZDU POWIODŁO SIE");
         } catch (SQLException e) {
             e.printStackTrace();
         }
