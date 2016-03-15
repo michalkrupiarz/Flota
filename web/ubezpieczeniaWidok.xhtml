@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+
+
+
+    </h:head>
+
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+
+        </ui:define>
+        <ui:define  name= "body">
+
+
+            <h:form>
+                <br/>
+                <br/>
+                <div class="row">                          
+                    <div class="col-sm-6" align="left">Wyszukaj ubezpieczenie</div>
+                </div>
+                <br/>
+                <div class ="row">
+                    <div class="col-sm-3">
+
+                        <label  for="podaj_nazwe_pojazdu">Nazwa pojazdu</label>
+                        <h:inputText class="input-sm" id="podaj_model" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.id_samochodu}"></h:inputText>
+
+                    </div>
+
+                    <div class="col-sm-3">
+
+                        <label  for="podaj_date_zawarcia">Data zawarcia</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_nr_rej" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.data_zawarcia}"></h:inputText>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <label  for="data_zakonczenia">Data zakonczenia</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_vin" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.data_zakonczenia}"></h:inputText>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <label  for="data_podpisania_umowy">Data podpisania umowy</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_status_opon" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.data_zawarcia}"></h:inputText>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+
+                        <label  for="nazwa_ubezpieczyciela">Nazwa ubezpieczyciela</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_nr_ubezpieczenia" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.ubezpieczyciel}"></h:inputText>
+
+                    </div>
+
+                    <div class="col-sm-3">
+
+                        <label  for="wysokosc_skladki">Wysokosc skladki</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_nazwe" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.skladka}"></h:inputText>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <label  for="pracownik_zawierajacy">Pracownik zawierajacy umowe</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_lokalizacja" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.id_operator_zawierajacy}"></h:inputText>
+
+                    </div>
+
+                    <div class="col-sm-3">
+
+                        <label  for="nazwa_sprzedawcy">Nazwa sprzedawcy</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_pracownik" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.nazwa_sprzedawcy}"></h:inputText>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-3">
+
+                        <label  for="kontakt">Kontakt</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_oznaczenie_producenta" value="#{wyswietlUbezpieczenia.wyszukaneUbezpieczenie.kontakt}"></h:inputText>
+
+                    </div>
+                   
+               
+                </div>
+
+                <br/><br/> 
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton id="submit" value="Szukaj" action="#{wyswietlSamochod.wyszukajSamochod()}" class ="btn-default">
+                        <span class="glyphicon glyphicon-search"></span></h:commandButton>
+                </Button>
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <h:dataTable value="#{wyswietlUbezpieczenia.wyswietlWszystkieUbezpieczenia}" var="item" class="table table-hover table-striped">
+                    <p:column>
+                        <f:facet name="header">
+                            L.p.
+                        </f:facet>
+                        <h:outputText value="#{item.id_ubezpieczenia}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Nazwa ubezpieczeonego pojazdu
+                        </f:facet>
+                        <h:outputText value="#{item.id_samochodu}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Data zakończenia ubezpieczenia
+                        </f:facet>
+                        <h:outputText value="#{item.data_zakonczenia}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Numer polisy
+                        </f:facet>
+                        <h:outputText value="#{item.numer_polisy}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Ubezpieczyciel
+                        </f:facet>
+                        <h:outputText value="#{item.ubezpieczyciel}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            Akcja
+                        </f:facet>
+
+                        <h:commandButton  action="#{wyswietlSamochod.pokazSamochod()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
+                        </h:commandButton> &nbsp;
+                        <h:commandButton value="Usun" action="#{wyswietlSamochod.usunPojazd()}" class="btn-primary" id="Usun" >
+                        </h:commandButton>
+
+                    </p:column>
+
+                </h:dataTable>
+            </h:form>
+             <p:dialog header="Potwierdzenie usuniecia" widgetVar="potwierdzUsuwanie" minHeight="40"  width="500" modal="true"
+                       style="background: #2b3e50">
+                <h:form id="confirmDeleteDialog">
+
+                    <br/>
+
+                    <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac samochod?"></h:outputText>
+                    <br/>
+                 
+                    #{wyswietlSamochod.usuwanySamochod.nazwa}&nbsp;
+                    <br/></font>
+                    <h:commandButton  action = "#{wyswietlSamochod.potwierdzUsunieciePojazdu()}" value="Usun"/>&nbsp;&nbsp;
+                    <h:commandButton action="#{wyswietlSamochod.pokazIndex()}" value ="Anuluj"/>
+
+                   
+
+                </h:form>
+            </p:dialog>
+
+
+        </ui:define>
+    </ui:composition>
+</html>

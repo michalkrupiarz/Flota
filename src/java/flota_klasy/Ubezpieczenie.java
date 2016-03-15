@@ -14,13 +14,13 @@ import java.sql.Date;
  */
 public class Ubezpieczenie {
     private long id_ubezpieczenia;
-    private int id_samochodu;
+    private String id_samochodu;
     private Date data_rozpoczecia;
     private Date data_zakonczenia;
     private Date data_zawarcia;
     private String ubezpieczyciel;
     private BigDecimal skladka;
-    private int id_operator_zawierajacy;
+    private String id_operator_zawierajacy;
     private String notatka;
     private String numer_polisy;
     private String nazwa_sprzedawcy;
@@ -30,7 +30,7 @@ public class Ubezpieczenie {
         
     }
 
-    public Ubezpieczenie(long id_ubezpieczenia, int id_samochodu, Date data_rozpoczecia, Date data_zakonczenia, Date data_zawarcia, String ubezpieczyciel, BigDecimal skladka, int id_operator_zawierajacy, String notatka, String numer_polisy, String nazwa_sprzedawcy, String kontakt) {
+    public Ubezpieczenie(long id_ubezpieczenia, String id_samochodu, Date data_rozpoczecia, Date data_zakonczenia, Date data_zawarcia, String ubezpieczyciel, BigDecimal skladka, String id_operator_zawierajacy, String notatka, String numer_polisy, String nazwa_sprzedawcy, String kontakt) {
         this.id_ubezpieczenia = id_ubezpieczenia;
         this.id_samochodu = id_samochodu;
         this.data_rozpoczecia = data_rozpoczecia;
@@ -53,11 +53,11 @@ public class Ubezpieczenie {
         this.id_ubezpieczenia = id_ubezpieczenia;
     }
 
-    public int getId_samochodu() {
+    public String getId_samochodu() {
         return id_samochodu;
     }
 
-    public void setId_samochodu(int id_samochodu) {
+    public void setId_samochodu(String id_samochodu) {
         this.id_samochodu = id_samochodu;
     }
 
@@ -101,11 +101,11 @@ public class Ubezpieczenie {
         this.skladka = skladka;
     }
 
-    public int getId_operator_zawierajacy() {
+    public String getId_operator_zawierajacy() {
         return id_operator_zawierajacy;
     }
 
-    public void setId_operator_zawierajacy(int id_operator_zawierajacy) {
+    public void setId_operator_zawierajacy(String id_operator_zawierajacy) {
         this.id_operator_zawierajacy = id_operator_zawierajacy;
     }
 

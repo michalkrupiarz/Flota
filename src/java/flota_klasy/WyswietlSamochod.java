@@ -48,7 +48,7 @@ public class WyswietlSamochod {
     List<Samochod> listaSamochodow;
     DataModel listaSamochodowNowa;
     Samochod samochod;
-    private Samochod usuwanySamochod =new Samochod();
+    private Samochod usuwanySamochod = new Samochod();
     private Samochod wyszukanySamochod = new Samochod();
 
     private Samochod aktualnySamochod = new Samochod();
@@ -98,7 +98,9 @@ public class WyswietlSamochod {
     public List<Roznice> getListaRoznicSamochod() {
         return listaRoznicSamochod;
     }
-
+    
+    
+    
     public void setListaRoznicSamochod(List<Roznice> listaRoznicSamochod) {
         this.listaRoznicSamochod = listaRoznicSamochod;
     }
@@ -423,6 +425,9 @@ public class WyswietlSamochod {
     
     public String potwierdzUsunieciePojazdu(){
         SamochodZapytania.usunPojazd(usuwanySamochod);
+        return "index";
+    }
+    public String pokazIndex(){
         return "index";
     }
 }
