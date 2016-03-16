@@ -67,7 +67,7 @@ public class SamochodZapytania {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("wynik wyszukiwania w bazie " + wynikzbazy.equalsIgnoreCase(zmienna));
+        System.out.println("Zmiana wynik wyszukiwania w bazie " + wynikzbazy.equalsIgnoreCase(zmienna));
         return !wynikzbazy.equalsIgnoreCase(zmienna);
     }
 
