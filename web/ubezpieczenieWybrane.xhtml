@@ -52,93 +52,190 @@
                                                      requiredMessage="Nie wskazano nazwy pojazdu.">
                                         <f:selectItems value="#{samochodZapytania.samochodList}" var="lok"
                                                        itemLabel="#{lok.nazwa}" itemValue="#{lok.nazwa}"/>
-                                </h:selectOneMenu>> 
-                            </p:inplace>
-                        </p>
-                    </td>
-                    <td class="col-md-4" 
-                        style="vertical-align: middle">
-                        <h:message id="brak_nazwy_pojazdu" 
-                                   for="nazwa_pojazdu"></h:message>                 
-                    </td>
+                                    </h:selectOneMenu>> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <h:message id="brak_nazwy_pojazdu" 
+                                       for="nazwa_pojazdu"></h:message>                 
+                        </td>
 
-                </tr>
+                    </tr>
 
-                <tr>
-                    <td class="col-md-4" 
-                        style="vertical-align: middle">
-                        <p class="text-center">
-                            Data zawarcia ubezpieczenia
-                        </p>
-                    </td>
-                    <td class="col-md-4" 
-                        style="vertical-align: middle">
-                        <p class="text-center">
-                            <p:inplace id="inplace_data_zawarcia" 
-                                       editor="true" 
-                                       label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_rozpoczecia}" >
-                                <p:ajax event="save"  
-                                        update ="brak_daty_zawarcia"/>
-                                <p:inputText value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_rozpoczecia}"
-                                             id="data_zawarcia" 
-                                             required="true"
-                                             requiredMessage="Nie podano daty zawarcia ubezpieczenia."
-                                             pt:placeholder="rrrr-mm-dd" 
-                                             validatorMessage="Podano błędną datę zawarcia ubezpieczenia.">
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Data rozpoczecia ubezpieczenia
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_data_rozpoczecia" 
+                                           editor="true" 
+                                           label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_rozpoczecia}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_daty_rozpoczecia"/>
+                                    <p:inputText value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_rozpoczecia}"
+                                                 id="data_rozpoczecia" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano daty rozpoczecia ubezpieczenia."
+                                                 pt:placeholder="rrrr-mm-dd" 
+                                                 validatorMessage="Podano błędną datę rozpoczecia ubezpieczenia.">
+                                        <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_rozpoczecia"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_daty_rozpoczecia" 
+                                            for="data_rozpoczecia"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Data zakończenia ubezpieczenia
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_data_zakonczenia" 
+                                           editor="true" 
+                                           label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_zakonczenia}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_daty_zakonczenia"/>
+                                    <p:inputText value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_zakonczenia}"
+                                                 id="data_zakonczenia" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano daty zakonczenia ubezpieczenia."
+                                                 pt:placeholder="rrrr-mm-dd" 
+                                                 validatorMessage="Podano błędną datę zakonczenia ubezpieczenia.">
+                                        <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_zakonczenia"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_daty_zakonczenia" 
+                                            for="data_zakonczenia"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Data podpisania umowy ubezpieczenia (pierwszej).
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_data_zawarcia" 
+                                           editor="true" 
+                                           label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_zawarcia}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_daty_zawarcia"/>
+                                    <p:inputText value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_zawarcia}"
+                                                 id="data_zawarcia" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano daty zawarcia ubezpieczenia."
+                                                 pt:placeholder="rrrr-mm-dd" 
+                                                 validatorMessage="Podano błędną datę zawarcia ubezpieczenia.">
                                         <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_zawarcia"/>
-                                </p:inputText> 
-                            </p:inplace>
-                        </p>
-                    </td>
-                    <td class="col-md-4" 
-                        style="vertical-align: middle"> 
-                        <p class="text-center">
-                            <h:message  id="brak_daty_zawarcia" 
-                                        for="data_zawarcia"></h:message>
-                        </p>
-                    </td>
-                </tr>
-            </table>
-            <hr></hr>
-            <br/>
-            <br/>
-        </h:form>
-        <h:form>
-            <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych}" ></h:commandButton>
-        </h:form>
-        <p:dialog header="Potwierdzenie edycji" widgetVar="dlg1" minHeight="40"  width="500" modal="true">
-            <h:form id="confirmSaveDialog">
-
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_daty_zawarcia" 
+                                            for="data_zawarcia"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Nazwa ubezpieczyciela</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nazwa_ubezpieczyciela" 
+                                           editor="true" 
+                                           label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.ubezpieczyciel}">
+                                    <p:ajax event="save"  
+                                            update ="brak_nazwa_ubezpieczyciela"/>
+                                    <p:inputText value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.ubezpieczyciel}"
+                                                 id="nazwa_ubezpieczyciela" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano nazwy ubezpieczyciela.">
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_nazwa_ubezpieczyciela" 
+                                            for="nazwa_ubezpieczyciela"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <hr></hr>
                 <br/>
-
-                <p:dataTable var="roznice" value="#{wyswietlSamochod.listaRoznicSamochod}" >
-                    <p:column headerText="Nazwa pola">
-                        <h:outputText value="#{roznice.nazwaPola}"/>
-                    </p:column>
-                    <p:column headerText="Wartość oryginalna">
-                        <h:outputText value="#{roznice.wartoscWzor}"/>
-                    </p:column>
-                    <p:column headerText="Wartość wyedytowana">
-                        <h:outputText value="#{roznice.wartoscKopia}"/>
-                    </p:column>
-                </p:dataTable>
-
                 <br/>
-
-                <h:commandButton action="#{wyswietlSamochod.zapiszWyedytowanySamochod()}" value="Potwierdz edycje"/>
-
-
             </h:form>
-        </p:dialog>
-    </ui:define>
-    <ui:define name="bottom">
-        <h:form>
-            <Button type="button" class="btn btn-default btn-sm">
-                <p:commandButton action="#{wyswietlSamochod.pokazWszystkieSamochody()}" value="Powrot" class="btn-default btn-sm">
-                    <span class="glyphicon glyphicon-backward"></span></p:commandButton> 
-            </Button>
-        </h:form>
-    </ui:define>  
+            <h:form>
+                <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych}" ></h:commandButton>
+            </h:form>
+            <p:dialog header="Potwierdzenie edycji" widgetVar="dlg1" minHeight="40"  width="500" modal="true">
+                <h:form id="confirmSaveDialog">
 
-</ui:composition>    
+                    <br/>
+
+                    <p:dataTable var="roznice" value="#{wyswietlSamochod.listaRoznicSamochod}" >
+                        <p:column headerText="Nazwa pola">
+                            <h:outputText value="#{roznice.nazwaPola}"/>
+                        </p:column>
+                        <p:column headerText="Wartość oryginalna">
+                            <h:outputText value="#{roznice.wartoscWzor}"/>
+                        </p:column>
+                        <p:column headerText="Wartość wyedytowana">
+                            <h:outputText value="#{roznice.wartoscKopia}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <br/>
+
+                    <h:commandButton action="#{wyswietlSamochod.zapiszWyedytowanySamochod()}" value="Potwierdz edycje"/>
+
+
+                </h:form>
+            </p:dialog>
+        </ui:define>
+        <ui:define name="bottom">
+            <h:form>
+                <Button type="button" class="btn btn-default btn-sm">
+                    <p:commandButton action="#{wyswietlSamochod.pokazWszystkieSamochody()}" value="Powrot" class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></p:commandButton> 
+                </Button>
+            </h:form>
+        </ui:define>  
+
+    </ui:composition>    
 </html>
