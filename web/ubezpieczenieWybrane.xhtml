@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+
+        <style>
+
+            tr.ui-widget-content {
+                border-width: none;
+            }
+        </style>  
+    </h:head>
+
+    <ui:composition template="./template.xhtml">
+
+        <ui:define name="top">
+
+        </ui:define>    
+
+        <ui:define name="body">      
+            <br/>
+            <hr></hr>
+            <h:form id="formId">
+                <br/>
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <table class="table table-hover">
+
+                    <tr>                     
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Nazwa pojazdu
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nazwa_pojazdu" 
+                                           editor="true" 
+                                           label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.id_samochodu}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_nazwy_pojazdu"/>
+                                    <h:selectOneMenu value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.id_samochodu}"
+                                                     id="nazwa_pojazdu" 
+                                                     required="true"
+                                                     requiredMessage="Nie wskazano nazwy pojazdu.">
+                                        <f:selectItems value="#{samochodZapytania.samochodList}" var="lok"
+                                                       itemLabel="#{lok.nazwa}" itemValue="#{lok.nazwa}"/>
+                                </h:selectOneMenu>> 
+                            </p:inplace>
+                        </p>
+                    </td>
+                    <td class="col-md-4" 
+                        style="vertical-align: middle">
+                        <h:message id="brak_nazwy_pojazdu" 
+                                   for="nazwa_pojazdu"></h:message>                 
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="col-md-4" 
+                        style="vertical-align: middle">
+                        <p class="text-center">
+                            Data zawarcia ubezpieczenia
+                        </p>
+                    </td>
+                    <td class="col-md-4" 
+                        style="vertical-align: middle">
+                        <p class="text-center">
+                            <p:inplace id="inplace_data_zawarcia" 
+                                       editor="true" 
+                                       label="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_rozpoczecia}" >
+                                <p:ajax event="save"  
+                                        update ="brak_daty_zawarcia"/>
+                                <p:inputText value="#{ubezpieczeniaWyswietl.wyedytowaneUbezpieczenie.data_rozpoczecia}"
+                                             id="data_zawarcia" 
+                                             required="true"
+                                             requiredMessage="Nie podano daty zawarcia ubezpieczenia."
+                                             pt:placeholder="rrrr-mm-dd" 
+                                             validatorMessage="Podano błędną datę zawarcia ubezpieczenia.">
+                                        <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_zawarcia"/>
+                                </p:inputText> 
+                            </p:inplace>
+                        </p>
+                    </td>
+                    <td class="col-md-4" 
+                        style="vertical-align: middle"> 
+                        <p class="text-center">
+                            <h:message  id="brak_daty_zawarcia" 
+                                        for="data_zawarcia"></h:message>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <hr></hr>
+            <br/>
+            <br/>
+        </h:form>
+        <h:form>
+            <h:commandButton  value="Zatwierdz edycje" action="#{wyswietlSamochod.weryfikacjaDanych}" ></h:commandButton>
+        </h:form>
+        <p:dialog header="Potwierdzenie edycji" widgetVar="dlg1" minHeight="40"  width="500" modal="true">
+            <h:form id="confirmSaveDialog">
+
+                <br/>
+
+                <p:dataTable var="roznice" value="#{wyswietlSamochod.listaRoznicSamochod}" >
+                    <p:column headerText="Nazwa pola">
+                        <h:outputText value="#{roznice.nazwaPola}"/>
+                    </p:column>
+                    <p:column headerText="Wartość oryginalna">
+                        <h:outputText value="#{roznice.wartoscWzor}"/>
+                    </p:column>
+                    <p:column headerText="Wartość wyedytowana">
+                        <h:outputText value="#{roznice.wartoscKopia}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <br/>
+
+                <h:commandButton action="#{wyswietlSamochod.zapiszWyedytowanySamochod()}" value="Potwierdz edycje"/>
+
+
+            </h:form>
+        </p:dialog>
+    </ui:define>
+    <ui:define name="bottom">
+        <h:form>
+            <Button type="button" class="btn btn-default btn-sm">
+                <p:commandButton action="#{wyswietlSamochod.pokazWszystkieSamochody()}" value="Powrot" class="btn-default btn-sm">
+                    <span class="glyphicon glyphicon-backward"></span></p:commandButton> 
+            </Button>
+        </h:form>
+    </ui:define>  
+
+</ui:composition>    
+</html>

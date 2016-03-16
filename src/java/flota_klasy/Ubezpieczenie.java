@@ -12,14 +12,14 @@ import java.sql.Date;
  *
  * @author michal.krupiarz
  */
-public class Ubezpieczenie {
+public class Ubezpieczenie implements Cloneable{
     private long id_ubezpieczenia;
     private String id_samochodu;
-    private Date data_rozpoczecia;
-    private Date data_zakonczenia;
-    private Date data_zawarcia;
+    private String data_rozpoczecia;
+    private String data_zakonczenia;
+    private String data_zawarcia;
     private String ubezpieczyciel;
-    private BigDecimal skladka;
+    private String skladka;
     private String id_operator_zawierajacy;
     private String notatka;
     private String numer_polisy;
@@ -30,7 +30,7 @@ public class Ubezpieczenie {
         
     }
 
-    public Ubezpieczenie(long id_ubezpieczenia, String id_samochodu, Date data_rozpoczecia, Date data_zakonczenia, Date data_zawarcia, String ubezpieczyciel, BigDecimal skladka, String id_operator_zawierajacy, String notatka, String numer_polisy, String nazwa_sprzedawcy, String kontakt) {
+    public Ubezpieczenie(long id_ubezpieczenia, String id_samochodu, String data_rozpoczecia, String data_zakonczenia, String data_zawarcia, String ubezpieczyciel, String skladka, String id_operator_zawierajacy, String notatka, String numer_polisy, String nazwa_sprzedawcy, String kontakt) {
         this.id_ubezpieczenia = id_ubezpieczenia;
         this.id_samochodu = id_samochodu;
         this.data_rozpoczecia = data_rozpoczecia;
@@ -61,27 +61,27 @@ public class Ubezpieczenie {
         this.id_samochodu = id_samochodu;
     }
 
-    public Date getData_rozpoczecia() {
+    public String getData_rozpoczecia() {
         return data_rozpoczecia;
     }
 
-    public void setData_rozpoczecia(Date data_rozpoczecia) {
+    public void setData_rozpoczecia(String data_rozpoczecia) {
         this.data_rozpoczecia = data_rozpoczecia;
     }
 
-    public Date getData_zakonczenia() {
+    public String getData_zakonczenia() {
         return data_zakonczenia;
     }
 
-    public void setData_zakonczenia(Date data_zakonczenia) {
+    public void setData_zakonczenia(String data_zakonczenia) {
         this.data_zakonczenia = data_zakonczenia;
     }
 
-    public Date getData_zawarcia() {
+    public String getData_zawarcia() {
         return data_zawarcia;
     }
 
-    public void setData_zawarcia(Date data_zawarcia) {
+    public void setData_zawarcia(String data_zawarcia) {
         this.data_zawarcia = data_zawarcia;
     }
 
@@ -93,11 +93,11 @@ public class Ubezpieczenie {
         this.ubezpieczyciel = ubezpieczyciel;
     }
 
-    public BigDecimal getSkladka() {
+    public String getSkladka() {
         return skladka;
     }
 
-    public void setSkladka(BigDecimal skladka) {
+    public void setSkladka(String skladka) {
         this.skladka = skladka;
     }
 
@@ -140,5 +140,9 @@ public class Ubezpieczenie {
     public void setKontakt(String kontakt) {
         this.kontakt = kontakt;
     }
+    @Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
     
 }

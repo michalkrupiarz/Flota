@@ -44,11 +44,11 @@ public class UbezpieczenieZapytania {
                 Ubezpieczenie ubezpieczenie = new Ubezpieczenie();
                 ubezpieczenie.setId_ubezpieczenia(rs.getLong("id_ubezpieczenie"));
                 ubezpieczenie.setId_samochodu(rs.getString("id_samochodu"));
-                ubezpieczenie.setData_rozpoczecia(rs.getDate("data_rozpoczecia"));
-                ubezpieczenie.setData_zakonczenia(rs.getDate("data_zakonczenia"));
-                ubezpieczenie.setData_zawarcia(rs.getDate("data_zawarcia"));
+                ubezpieczenie.setData_rozpoczecia(rs.getString("data_rozpoczecia"));
+                ubezpieczenie.setData_zakonczenia(rs.getString("data_zakonczenia"));
+                ubezpieczenie.setData_zawarcia(rs.getString("data_zawarcia"));
                 ubezpieczenie.setUbezpieczyciel(rs.getString("ubezpieczyciel"));
-                ubezpieczenie.setSkladka(rs.getBigDecimal("skladka"));
+                ubezpieczenie.setSkladka(rs.getString("skladka"));
                 ubezpieczenie.setId_operator_zawierajacy(rs.getString("id_operator_zawierajacy"));
                 ubezpieczenie.setNotatka(rs.getString("notatka"));
                 ubezpieczenie.setNumer_polisy(rs.getString("numer_polisy"));

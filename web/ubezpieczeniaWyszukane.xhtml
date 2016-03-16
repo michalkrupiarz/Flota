@@ -20,8 +20,12 @@
         <ui:define  name= "body">
 
 
-             <h:form>
+            <h:form>
                 <br/>
+                <br/>
+                <div class="row">                          
+                    <div class="col-sm-6" align="left">Wyszukaj ubezpieczenie</div>
+                </div>
                 <br/>
                 <div class="row">                          
                     <div class="col-sm-6" align="left">Wyszukaj ubezpieczenie</div>
@@ -31,26 +35,26 @@
                     <div class="col-sm-3">
 
                         <label  for="podaj_nazwe_pojazdu">Nazwa pojazdu</label>
-                        <h:inputText class="input-sm" id="nazwa" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.id_samochodu}"></h:inputText>
+                        <h:inputText class="input-sm" id="podaj_model" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.id_samochodu}"></h:inputText>
 
                     </div>
 
                     <div class="col-sm-3">
 
-                        <label  for="podaj_date_zawarcia">Data rozpoczecia</label>
-                        <h:inputText size="50" class="input-sm" id="data_zawarcia" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.data_rozpoczecia}"></h:inputText>
+                        <label  for="podaj_date_zawarcia">Data zawarcia</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_nr_rej" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.data_zawarcia}"></h:inputText>
 
                     </div>
                     <div class="col-sm-3">
 
                         <label  for="data_zakonczenia">Data zakonczenia</label>
-                        <h:inputText size="50" class="input-sm" id="data_zakonczenia" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.data_zakonczenia}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_vin" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.data_zakonczenia}"></h:inputText>
 
                     </div>
                     <div class="col-sm-3">
 
                         <label  for="data_podpisania_umowy">Data podpisania umowy</label>
-                        <h:inputText size="50" class="input-sm" id="data_podpisania" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.data_zawarcia}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_status_opon" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.data_zawarcia}"></h:inputText>
 
                     </div>
                 </div>
@@ -58,27 +62,27 @@
                     <div class="col-sm-3">
 
                         <label  for="nazwa_ubezpieczyciela">Nazwa ubezpieczyciela</label>
-                        <h:inputText size="50" class="input-sm" id="nazwa_ubezpieczyciela" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.ubezpieczyciel}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_nr_ubezpieczenia" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.ubezpieczyciel}"></h:inputText>
 
                     </div>
 
                     <div class="col-sm-3">
 
                         <label  for="wysokosc_skladki">Wysokosc skladki</label>
-                        <h:inputText size="50" class="input-sm" id="skladka" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.skladka}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_nazwe" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.skladka}"></h:inputText>
 
                     </div>
                     <div class="col-sm-3">
 
                         <label  for="pracownik_zawierajacy">Pracownik zawierajacy umowe</label>
-                        <h:inputText size="50" class="input-sm" id="pracownik" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.id_operator_zawierajacy}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_lokalizacja" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.id_operator_zawierajacy}"></h:inputText>
 
                     </div>
 
                     <div class="col-sm-3">
 
                         <label  for="nazwa_sprzedawcy">Nazwa sprzedawcy</label>
-                        <h:inputText size="50" class="input-sm" id="sprzedawca" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.nazwa_sprzedawcy}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_pracownik" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.nazwa_sprzedawcy}"></h:inputText>
 
                     </div>
                 </div>
@@ -87,21 +91,23 @@
                     <div class="col-sm-3">
 
                         <label  for="kontakt">Kontakt</label>
-                        <h:inputText size="50" class="input-sm" id="kontakt" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.kontakt}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="podaj_oznaczenie_producenta" value="#{ubezpieczeniaWyswietl.ubezpieczenieDoWyszukania.kontakt}"></h:inputText>
 
                     </div>
                    
                
                 </div>
+
                 <br/><br/> 
                 <Button type="button" class="btn btn-default btn-sm">
-                    <h:commandButton id="submit" value="Szukaj" action="#{ubezpieczeniaWyswietl.wyszukajUbezpieczenia()}" class ="btn-default">
+                    <h:commandButton id="submit" value="Szukaj"  class ="btn-default">
                         <span class="glyphicon glyphicon-search"></span></h:commandButton>
                 </Button>
             </h:form>
             <hr></hr>
             <h:form>
-                <h:dataTable value="#{ubezpieczeniaWyswietl.wyswietlWszystkieUbezpieczenia}" var="item" class="table table-hover table-striped">
+               
+                <h:dataTable value="#{ubezpieczeniaWyswietl.wyswietlWyszukaneUbezpieczenia}" var="item" class="table table-hover table-striped">
                     <p:column>
                         <f:facet name="header">
                             L.p. 
@@ -132,13 +138,12 @@
                         </f:facet>
                         <h:outputText value="#{item.ubezpieczyciel}"/>
                     </p:column>
-                    
                     <p:column>
                         <f:facet name="header">
                             Akcja
                         </f:facet>
 
-                        <h:commandButton  action="#{ubezpieczeniaWyswietl.pokazUbezpieczenie()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
+                        <h:commandButton  action="#{wyswietlSamochod.pokazSamochod()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
                         </h:commandButton> &nbsp;
                         <h:commandButton value="Usun" action="#{wyswietlSamochod.usunPojazd()}" class="btn-primary" id="Usun" >
                         </h:commandButton>

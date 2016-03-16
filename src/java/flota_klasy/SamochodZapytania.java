@@ -30,6 +30,46 @@ public class SamochodZapytania {
      * 
      * Creates a new instance of SamochodZapytania
      */
+        
+        public List<Samochod> getSamochodList() {
+        Connection c = null;
+        List<Samochod> listaSamochodow = new ArrayList<Samochod>();
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            String sql = "Select * from samochod";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                Samochod s = new Samochod();
+                s.setId_samochod(rs.getInt("id_samochod"));
+                s.setNazwa(rs.getString("nazwa"));
+                listaSamochodow.add(s);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        
+        
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaSamochodow;
+
+    }
     public static boolean sprawdzUnikalnoscDanych(String nazwaPola, String nazwaTabeli, String zmienna) {
 
         Connection c = null;
@@ -257,4 +297,5 @@ public class SamochodZapytania {
         imie = pracownik.split(" ");
         return imie[1];
     }
+    
 }
