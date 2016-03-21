@@ -102,4 +102,51 @@ public class UbezpieczenieZapytania {
             e.printStackTrace();
         }
     }
+    
+    public static String zapiszWyedytowaneUbezpieczenie(Ubezpieczenie wyedytowaneUbezpieczenie){
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "UPDATE ubezpieczenie"
+                    + "     SET  "
+                    + "     id_samochodu=(select samochod.id_samochod from samochod where samochod.nazwa ilike('" + wyedytowaneUbezpieczenie.getId_samochodu()+ "')), "
+                    + "     data_rozpoczecia='" + wyedytowaneUbezpieczenie.getData_rozpoczecia() + "', "
+                    + "     data_zakonczenia='" + wyedytowaneUbezpieczenie.getData_zakonczenia() + "', "
+                    + "     data_zawarcia='" + wyedytowaneUbezpieczenie.getData_zawarcia() + "', "
+                    + "     ubezpieczyciel='" + wyedytowaneUbezpieczenie.getUbezpieczyciel() + "', "
+                    + "     skladka='" + wyedytowaneUbezpieczenie.getSkladka() + "', "
+                    + "     id_operator_zawierajacy=(select pracownik.id_pracownik from pracownik where (pracownik.imie ilike ('" + SamochodZapytania.znajdzImie(wyedytowaneUbezpieczenie.getId_operator_zawierajacy()) + "') and pracownik.nazwisko ilike ('" + SamochodZapytania.znajdzNazwisko(wyedytowaneUbezpieczenie.getId_operator_zawierajacy()) + "'))), "
+                    + "     notatka='" + wyedytowaneUbezpieczenie.getNotatka() + "', "
+                    + "     numer_polisy='" + wyedytowaneUbezpieczenie.getNumer_polisy() + "', "
+                    + "     nazwa_sprzedawcy='" + wyedytowaneUbezpieczenie.getNazwa_sprzedawcy()+ "', "
+                    + "     kontakt='" + wyedytowaneUbezpieczenie.getKontakt()+ "' "
+                    + "     WHERE "
+                    + "     id_ubezpieczenie=" + wyedytowaneUbezpieczenie.getId_ubezpieczenia();
+            System.out.println("XXX");
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+            System.out.println("XXX ZAPISANIE WYEDYTOWANEGO POJAZDU POWIODŁO SIE");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "zapisano";
+    }
+    
+     
 }

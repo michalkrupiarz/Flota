@@ -286,13 +286,13 @@ public class SamochodZapytania {
         }
     }
     
-    private static String znajdzImie(String pracownik) {
+    public static String znajdzImie(String pracownik) {
         String imie[] = new String[5];
         imie = pracownik.split(" ");
         return imie[0];
     }
 
-    private static String znajdzNazwisko(String pracownik) {
+    public static String znajdzNazwisko(String pracownik) {
         String imie[] = new String[5];
         imie = pracownik.split(" ");
         return imie[1];

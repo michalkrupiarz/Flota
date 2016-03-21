@@ -92,19 +92,17 @@ public class WyswietlSamochod {
             "Umowa z dnia.",
             "NR miejsca parkingowego.",
             "Rozmiar opon.");
-    
-    private List<Roznice> listaRoznicSamochod = new ArrayList <Roznice>();
+
+    private List<Roznice> listaRoznicSamochod = new ArrayList<Roznice>();
 
     public List<Roznice> getListaRoznicSamochod() {
         return listaRoznicSamochod;
     }
-    
-    
-    
+
     public void setListaRoznicSamochod(List<Roznice> listaRoznicSamochod) {
         this.listaRoznicSamochod = listaRoznicSamochod;
     }
-    
+
     public List<String> getListaPol() {
         return listaPol;
     }
@@ -238,7 +236,7 @@ public class WyswietlSamochod {
     public void setUsuwanySamochod(Samochod usuwanySamochod) {
         this.usuwanySamochod = usuwanySamochod;
     }
-    
+
     public String pokazSamochod() throws CloneNotSupportedException {
         aktualnySamochod = (Samochod) listaSamochodowNowa.getRowData();
         wyedytowanySamochod = (Samochod) aktualnySamochod.clone();
@@ -281,10 +279,10 @@ public class WyswietlSamochod {
     }
 
     public String zapiszWyedytowanySamochod() {
-          System.out.println("XXX ODPALONO ZAPISYWANIE EDYTOWANEGO SAMOCHODU");
-       SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod, aktualnySamochod);
+        System.out.println("XXX ODPALONO ZAPISYWANIE EDYTOWANEGO SAMOCHODU");
+        SamochodZapytania.zapiszWyedytowanySamochod(wyedytowanySamochod, aktualnySamochod);
         return "index";
-        
+
     }
 
     public String weryfikacjaDanych() throws IllegalAccessException, InstantiationException {
@@ -354,10 +352,8 @@ public class WyswietlSamochod {
             saveMessage("Nazwa samochodu juz występuje!");
         }
 
-               
         if (!czyJestTrue(listaWeryfikacyjna)) {
             RequestContext context = RequestContext.getCurrentInstance();
-            
 
             for (Field field : aktualnySamochod.getClass().getDeclaredFields()) {
                 field.setAccessible(true); // You might want to set modifier to public first.
@@ -369,29 +365,33 @@ public class WyswietlSamochod {
                 wyedytowanySamochodLista.add(value2);
 
             }
-            listaRoznic.clear();            
+            listaRoznic.clear();
             listaRoznic = porownajDwieListy(aktualnySamochodLista, wyedytowanySamochodLista);
-            if (listaRoznic.isEmpty()){
+            if (listaRoznic.isEmpty()) {
                 return "index";
-            }else{
-            listaRoznicSamochod = Roznice.stworzListeRoznic(aktualnySamochodLista, wyedytowanySamochodLista, listaRoznic, listaPol);
-            context.execute("PF('dlg1').show();");
-            return "wybranySamochod";
+            } else {
+                listaRoznicSamochod = Roznice.stworzListeRoznic(aktualnySamochodLista, wyedytowanySamochodLista, listaRoznic, listaPol);
+                context.execute("PF('dlg1').show();");
+                return "wybranySamochod";
             }
         } else {
             return "wybranySamochod";
         }
 
     }
-    
-    public List<Integer> porownajDwieListy(List<Object> wzor, List<Object> kopia) {
+
+    public static List<Integer> porownajDwieListy(List<Object> wzor, List<Object> kopia) {
         int i = 0;
         List<Integer> listaRoznychDanych = new ArrayList<Integer>();
         for (Object item : wzor) {
-            if (!item.equals(kopia.get(i))) {
-                listaRoznychDanych.add(i);
+            if (item != null) {
+                if (!item.equals(kopia.get(i))) {
+                    listaRoznychDanych.add(i);
+                }
+                i = i + 1;
+            } else {
+                i = i + 1;
             }
-            i = i + 1;
         }
         return listaRoznychDanych;
     }
@@ -415,19 +415,20 @@ public class WyswietlSamochod {
         }
         return flaga;
     }
-    
-    public String usunPojazd(){
+
+    public String usunPojazd() {
         usuwanySamochod = (Samochod) listaSamochodowNowa.getRowData();
-         RequestContext context = RequestContext.getCurrentInstance();
-         context.execute("PF('potwierdzUsuwanie').show();");
+        RequestContext context = RequestContext.getCurrentInstance();
+        context.execute("PF('potwierdzUsuwanie').show();");
         return "index";
     }
-    
-    public String potwierdzUsunieciePojazdu(){
+
+    public String potwierdzUsunieciePojazdu() {
         SamochodZapytania.usunPojazd(usuwanySamochod);
         return "index";
     }
-    public String pokazIndex(){
+
+    public String pokazIndex() {
         return "index";
     }
 }
