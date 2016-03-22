@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
+
 
 /**
  *
@@ -25,17 +24,16 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public class SamochodZapytania {
 
-    ;
+    
     /**  
      * 
      * Creates a new instance of SamochodZapytania
      */
         
         public List<Samochod> getSamochodList() {
-        Connection c = null;
-        List<Samochod> listaSamochodow = new ArrayList<Samochod>();
+        Connection c=null;
+        List <Samochod> lista = new ArrayList<Samochod>();
         Statement stmt = null;
-
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
@@ -48,10 +46,11 @@ public class SamochodZapytania {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Samochod s = new Samochod();
-                s.setId_samochod(rs.getInt("id_samochod"));
-                s.setNazwa(rs.getString("nazwa"));
-                listaSamochodow.add(s);
+                Samochod lok = new Samochod();
+                lok.setId_samochod(rs.getLong("id_samochod"));
+                lok.setNazwa(rs.getString("nazwa"));
+                
+                lista.add(lok);
 
             }
         } catch (Exception e) {
@@ -60,14 +59,14 @@ public class SamochodZapytania {
             System.exit(0);
         }
         
-        
         try {
             c.commit();
             c.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listaSamochodow;
+        
+        return lista;
 
     }
     public static boolean sprawdzUnikalnoscDanych(String nazwaPola, String nazwaTabeli, String zmienna) {

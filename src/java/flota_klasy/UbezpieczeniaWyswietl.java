@@ -26,7 +26,7 @@ import org.primefaces.context.RequestContext;
 public class UbezpieczeniaWyswietl {
 
     DataModel listaUbezpieczenWyszukanych;
-
+    private Ubezpieczenie usuwaneUbezpieczenie = new Ubezpieczenie();
     DataModel listaUbezpieczenNowa;
     private List<Roznice> listaRoznicUbezpieczenie = new ArrayList<Roznice>();
     private Ubezpieczenie aktualneUbezpieczenie = new Ubezpieczenie();
@@ -53,9 +53,15 @@ public class UbezpieczeniaWyswietl {
     public void setListaRoznicUbezpieczenie(List<Roznice> listaRoznicUbezpieczenie) {
         this.listaRoznicUbezpieczenie = listaRoznicUbezpieczenie;
     }
-    
-    
-    
+
+    public Ubezpieczenie getUsuwaneUbezpieczenie() {
+        return usuwaneUbezpieczenie;
+    }
+
+    public void setUsuwaneUbezpieczenie(Ubezpieczenie usuwaneUbezpieczenie) {
+        this.usuwaneUbezpieczenie = usuwaneUbezpieczenie;
+    }
+        
     public boolean isNumerPolisyBlad() {
         return numerPolisyBlad;
     }
@@ -104,7 +110,7 @@ public class UbezpieczeniaWyswietl {
     }
 
     public String goToIndex() {
-        return "index";
+        return "ubezpieczeniaWidok";
     }
 
     public String pokazUbezpieczenie() throws CloneNotSupportedException {
@@ -162,14 +168,19 @@ public class UbezpieczeniaWyswietl {
     
     public String zapiszWyedytowaneUbezpieczenie(){
         UbezpieczenieZapytania.zapiszWyedytowaneUbezpieczenie(wyedytowaneUbezpieczenie);
-        return "index";
+        return "ubezpieczeniaWidok";
     }
     
-    public String usunPojazd() {
-        usuwanySamochod = (Samochod) listaSamochodowNowa.getRowData();
+    public String usunUbezpieczenie() {
+        usuwaneUbezpieczenie = (Ubezpieczenie) listaUbezpieczenNowa.getRowData();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('potwierdzUsuwanie').show();");
-        return "index";
+        return "ubezpieczeniaWidok";
+    }
+    
+    public String potwierdzUsuniecieUbezpieczenia(){
+        UbezpieczenieZapytania.usunUbezpieczenie(usuwaneUbezpieczenie.getId_ubezpieczenia());
+        return "ubezpieczeniaWidok";
     }
     
 }

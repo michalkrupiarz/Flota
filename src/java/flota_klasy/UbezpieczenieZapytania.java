@@ -25,6 +25,10 @@ import javax.faces.bean.SessionScoped;
 
 public class UbezpieczenieZapytania {
     
+    public static String dodajUbezpieczenie (Ubezpieczenie ubezpieczenie){
+        return "dodano";
+    }
+    
     public List<Ubezpieczenie> getUbezpieczeniaList(){
         Connection c = null;
         String sql;
@@ -72,13 +76,13 @@ public class UbezpieczenieZapytania {
         
         return listaUbezpieczen;
     }
-    public static void usunUbezpieczenie(Long idSamochodu){
+    public static void usunUbezpieczenie(Long idUbezpieczenia){
         Connection c = null;
         String sql;
         List <Ubezpieczenie> listaUbezpieczen = new ArrayList<Ubezpieczenie>();
         Statement stmt = null;
         System.out.print("weszklo do tworzenia zapytania");
-        sql = "DELETE FROM ubezpieczenie where id_samochodu="+idSamochodu;
+        sql = "DELETE FROM ubezpieczenie where id_ubezpieczenie="+ idUbezpieczenia;
         
         try{
             Class.forName("org.postgresql.Driver");

@@ -145,7 +145,7 @@
 
                         <h:commandButton  action="#{ubezpieczeniaWyswietl.pokazUbezpieczenie()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
                         </h:commandButton> &nbsp;
-                        <h:commandButton value="Usun" action="#{wyswietlSamochod.usunPojazd()}" class="btn-primary" id="Usun" >
+                        <h:commandButton value="Usun" action="#{ubezpieczeniaWyswietl.usunUbezpieczenie()}" class="btn-primary" id="Usun" >
                         </h:commandButton>
 
                     </p:column>
@@ -158,13 +158,13 @@
 
                     <br/>
 
-                    <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac samochod?"></h:outputText>
+                    <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac ubezpieczenie?"></h:outputText>
                     <br/>
                  
-                    #{wyswietlSamochod.usuwanySamochod.nazwa}&nbsp;
+                    #{ubezpieczeniaWyswietl.usuwaneUbezpieczenie.numer_polisy}&nbsp;
                     <br/></font>
-                    <h:commandButton  action = "#{wyswietlSamochod.potwierdzUsunieciePojazdu()}" value="Usun"/>&nbsp;&nbsp;
-                    <h:commandButton action="#{wyswietlSamochod.pokazIndex()}" value ="Anuluj"/>
+                    <h:commandButton  action = "#{ubezpieczeniaWyswietl.potwierdzUsuniecieUbezpieczenia()}" value="Usun"/>&nbsp;&nbsp;
+                    <h:commandButton action="#{ubezpieczeniaWyswietl.goToIndex()}" value ="Anuluj"/>
 
                    
 

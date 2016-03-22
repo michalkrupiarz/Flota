@@ -421,24 +421,7 @@
 
                 </h:form>
             </p:dialog>
-             <p:dialog header="Potwierdzenie usuniecia" widgetVar="potwierdzUsuwanie" minHeight="40"  width="500" modal="true"
-                       style="background: #2b3e50">
-                <h:form id="confirmDeleteDialog">
-
-                    <br/>
-
-                    <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac samochod?"></h:outputText>
-                    <br/>
-                 
-                    #{wyswietlSamochod.usuwanySamochod.nazwa}&nbsp;
-                    <br/></font>
-                    <h:commandButton  action = "#{wyswietlSamochod.potwierdzUsunieciePojazdu()}" value="Usun"/>&nbsp;&nbsp;
-                    <h:commandButton action="#{wyswietlSamochod.pokazIndex()}" value ="Anuluj"/>
-
-                   
-
-                </h:form>
-            </p:dialog>
+            
         </ui:define>
         <ui:define name="bottom">
             <h:form>
