@@ -102,9 +102,10 @@ public class DodajSamochod {
     }
 
     public void dodajSamochod() {
-
+       
         int iloscNieUnikalnychDanych = 0;
-        Samochod dodawanySamochod = new Samochod();
+       
+        System.out.println(dodawanySamochod);
         List<Boolean> listaWeryfikacyjnaDlaSamochodu = new ArrayList<Boolean>();
 
         

@@ -21,8 +21,11 @@ private Ubezpieczenie dodawaneUbezpieczenie = new Ubezpieczenie();
         return dodawaneUbezpieczenie;
     }
     public String dodajUbezpieczenie(){
-        Ubezpieczenie dodawaneUbezpieczenie = new Ubezpieczenie();
+        
         UbezpieczenieZapytania.dodajUbezpieczenie(dodawaneUbezpieczenie);
         return "ubezpieczeniaWyszukane";
+    }
+    public String wyswietlDodajUbezpieczenie(){
+        return "ubezpieczenieDodaj";
     }
 }

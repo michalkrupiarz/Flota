@@ -41,8 +41,8 @@ public class KartaPaliwowaZapytania {
             while (rs.next()) {
                 KartaPaliwowa lok = new KartaPaliwowa();
                 lok.setId_karta_paliwowa(rs.getInt("id_karta_paliwowa"));
-                lok.setId_status_paliwowa(rs.getInt("id_status_paliwowa"));
-                lok.setId_lokalizacja_paliwowa(rs.getInt("id_lokalizacja_paliwowa"));
+                lok.setId_status_paliwowa(rs.getString("id_status_paliwowa"));
+                lok.setId_lokalizacja_paliwowa(rs.getString("id_lokalizacja_paliwowa"));
                 lok.setNumer_Karty(rs.getString("numer_karty"));
                 lok.setPin_karty(rs.getString("pin_karty"));
                 lok.setId_importu(rs.getInt("id_importu"));

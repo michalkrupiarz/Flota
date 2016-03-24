@@ -149,12 +149,12 @@ public class SamochodZapytania {
                     + "            '" + samochod.getVat() + "',\n"
                     + "            (select grupa_limit.id_grupa_limit from grupa_limit where grupa_limit.nazwa ilike ('" + samochod.getId_grupa_limit() + "')),\n"
                     + "            '" + samochod.getNr_umowy_leasingu() + "', '" + samochod.getNr_umowy_serwis() + "', '" + samochod.getMpk() + "', \n"
-                    + "            '" + samochod.getPrv_umowa() + "', '" + samochod.getUmowa_z_dnia() + "', '" + samochod.getMiejsce_parkingowe() + "'," + samochod.getRozmiar_opon() + "),\n"
-                    + "            (select pracownik.id_pracownik from pracownik where pracownik.imie ilike ('" + znajdzImie(samochod.getPracownik_uzywajacy()) + "') and pracownik.nazwisko ilike ('" + znajdzNazwisko(samochod.getPracownik_uzywajacy()) + "')";;
-                    
+                    + "            '" + samochod.getPrv_umowa() + "', '" + samochod.getUmowa_z_dnia() + "', '" + samochod.getMiejsce_parkingowe() + "'," + samochod.getRozmiar_opon() + ",\n"
+                    + "            (select pracownik.id_pracownik from pracownik where pracownik.imie ilike ('" + znajdzImie(samochod.getPracownik_uzywajacy()) + "') and pracownik.nazwisko ilike ('" + znajdzNazwisko(samochod.getPracownik_uzywajacy()) + "')));";
+            System.out.println(sql);        
             KartaPaliwowaZapytania.zmienStatusKartyPaliwowej(samochod.getId_karta_paliwowa(), 2L);
             KartaParkingowaZapytania.zmienStatusKartyParkingowej(samochod.getId_karta_parkingowa(), 2L);
-            System.out.println(sql);
+            
             stmt.executeUpdate(sql);
 
         } catch (Exception e) {

@@ -11,7 +11,7 @@
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="./resources/css/bootstrap.css" rel="stylesheet" media="screen"/>
-        
+
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <title>Facelets Template</title>
     </h:head>
@@ -20,7 +20,7 @@
 
 
         <div id="top">
-           
+
             <h:form>
                 <p:growl id="messages" showDetail="true"/>
                 <Button type="button" class="btn btn-default btn-sm">
@@ -38,42 +38,77 @@
                     <ui:insert name="right">Right</ui:insert>
                 </div>
                 <div id="content" class="right_content">
-                    
-                    <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-            
-            <ul class="nav nav-tabs">
-                
-                <li role="presentation" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                        Samochod <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><h:form><Button type="button" class="btn btn-default btn-sm">
-                                    <h:commandButton value="Dodaj Samochod" action="#{dodajSamochod.wywietldodajSamochod()}" class="btn-link" id="wyswietldodajSamochod">
-                                </h:commandButton></Button></h:form></li>
-                        <li>Usuń Samochód</li>
-                        <li>Edytuj Samochód</li>
-                        <li>Wyszukaj Samochód</li>
-                    </ul>
-                </li>
-                
-            </ul>
-               
-    
- 
-   
-                
-            </div>
-            <div class="col-sm-3"></div>
-            <br/>
-            <br/>
-            <ui:insert name="body">Content</ui:insert>
+
+
+                    <div class="col-sm-3">
+
+                        <ul class="nav nav-tabs">
+
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    Samochod <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Dodaj Samochod" action="#{dodajSamochod.wywietldodajSamochod()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li>Usuń Samochód</li>
+                                    <li>Edytuj Samochód</li>
+                                    <li>Wyszukaj Samochód</li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                    <div class="col-sm-3"> <ul class="nav nav-tabs">
+
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                   Ubezpieczenie <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Dodaj Ubezpieczenie" action="#{ubezpieczenieDodaj.wyswietlDodajUbezpieczenie()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Usun ubezpieczenie" action="#{ubezpieczeniaWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li>Edytuj Samochód</li>
+                                    <li>Wyszukaj Samochód</li>
+                                </ul>
+                            </li>
+
+                        </ul></div>
+                    <div class="col-sm-3">
+                        <ul class="nav nav-tabs">
+
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                   Karta paliwowa <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Dodaj Ubezpieczenie" action="#{ubezpieczenieDodaj.wyswietlDodajUbezpieczenie()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Usun ubezpieczenie" action="#{ubezpieczeniaWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li>Edytuj Samochód</li>
+                                    <li>Wyszukaj Samochód</li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <br/>
+                    <br/>
+                    <ui:insert name="body">Content</ui:insert>
                 </div>
             </div>
         </div>
         <div id="bottom">
-            
+
             <h:form>
                 <Button type="button" class="btn btn-default btn-sm">
                     <h:commandButton action="#{wyswietlSamochod.pokazWszystkieSamochody()}" value="Powrot" class="btn-default btn-sm">

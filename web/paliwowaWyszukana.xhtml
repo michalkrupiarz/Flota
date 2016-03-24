@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+
+
+
+    </h:head>
+
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+
+        </ui:define>
+        <ui:define  name= "body">
+
+
+            <h:form>
+                <br/>
+                <br/>
+                <div class="row">                          
+                    <div class="col-sm-6" align="left">Wyszukaj karte paliwowa</div>
+                </div>
+                <br/>
+                <div class ="row">
+                    <div class="col-sm-3">
+                        
+                        <label  for="status">Status karty paliwowej</label>
+                        <h:inputText class="input-sm" id="nazwa" value="#{paliwoweWyswietl.paliwowaDoWyszukania.id_status_paliwowa}"></h:inputText>
+
+                    </div>
+
+                    <div class="col-sm-3">
+
+                        <label  for="lokalizacja">Lokalizacja karty paliwowej</label>
+                        <h:inputText size="50" class="input-sm" id="lokalizacja" value="#{paliwoweWyswietl.paliwowaDoWyszukania.id_lokalizacja_paliwowa}"></h:inputText>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <label  for="numer">Numer karty</label>
+                        <h:inputText size="50" class="input-sm" id="numer" value="#{paliwoweWyswietl.paliwowaDoWyszukania.numer_Karty}"></h:inputText>
+
+                    </div>
+                    <div class="col-sm-3">
+
+                        <label  for="pin">Pin karty</label>
+                        <h:inputText size="50" class="input-sm" id="pin" value="#{paliwoweWyswietl.paliwowaDoWyszukania.pin_karty}"></h:inputText>
+
+                    </div>
+                </div>
+                
+                <br/><br/> 
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton id="submit" value="Szukaj" action="#{paliwoweWyswietl.wyszukajPaliwowa()}" class ="btn-default">
+                        <span class="glyphicon glyphicon-search"></span></h:commandButton>
+                </Button>
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <h:dataTable value="#{paliwoweWyswietl.wyswietlWyszukanePaliwowe}" var="item" class="table table-hover table-striped">
+                    <p:column>
+                        <f:facet name="header">
+                            L.p. 
+                        </f:facet>
+                        <h:outputText value="#{item.id_karta_paliwowa}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Status
+                        </f:facet>
+                        <h:outputText value="#{item.id_status_paliwowa}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Lokalizacja
+                        </f:facet>
+                        <h:outputText value="#{item.id_lokalizacja_paliwowa}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Numer Karty
+                        </f:facet>
+                        <h:outputText value="#{item.numer_Karty}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Pin
+                        </f:facet>
+                        <h:outputText value="#{item.pin_karty}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            Akcja
+                        </f:facet>
+
+                        <h:commandButton  action="#{ubezpieczeniaWyswietl.pokazUbezpieczenie()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
+                        </h:commandButton> &nbsp;
+                        <h:commandButton value="Usun" action="#{ubezpieczeniaWyswietl.usunUbezpieczenie()}" class="btn-primary" id="Usun" >
+                        </h:commandButton>
+
+                    </p:column>
+
+                </h:dataTable>
+            </h:form>
+            <p:dialog header="Potwierdzenie usuniecia" widgetVar="potwierdzUsuwanie" minHeight="40"  width="500" modal="true"
+                      style="background: #2b3e50">
+                <h:form id="confirmDeleteDialog">
+
+                    <br/>
+
+                    <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac ubezpieczenie?"></h:outputText>
+                        <br/>
+
+                        #{ubezpieczeniaWyswietl.usuwaneUbezpieczenie.numer_polisy}
+                        <br/></font>
+                    <h:commandButton  action = "#{ubezpieczeniaWyswietl.potwierdzUsuniecieUbezpieczenia()}" value="Usun"/>
+                    <h:commandButton action="#{ubezpieczeniaWyswietl.goToIndex()}" value ="Anuluj"/>
+
+
+
+                </h:form>
+            </p:dialog>
+
+
+        </ui:define>
+    </ui:composition>
+</html>

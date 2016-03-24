@@ -74,7 +74,7 @@ public class KartaParkingowaZapytania {
             c.setAutoCommit(false);
             stmt = c.createStatement();
             String sqlKartaParkingowaNowa ="UPDATE karta_parkingowa "
-                        + "SET id_karta_parkingowa="+statusKarty+" "
+                        + "SET id_status_parkingowa="+statusKarty+" "
                         + "WHERE id_karta_parkingowa=(select karta_parkingowa.id_karta_parkingowa from karta_parkingowa where karta_parkingowa.numer_karta_parkingowa ilike ('" + idKarty + "'))";
                
                 stmt.executeUpdate(sqlKartaParkingowaNowa);

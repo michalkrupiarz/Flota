@@ -107,9 +107,9 @@ and open the template in the editor.
                         <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{ubezpieczenieDodaj.dodawaneUbezpieczenie.skladka}" 
                                                                                          id= "skladka" 
                                                                                          required="true" 
-                                                                                         validatorMessage="Podano bledną datę pierwszego podpisania umowy.">
+                                                                                         validatorMessage="Podano bledna skladke.">
 
-                                <f:validateRegex pattern="[0-9]+[,][0-9][0-9]" for="skladka"/>
+                                <f:validateRegex pattern="[0-9]+[.][0-9][0-9]" for="skladka"/>
                             </h:inputText>
                         </td>
                         <td class="col-md-2">
@@ -199,7 +199,7 @@ and open the template in the editor.
 
 
                 <Button type="button" class="btn btn-default btn-sm">
-                    <h:commandButton value="Dodaj Samochod" action="#{ubezpieczenieDodaj.}"  class="btn-default btn-sm">
+                    <h:commandButton value="Dodaj Samochod" action="#{ubezpieczenieDodaj.dodajUbezpieczenie()}"  class="btn-default btn-sm">
                         <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
                 </Button>
             </h:form>

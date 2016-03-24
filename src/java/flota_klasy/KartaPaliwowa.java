@@ -12,8 +12,8 @@ package flota_klasy;
 public class KartaPaliwowa {
     
     private long id_karta_paliwowa;
-    private int id_status_paliwowa;
-    private int id_lokalizacja_paliwowa;
+    private String id_status_paliwowa;
+    private String id_lokalizacja_paliwowa;
     private String numer_Karty;
     private String pin_karty;
     private int id_importu;
@@ -22,7 +22,7 @@ public class KartaPaliwowa {
         
     }
 
-    public KartaPaliwowa(long id_karta_paliwowa, int id_status_paliwowa, int id_lokalizacja_paliwowa, String numer_Karty, String pin_karty, int id_importu) {
+    public KartaPaliwowa(long id_karta_paliwowa, String id_status_paliwowa, String id_lokalizacja_paliwowa, String numer_Karty, String pin_karty, int id_importu) {
         this.id_karta_paliwowa = id_karta_paliwowa;
         this.id_status_paliwowa = id_status_paliwowa;
         this.id_lokalizacja_paliwowa = id_lokalizacja_paliwowa;
@@ -39,19 +39,19 @@ public class KartaPaliwowa {
         this.id_karta_paliwowa = id_karta_paliwowa;
     }
 
-    public int getId_status_paliwowa() {
+    public String getId_status_paliwowa() {
         return id_status_paliwowa;
     }
 
-    public void setId_status_paliwowa(int id_status_paliwowa) {
+    public void setId_status_paliwowa(String id_status_paliwowa) {
         this.id_status_paliwowa = id_status_paliwowa;
     }
 
-    public int getId_lokalizacja_paliwowa() {
+    public String getId_lokalizacja_paliwowa() {
         return id_lokalizacja_paliwowa;
     }
 
-    public void setId_lokalizacja_paliwowa(int id_lokalizacja_paliwowa) {
+    public void setId_lokalizacja_paliwowa(String id_lokalizacja_paliwowa) {
         this.id_lokalizacja_paliwowa = id_lokalizacja_paliwowa;
     }
 
