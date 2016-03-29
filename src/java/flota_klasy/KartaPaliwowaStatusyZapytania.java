@@ -34,7 +34,7 @@ public class KartaPaliwowaStatusyZapytania {
             c.setAutoCommit(false);
            
             stmt = c.createStatement();
-            String sql = "Select * from pracownik";
+            String sql = "Select * from karta_paliwowa_statusy";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
