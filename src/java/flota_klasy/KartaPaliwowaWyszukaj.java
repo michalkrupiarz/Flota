@@ -20,7 +20,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class PaliwowaWyszukaj {
+public class KartaPaliwowaWyszukaj {
 
     public static List getListWyszukanychPaliwowych(KartaPaliwowa paliwowa) {
         Connection c = null;

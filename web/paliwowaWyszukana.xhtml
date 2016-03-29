@@ -36,39 +36,39 @@ and open the template in the editor.
                     <div class="col-sm-3">
                         
                         <label  for="status">Status karty paliwowej</label>
-                        <h:inputText class="input-sm" id="nazwa" value="#{paliwoweWyswietl.paliwowaDoWyszukania.id_status_paliwowa}"></h:inputText>
+                        <h:inputText class="input-sm" id="nazwa" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.id_status_paliwowa}"></h:inputText>
 
                     </div>
 
                     <div class="col-sm-3">
 
                         <label  for="lokalizacja">Lokalizacja karty paliwowej</label>
-                        <h:inputText size="50" class="input-sm" id="lokalizacja" value="#{paliwoweWyswietl.paliwowaDoWyszukania.id_lokalizacja_paliwowa}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="lokalizacja" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.id_lokalizacja_paliwowa}"></h:inputText>
 
                     </div>
                     <div class="col-sm-3">
 
                         <label  for="numer">Numer karty</label>
-                        <h:inputText size="50" class="input-sm" id="numer" value="#{paliwoweWyswietl.paliwowaDoWyszukania.numer_Karty}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="numer" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.numer_Karty}"></h:inputText>
 
                     </div>
                     <div class="col-sm-3">
 
                         <label  for="pin">Pin karty</label>
-                        <h:inputText size="50" class="input-sm" id="pin" value="#{paliwoweWyswietl.paliwowaDoWyszukania.pin_karty}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="pin" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.pin_karty}"></h:inputText>
 
                     </div>
                 </div>
                 
                 <br/><br/> 
                 <Button type="button" class="btn btn-default btn-sm">
-                    <h:commandButton id="submit" value="Szukaj" action="#{paliwoweWyswietl.wyszukajPaliwowa()}" class ="btn-default">
+                    <h:commandButton id="submit" value="Szukaj" action="#{kartaPaliwoweWyswietl.wyszukajPaliwowa()}" class ="btn-default">
                         <span class="glyphicon glyphicon-search"></span></h:commandButton>
                 </Button>
             </h:form>
             <hr></hr>
             <h:form>
-                <h:dataTable value="#{paliwoweWyswietl.wyswietlWyszukanePaliwowe}" var="item" class="table table-hover table-striped">
+                <h:dataTable value="#{kartaPaliwoweWyswietl.wyswietlWyszukanePaliwowe}" var="item" class="table table-hover table-striped">
                     <p:column>
                         <f:facet name="header">
                             L.p. 

@@ -79,6 +79,9 @@ public class KartaPaliwowa {
         this.id_importu = id_importu;
     }
     
-    
+    @Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
     
 }
