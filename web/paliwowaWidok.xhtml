@@ -123,10 +123,11 @@ and open the template in the editor.
                     <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac ubezpieczenie?"></h:outputText>
                         <br/>
 
-                        #{ubezpieczeniaWyswietl.usuwaneUbezpieczenie.numer_polisy}
+                        
+                        #{kartaPaliwoweWyswietl.usuwanePaliwowej.numer_Karty}
                         <br/></font>
-                    <h:commandButton  action = "#{ubezpieczeniaWyswietl.potwierdzUsuniecieUbezpieczenia()}" value="Usun"/>
-                    <h:commandButton action="#{ubezpieczeniaWyswietl.goToIndex()}" value ="Anuluj"/>
+                    <h:commandButton  action = "#{kartaPaliwoweWyswietl.potwierdzUsuniecieKarty()}" value="Usun"/>
+                    <h:commandButton action="#{kartaPaliwoweWyswietl.goToIndex()}" value ="Anuluj"/>
 
 
 

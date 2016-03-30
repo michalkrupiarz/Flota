@@ -297,7 +297,7 @@ public class WyszukajSamochod {
                 
                 
                 + "where samochod.id_samochod is not null\n";
-            System.out.println(sql);
+          //  System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {

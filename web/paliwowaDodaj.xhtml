@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="jquery-ui.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="/resources/js/validator.min.js"></script>
+    </head>
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+
+        </ui:define>    
+
+        <ui:define name="body">
+
+            <br/>
+            Podaj dane nowej karty paliwowej
+            <hr></hr>
+            <h:form>
+                <br/>
+                <table class="table table-hover" >
+                    <tr>
+                        <td class="col-md-2" style="vertical-align: middle">Numer karty paliwowej <span class="glyphicon glyphicon-star" /></td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{kartaPaliwowaDodaj.dodawanaKarta.numer_Karty}" 
+                                                                                             id= "numer_karty" 
+                                                                                         required="true" 
+                                                                                         requiredMessage="Nie podano numeru karty."  >
+                                
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:message  for="numer_karty"></h:message>
+                            <h:form rendered="#{kartaPaliwowaDodaj.numerKartyBlad}">
+                                <div class="alert alert-danger">
+                                   Taki numer karty juz istnieje.
+                                </div>
+                            </h:form> 
+                        </td>
+                        <td class="col-md-2" style="vertical-align: middle">Status karty paliwowej <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:selectOneMenu value="#{kartaPaliwowaDodaj.dodawanaKarta.id_status_paliwowa}" 
+                                                                                         id= "status_karty" 
+                                                                                         required="true" 
+                                                                                         requiredMessage="Nie podano statusu karty paliwowej."  
+                                                                                        >
+                                <f:selectItems value="#{kartaPaliwowaStatusyZapytania.listaKartaPaliwowaStatusy}" var="lok"
+                                               itemLabel="#{lok.status}" itemValue="#{lok.status}"/>
+                                
+                            </h:selectOneMenu>
+                        </td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:message  for="status_karty"></h:message>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2" style="vertical-align: middle">Lokalizacja karty paliwowej <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:selectOneMenu value="#{kartaPaliwowaDodaj.dodawanaKarta.id_lokalizacja_paliwowa}" 
+                                                                                         id= "lokalizacja_karty" 
+                                                                                         required="true" 
+                                                                                         requiredMessage="Nie podano lokalizacji karty paliwowej."  
+                                                                                        >
+                                <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
+                                               itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+                                
+                            </h:selectOneMenu>
+                        </td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:message  for="lokalizacja_karty"></h:message>
+
+
+                        </td>
+
+                        <td class="col-md-2">Pin karty.  <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{kartaPaliwowaDodaj.dodawanaKarta.pin_karty}" 
+                                                          id="pin_karty" label="pin_karty" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano PINu karty."
+                                                          pt:placeholder="----"
+                                                          validatorMessage="Podano bledny PIN karty.">
+                                <f:validateRegex pattern="[0-9].{3}" for="pin_karty"/>
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2">
+                            <h:message for="pin_karty"></h:message>
+
+                        </td>
+                    </tr>
+
+                   
+                </table>
+                <hr></hr>
+
+
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton value="Dodaj Samochod" action="#{kartaPaliwowaDodaj.dodajKarte()}"  class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
+                </Button>
+            </h:form>
+        </ui:define>
+        <ui:define name="bottom">
+            <h:form>
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton value="Powrot" action="#{kartaPaliwoweWyswietl.goToIndex()}"  class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
+                </Button>
+            </h:form>
+
+
+        </ui:define>  
+
+    </ui:composition>
+</html>

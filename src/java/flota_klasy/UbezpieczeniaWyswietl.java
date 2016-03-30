@@ -147,7 +147,7 @@ public class UbezpieczeniaWyswietl {
             listaRoznic.clear();
             listaRoznic = WyswietlSamochod.porownajDwieListy(aktualneUbezpieczenieLista, wyedytowaneUbezpieczenieLista);
             if (listaRoznic.isEmpty()) {
-                return "index";
+                return "ubezpieczeniaWidok";
             } else {
                 listaRoznicUbezpieczenie = Roznice.stworzListeRoznic(aktualneUbezpieczenieLista, wyedytowaneUbezpieczenieLista, listaRoznic, listaPol);
                 context.execute("PF('dlg1').show();");

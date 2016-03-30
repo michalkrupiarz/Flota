@@ -111,50 +111,50 @@ public class KartaPaliwoweWyswietl {
     
      public String weryfikacjaDanych() throws IllegalAccessException, InstantiationException {
             
-//        List<Integer> listaRoznic = new ArrayList<Integer>();
-//        List<Object> aktualneUbezpieczenieLista = new ArrayList<Object>();
-//        List<Object> wyedytowaneUbezpieczenieLista = new ArrayList<Object>();
-//
-//        if (!aktualneUbezpieczenie.getNumer_polisy().equals(wyedytowaneUbezpieczenie.getNumer_polisy())) {
-//            setNumerPolisyBlad(!WeryfikacjaDanych.czyUnikalny("numer_polisy", "ubezpieczenie", wyedytowaneUbezpieczenie.getNumer_polisy()));
-//        }
-//        if (numerPolisyBlad) {
-//            saveMessage("Numer polisy juz wystepuje w bazie");
-//        }
-//
-//        if (!numerPolisyBlad) {
-//            RequestContext context = RequestContext.getCurrentInstance();
-//            for (Field field : aktualneUbezpieczenie.getClass().getDeclaredFields()) {
-//                field.setAccessible(true); // You might want to set modifier to public first.
-//                Object value = field.get(aktualneUbezpieczenie);
-//                System.out.println("pole " + field.getName() + " wartosc " + value);
-//                aktualneUbezpieczenieLista.add(value);
-//
-//                Object value2 = field.get(wyedytowaneUbezpieczenie);
-//                wyedytowaneUbezpieczenieLista.add(value2);
-//
-//            }
-//            listaRoznic.clear();
-//            listaRoznic = WyswietlSamochod.porownajDwieListy(aktualneUbezpieczenieLista, wyedytowaneUbezpieczenieLista);
-//            if (listaRoznic.isEmpty()) {
-//                return "index";
-//            } else {
-//                listaRoznicUbezpieczenie = Roznice.stworzListeRoznic(aktualneUbezpieczenieLista, wyedytowaneUbezpieczenieLista, listaRoznic, listaPol);
-//                context.execute("PF('dlg1').show();");
-//                return "ubezpieczenieWybrane";
-//            }
-//
-//        } else {
-//            return "ubezpieczenieWybrane";
-//        }
+       List<Integer> listaRoznic = new ArrayList<Integer>();
+        List<Object> aktKartaPal = new ArrayList<Object>();
+        List<Object> wyedKartaPal = new ArrayList<Object>();
 
-    return null;
+        if (!aktualnePaliwowa.getNumer_Karty().equals(wyedytowanePaliwowa.getNumer_Karty())) {
+            setNumerPaliwowejBlad(!WeryfikacjaDanych.czyUnikalny("numer_karty", "karta_paliwowa", wyedytowanePaliwowa.getNumer_Karty()));
+        }
+        if (numerPaliwowejBlad) {
+            saveMessage("Numer karty paliwowej juz wystepuje, podaj inny.");
+        }
+
+        if (!numerPaliwowejBlad) {
+            RequestContext context = RequestContext.getCurrentInstance();
+            for (Field field : aktualnePaliwowa.getClass().getDeclaredFields()) {
+                field.setAccessible(true); // You might want to set modifier to public first.
+                Object value = field.get(aktualnePaliwowa);
+                System.out.println("pole " + field.getName() + " wartosc " + value);
+                aktKartaPal.add(value);
+
+                Object value2 = field.get(wyedytowanePaliwowa);
+                wyedKartaPal.add(value2);
+
+            }
+            listaRoznic.clear();
+            listaRoznic = WyswietlSamochod.porownajDwieListy(aktKartaPal, wyedKartaPal);
+            if (listaRoznic.isEmpty()) {
+                return "paliwowaWidok";
+            } else {
+                listaRoznicPaliwowe = Roznice.stworzListeRoznic(aktKartaPal, wyedKartaPal, listaRoznic, listaPol);
+                context.execute("PF('dlg1').show();");
+                return "paliwowaWybrana";
+            }
+
+        } else {
+            return "paliwowaWybrana";
+        }
+
+    
     }
       public void saveMessage(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(message));
     }
-      public String zapiszWyedytowaneUbezpieczenie(){
+      public String zapiszWyedytowanaKarte(){
        
         KartaPaliwowaZapytania.zapiszWyedytowanaKartePaliwowa(wyedytowanePaliwowa);
         return "paliwowaWidok";
@@ -167,8 +167,8 @@ public class KartaPaliwoweWyswietl {
         return "paliwowaWidok";
     }
     
-    public String potwierdzUsuniecieUbezpieczenia(){
-        UbezpieczenieZapytania.usunKartePaliwowa(usuwanePaliwowej.getId_karta_paliwowa());
+    public String potwierdzUsuniecieKarty(){
+        KartaPaliwowaZapytania.usunKartePaliwowa(usuwanePaliwowej.getId_karta_paliwowa());
         return "ubezpieczeniaWidok";
     }
 

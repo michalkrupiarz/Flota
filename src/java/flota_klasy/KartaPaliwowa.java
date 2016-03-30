@@ -9,7 +9,7 @@ package flota_klasy;
  *
  * @author M
  */
-public class KartaPaliwowa {
+public class KartaPaliwowa implements Cloneable{
     
     private long id_karta_paliwowa;
     private String id_status_paliwowa;
