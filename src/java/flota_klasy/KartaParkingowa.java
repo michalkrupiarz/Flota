@@ -10,10 +10,10 @@ package flota_klasy;
  *
  * @author michal.krupiarz
  */
-public class KartaParkingowa {
+public class KartaParkingowa implements Cloneable{
     private long id_karta_parkingowa;
-    private int id_status_parkingowa;
-    private int id_lokalizacja_parkingowa;
+    private String id_status_parkingowa;
+    private String id_lokalizacja_parkingowa;
     private String numer_karta_parkingowa;
     private int id_importu;
     
@@ -21,7 +21,7 @@ public class KartaParkingowa {
         
     }
 
-    public KartaParkingowa(long id_karta_parkingowa, int id_status_parkingowa, int id_lokalizacja_parkingowa, String numer_karta_parkingowa, int id_importu) {
+    public KartaParkingowa(long id_karta_parkingowa, String id_status_parkingowa, String id_lokalizacja_parkingowa, String numer_karta_parkingowa, int id_importu) {
         this.id_karta_parkingowa = id_karta_parkingowa;
         this.id_status_parkingowa = id_status_parkingowa;
         this.id_lokalizacja_parkingowa = id_lokalizacja_parkingowa;
@@ -37,19 +37,19 @@ public class KartaParkingowa {
         this.id_karta_parkingowa = id_karta_parkingowa;
     }
 
-    public int getId_status_parkingowa() {
+    public String getId_status_parkingowa() {
         return id_status_parkingowa;
     }
 
-    public void setId_status_parkingowa(int id_status_parkingowa) {
+    public void setId_status_parkingowa(String id_status_parkingowa) {
         this.id_status_parkingowa = id_status_parkingowa;
     }
 
-    public int getId_lokalizacja_parkingowa() {
+    public String getId_lokalizacja_parkingowa() {
         return id_lokalizacja_parkingowa;
     }
 
-    public void setId_lokalizacja_parkingowa(int id_lokalizacja_parkingowa) {
+    public void setId_lokalizacja_parkingowa(String id_lokalizacja_parkingowa) {
         this.id_lokalizacja_parkingowa = id_lokalizacja_parkingowa;
     }
 
@@ -69,6 +69,9 @@ public class KartaParkingowa {
         this.id_importu = id_importu;
     }
     
-    
+     @Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
     
 }

@@ -41,8 +41,8 @@ public class KartaParkingowaZapytania {
             while (rs.next()) {
                 KartaParkingowa lok = new KartaParkingowa();
                 lok.setId_karta_parkingowa(rs.getInt("id_karta_parkingowa"));
-                lok.setId_status_parkingowa(rs.getInt("id_status_parkingowa"));
-                lok.setId_lokalizacja_parkingowa(rs.getInt("id_lokalizacja_parkingowa"));
+                lok.setId_status_parkingowa(rs.getString("id_status_parkingowa"));
+                lok.setId_lokalizacja_parkingowa(rs.getString("id_lokalizacja_parkingowa"));
                 lok.setNumer_karta_parkingowa(rs.getString("numer_karta_parkingowa"));
                 lok.setId_importu(rs.getInt("id_importu"));
                 listaKartParkingowych.add(lok);

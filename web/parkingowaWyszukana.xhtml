@@ -29,85 +29,75 @@ and open the template in the editor.
                 <br/>
                 <br/>
                 <div class="row">                          
-                    <div class="col-sm-6" align="left">Wyszukaj karte paliwowa</div>
+                    <div class="col-sm-6" align="left">Wyszukaj karte parkingowa</div>
                 </div>
                 <br/>
                 <div class ="row">
                     <div class="col-sm-3">
                         
-                        <label  for="status">Status karty paliwowej</label>
-                        <h:inputText class="input-sm" id="paliwowa_status" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.id_status_paliwowa}"></h:inputText>
+                        <label  for="status">Status karty parkingowe</label>
+                        <h:inputText class="input-sm" id="parkingowa_status" value="#{kartaParkingoweWyswietl.parkingowaDoWyszukania.id_status_parkingowa}"></h:inputText>
                         
                     </div>
 
                     <div class="col-sm-3">
 
-                        <label  for="lokalizacja">Lokalizacja karty paliwowej</label>
-                        <h:inputText size="50" class="input-sm" id="lokalizacja" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.id_lokalizacja_paliwowa}"></h:inputText>
+                        <label  for="lokalizacja">Lokalizacja karty parkingowe</label>
+                        <h:inputText size="50" class="input-sm" id="lokalizacja" value="#{kartaParkingoweWyswietl.parkingowaDoWyszukania.id_lokalizacja_parkingowa}"></h:inputText>
 
                     </div>
                     <div class="col-sm-3">
 
                         <label  for="numer">Numer karty</label>
-                        <h:inputText size="50" class="input-sm" id="numer" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.numer_Karty}"></h:inputText>
+                        <h:inputText size="50" class="input-sm" id="numer" value="#{kartaParkingoweWyswietl.parkingowaDoWyszukania.numer_karta_parkingowa}"></h:inputText>
 
                     </div>
-                    <div class="col-sm-3">
-
-                        <label  for="pin">Pin karty</label>
-                        <h:inputText size="50" class="input-sm" id="pin" value="#{kartaPaliwoweWyswietl.paliwowaDoWyszukania.pin_karty}"></h:inputText>
-
-                    </div>
+                   
                 </div>
                 
                 <br/><br/> 
                 <Button type="button" class="btn btn-default btn-sm">
-                    <h:commandButton id="submit" value="Szukaj" action="#{kartaPaliwoweWyswietl.wyszukajPaliwowa()}" class ="btn-default">
+                    <h:commandButton id="submit" value="Szukaj" action="#{kartaParkingoweWyswietl.wyszukajParkingowa()}" class ="btn-default">
                         <span class="glyphicon glyphicon-search"></span></h:commandButton>
                 </Button>
             </h:form>
             <hr></hr>
             <h:form>
-                <h:dataTable value="#{kartaPaliwoweWyswietl.wyswietlWyszukanePaliwowe}" var="item" class="table table-hover table-striped">
+                <h:dataTable value="#{kartaParkingoweWyswietl.wyswietlWyszukaneParkingowe}" var="item" class="table table-hover table-striped">
                     <p:column>
                         <f:facet name="header">
                             L.p. 
                         </f:facet>
-                        <h:outputText value="#{item.id_karta_paliwowa}"/>
+                        <h:outputText value="#{item.id_karta_parkingowa}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
                             Status
                         </f:facet>
-                        <h:outputText value="#{item.id_status_paliwowa}"/>
+                        <h:outputText value="#{item.id_status_parkingowa}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
                             Lokalizacja
                         </f:facet>
-                        <h:outputText value="#{item.id_lokalizacja_paliwowa}"/>
+                        <h:outputText value="#{item.id_lokalizacja_parkingowa}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
                             Numer Karty
                         </f:facet>
-                        <h:outputText value="#{item.numer_Karty}"/>
+                        <h:outputText value="#{item.numer_karta_parkingowa}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            Pin
-                        </f:facet>
-                        <h:outputText value="#{item.pin_karty}"/>
-                    </p:column>
+                    
 
                     <p:column>
                         <f:facet name="header">
                             Akcja
                         </f:facet>
 
-                        <h:commandButton  action="#{ubezpieczeniaWyswietl.pokazUbezpieczenie()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
+                        <h:commandButton  action="#{kartaParkingoweWyswietl.pokazParkingowa()}" class="btn-primary" id="Przegladaj" value="Przegladaj"> 
                         </h:commandButton> &nbsp;
-                        <h:commandButton value="Usun" action="#{ubezpieczeniaWyswietl.usunUbezpieczenie()}" class="btn-primary" id="Usun" >
+                        <h:commandButton value="Usun" action="#{kartaParkingoweWyswietl.usunKarteParkingowa()}" class="btn-primary" id="Usun" >
                         </h:commandButton>
 
                     </p:column>
@@ -123,10 +113,10 @@ and open the template in the editor.
                     <font color="#ebebeb"><h:outputText value="Czy na pewno chesz usunac ubezpieczenie?"></h:outputText>
                         <br/>
 
-                        #{ubezpieczeniaWyswietl.usuwaneUbezpieczenie.numer_polisy}
+                        #{kartaParkingoweWyswietl.usuwaneParkingowej.numer_karta_parkingowa}
                         <br/></font>
-                    <h:commandButton  action = "#{ubezpieczeniaWyswietl.potwierdzUsuniecieUbezpieczenia()}" value="Usun"/>
-                    <h:commandButton action="#{ubezpieczeniaWyswietl.goToIndex()}" value ="Anuluj"/>
+                    <h:commandButton  action = "#{kartaParkingoweWyswietl.potwierdzUsuniecieKarty()}" value="Usun"/>
+                    <h:commandButton action="#{kartaParkingoweWyswietl.goToIndex()}" value ="Anuluj"/>
 
 
 
