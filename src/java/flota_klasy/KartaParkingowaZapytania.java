@@ -92,5 +92,107 @@ public class KartaParkingowaZapytania {
             e.printStackTrace();
         }
     }
-    
+     public static String zapiszWyedytowanaKarteParkingowa(KartaParkingowa wyedytowanaKarta) {
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:7886/",
+                            "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "UPDATE karta_parkingowa"
+                    + "     SET  "
+                    + "     id_status_parkingowa=(select id_karta_parkingowa_statusy from karta_parkingowa_statusy where status_karta_parkingowa_statusy ilike('" + wyedytowanaKarta.getId_status_parkingowa() + "')), "
+                    + "     id_lokalizacja_parkingowa=(select id_lokalizacja from lokalizacja where nazwa_lokalizacja ilike('" + wyedytowanaKarta.getId_lokalizacja_parkingowa()+ "')), "
+                    + "     numer_karta_parkingowa='" + wyedytowanaKarta.getNumer_karta_parkingowa() + "' "
+                    
+                    + "     WHERE "
+                    + "     id_karta_parkingowa=" + wyedytowanaKarta.getId_karta_parkingowa();
+            System.out.println("XXX");
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+            System.out.println("XXX ZAPISANIE WYEDYTOWANEGO POJAZDU POWIODŁO SIE");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "zapisano";
+    }
+
+    public static void usunKarteParkingowa(Long idKarty) {
+        Connection c = null;
+        String sql;
+
+        Statement stmt = null;
+        System.out.print("weszklo do tworzenia zapytania");
+        sql = "DELETE FROM karta_parkingowa where id_karta_parkingowa=" + idKarty;
+        
+        System.out.println("XXX "+sql);
+        
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/", "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String dodajKarteParkingowa(KartaParkingowa karta) {
+        Connection c = null;
+        String sql;
+        Statement stmt = null;
+        sql = "INSERT INTO karta_parkingowa(\n"
+                + "            id_karta_parkingowa, id_status_parkingowa, id_lokalizacja_parkingowa, \n"
+                + "            numer_karta_parkingowa)"
+                + "    VALUES ((select max(id_karta_parkingowa)+1 from karta_parkingowa), "
+                + "(select id_karta_parkingowa_statusy from karta_parkingowa_statusy where status_karta_parkingowa_statusy ilike('" + karta.getId_status_parkingowa() + "')), "
+                + "(select id_lokalizacja from lokalizacja where nazwa_lokalizacja ilike('" + karta.getId_lokalizacja_parkingowa() + "')), "
+                + "'" + karta.getNumer_karta_parkingowa() + "');";
+                
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/", "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            System.out.println("dodawanie karty parkingowej "+sql);
+            stmt.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "dodano";
+    }
 }

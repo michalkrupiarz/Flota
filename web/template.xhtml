@@ -101,6 +101,27 @@
 
                         </ul>
                     </div>
+                    <div class="col-sm-3">
+                        <ul class="nav nav-tabs">
+
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                   Karta parkingowa <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Dodaj Karte Parkingowa" action="#{kartaParkingowaDodaj.wyswietlDodajKarteParkingowa()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Usun Karte Paliwowa" action="#{kartaParkingoweWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li>Edytuj Samochód</li>
+                                    <li>Wyszukaj Samochód</li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
                     <br/>
                     <br/>
                     <ui:insert name="body">Content</ui:insert>

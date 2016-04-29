@@ -35,7 +35,7 @@ public class KartaParkingoweWyswietl{
     DataModel listaParkingowychWyszukanych;
     private KartaParkingowa usuwaneParkingowej = new KartaParkingowa();
     DataModel listaParkingowychNowa;
-    private List<Roznice> listaRoznicPaliwowe = new ArrayList<Roznice>();
+    private List<Roznice> listaRoznicParkingowe = new ArrayList<Roznice>();
     private KartaParkingowa aktualneParkingowa = new KartaParkingowa();
     private KartaParkingowa wyedytowaneParkingowa = new KartaParkingowa();
     private KartaParkingowa ParkingowaDoWyszukania = new KartaParkingowa();
@@ -85,12 +85,12 @@ public class KartaParkingoweWyswietl{
         this.numerParkingowejBlad = numerParkingowejBlad;
     }
 
-    public List<Roznice> getListaRoznicPaliwowe() {
-        return listaRoznicPaliwowe;
+    public List<Roznice> getListaRoznicParkingowe() {
+        return listaRoznicParkingowe;
     }
 
-    public void setListaRoznicPaliwowe(List<Roznice> listaRoznicPaliwowe) {
-        this.listaRoznicPaliwowe = listaRoznicPaliwowe;
+    public void setListaRoznicParkingowe(List<Roznice> listaRoznicParkingowe) {
+        this.listaRoznicParkingowe = listaRoznicParkingowe;
     }
     /**
      * Metoda do wywolywania strony z wyszukana karta paliwowa
@@ -146,7 +146,7 @@ public class KartaParkingoweWyswietl{
             if (listaRoznic.isEmpty()) {
                 return "parkingowaWidok";
             } else {
-                listaRoznicPaliwowe = Roznice.stworzListeRoznic(aktKartaPark, wyedKartaPark, listaRoznic, listaPol);
+                listaRoznicParkingowe = Roznice.stworzListeRoznic(aktKartaPark, wyedKartaPark, listaRoznic, listaPol);
                 context.execute("PF('dlg1').show();");
                 return "parkingowaWybrana";
             }
@@ -163,7 +163,7 @@ public class KartaParkingoweWyswietl{
     }
       public String zapiszWyedytowanaKarte(){
        //do dodania funkcja nie usuwac
-        //KartaParkingowaZapytania.zapiszWyedytowanaKarteParkingowa(wyedytowaneParkingowa); 
+        KartaParkingowaZapytania.zapiszWyedytowanaKarteParkingowa(wyedytowaneParkingowa); 
         return "parkingowaWidok";
     }
     
@@ -176,7 +176,7 @@ public class KartaParkingoweWyswietl{
     
     public String potwierdzUsuniecieKarty(){
         //do dodania funkcja nie usuwac
-        //KartaParkingowaZapytania.usunKarteParkingowa(usuwaneParkingowej.getId_karta_parkingowa());
+        KartaParkingowaZapytania.usunKarteParkingowa(usuwaneParkingowej.getId_karta_parkingowa());
         return "parkingowaWidok";
     }
 

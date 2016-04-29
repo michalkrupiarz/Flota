@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+
+        <style>
+
+            tr.ui-widget-content {
+                border-width: none;
+            }
+        </style>  
+    </h:head>
+
+    <ui:composition template="./template.xhtml">
+
+        <ui:define name="top">
+
+        </ui:define>    
+
+        <ui:define name="body">      
+            <br/>
+            <hr></hr>
+            <h:form id="formId">
+                <br/>
+                <p:growl id="growl" showDetail="true" sticky="true" />
+                <table class="table table-hover">
+
+                    <tr>                     
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Numer karty parkingowej
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_nr_karty" 
+                                           editor="true" 
+                                           label="#{kartaParkingoweWyswietl.wyedytowaneParkingowa.numer_karta_parkingowa}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_nr_karty"/>
+                                   
+                                    <p:inputText value="#{kartaParkingoweWyswietl.wyedytowaneParkingowa.numer_karta_parkingowa}"
+                                                 id="nr_karty" 
+                                                 required="true"
+                                                 requiredMessage="Nie podano numeru karty.">     
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <h:message id="brak_nr_karty" 
+                                       for="nr_karty"></h:message>                 
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Lokalizacja karty parkingowej
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_lok_karta" 
+                                           editor="true" 
+                                           label="#{kartaParkingoweWyswietl.wyedytowaneParkingowa.id_lokalizacja_parkingowa}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_lok_karty"/>
+                                    <h:selectOneMenu value="#{kartaParkingoweWyswietl.wyedytowaneParkingowa.id_lokalizacja_parkingowa}"
+                                                     id="lok_karty" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano lokalizacji."
+                                                     >
+                                        <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
+                                                       itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_lok_karty" 
+                                            for="lok_karty"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Status karty parkingowej
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_status_karty" 
+                                           editor="true" 
+                                           label="#{kartaParkingoweWyswietl.wyedytowaneParkingowa.id_status_parkingowa}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_statusu_karty"/>
+                                    <h:selectOneMenu value="#{kartaParkingoweWyswietl.wyedytowaneParkingowa.id_status_parkingowa}"
+                                                     id="status_karty" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano statusu karty."
+                                                     >
+                                        <f:selectItems value="#{kartaParkingowaStatusyZapytania.listaKartaParkingowaStatusy}" var="lok"
+                                                        itemLabel="#{lok.status}" itemValue="#{lok.status}"/>
+
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_statusu_karty" 
+                                            for="status_karty"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                PIN karty.
+                            </p>
+                        </td>
+                        
+                    </tr>
+                    
+                </table>
+                <hr></hr>
+                <br/>
+                <br/>
+            </h:form>
+            <h:form>
+                <h:commandButton  value="Zatwierdz edycje" action="#{kartaParkingoweWyswietl.weryfikacjaDanych()}" ></h:commandButton>
+            </h:form>
+            <p:dialog header="Potwierdzenie edycji" widgetVar="dlg1" minHeight="40"  width="500" modal="true">
+                <h:form id="confirmSaveDialog">
+
+                    <br/>
+
+                    <p:dataTable var="roznice" value="#{kartaParkingoweWyswietl.listaRoznicParkingowe}" >
+                        <p:column headerText="Nazwa pola">
+                            <h:outputText value="#{roznice.nazwaPola}"/>
+                        </p:column>
+                        <p:column headerText="Wartość oryginalna">
+                            <h:outputText value="#{roznice.wartoscWzor}"/>
+                        </p:column>
+                        <p:column headerText="Wartość wyedytowana">
+                            <h:outputText value="#{roznice.wartoscKopia}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <br/>
+
+                    <h:commandButton action="#{kartaParkingoweWyswietl.zapiszWyedytowanaKarte()}" value="Potwierdz edycje"/>
+
+
+                </h:form>
+            </p:dialog>
+            
+        </ui:define>
+        <ui:define name="bottom">
+            <h:form>
+                <Button type="button" class="btn btn-default btn-sm">
+                    <p:commandButton action="#{kartaParkingoweWyswietl.goToIndex()}" value="Powrot" class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></p:commandButton> 
+                </Button>
+            </h:form>
+        </ui:define>  
+
+    </ui:composition>    
+</html>
