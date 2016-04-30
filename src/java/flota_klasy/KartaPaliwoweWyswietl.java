@@ -169,7 +169,7 @@ public class KartaPaliwoweWyswietl {
     
     public String potwierdzUsuniecieKarty(){
         KartaPaliwowaZapytania.usunKartePaliwowa(usuwanePaliwowej.getId_karta_paliwowa());
-        return "ubezpieczeniaWidok";
+        return "paliwowaWidok";
     }
 
 }

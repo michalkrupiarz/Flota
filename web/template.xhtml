@@ -74,8 +74,8 @@
                                     <li><h:form><Button type="button" class="btn btn-default btn-sm">
                                                 <h:commandButton value="Usun ubezpieczenie" action="#{ubezpieczeniaWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
                                                 </h:commandButton></Button></h:form></li>
-                                    <li>Edytuj Samochód</li>
-                                    <li>Wyszukaj Samochód</li>
+                                    <li>Edytuj Ubezpieczenie</li>
+                                    <li>Wyszukaj Ubezpieczenie</li>
                                 </ul>
                             </li>
 
@@ -94,8 +94,8 @@
                                     <li><h:form><Button type="button" class="btn btn-default btn-sm">
                                                 <h:commandButton value="Usun Karte Paliwowa" action="#{kartaPaliwoweWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
                                                 </h:commandButton></Button></h:form></li>
-                                    <li>Edytuj Samochód</li>
-                                    <li>Wyszukaj Samochód</li>
+                                    <li>Edytuj Karte Paliwowa</li>
+                                    <li>Wyszukaj Karte Paliwowa</li>
                                 </ul>
                             </li>
 
@@ -115,8 +115,31 @@
                                     <li><h:form><Button type="button" class="btn btn-default btn-sm">
                                                 <h:commandButton value="Usun Karte Paliwowa" action="#{kartaParkingoweWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
                                                 </h:commandButton></Button></h:form></li>
-                                    <li>Edytuj Samochód</li>
-                                    <li>Wyszukaj Samochód</li>
+                                    <li>Edytuj Karte Parkingowa</li>
+                                    <li>Wyszukaj Karte Parkingowa</li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <ul class="nav nav-tabs">
+
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                   Pracownik <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Dodaj Parcownika" action="#{kartaParkingowaDodaj.wyswietlDodajKarteParkingowa()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Usun Pracownika" action="#{kartaParkingoweWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
+                                    <li>Edytuj Pracownika</li>
+                                    <li><h:form><Button type="button" class="btn btn-default btn-sm">
+                                                <h:commandButton value="Wyswietl pracownikow" action="#{pracownikWyswietl.goToIndex()}" class="btn-link" id="wyswietldodajSamochod">
+                                                </h:commandButton></Button></h:form></li>
                                 </ul>
                             </li>
 

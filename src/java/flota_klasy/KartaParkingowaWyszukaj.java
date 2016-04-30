@@ -44,14 +44,10 @@ public class KartaParkingowaWyszukaj {
                     + "where id_karta_parkingowa is not null";
 
             if (!parkingowa.getId_status_parkingowa().isEmpty()) {
-                sql = sql + " and karta_parkingowa.id_status_parkingowa ="
-                        + "(select karta_parkingowa_statusy.id_karta_parkingowa_statusy from karta_parkingowa_statusy "
-                        + "where karta_parkingowa_statusy.status_karta_parkingowa_statusy ilike ('" + parkingowa.getId_status_parkingowa() + "'))";
+                sql = sql + " and karta_parkingowa_statusy.status_karta_parkingowa_statusy ilike ('" + parkingowa.getId_status_parkingowa() + "'))";
             }
             if (!parkingowa.getId_lokalizacja_parkingowa().isEmpty()) {
-                sql = sql + " and karta_parkingowa.id_lokalizacja_parkingowa ="
-                        + "(select lokalizacja.id_lokalizacja from lokalizacja"
-                        + " where lokalizacja.nazwa_lokalizacja ilike ('" + parkingowa.getId_lokalizacja_parkingowa() + "'))";
+                sql = sql + " and lokalizacja.nazwa_lokalizacja ilike ('" + parkingowa.getId_lokalizacja_parkingowa() + "'))";
             }
             if (!parkingowa.getNumer_karta_parkingowa().isEmpty()) {
                 sql = sql + " and karta_parkingowa.numer_karta_parkingowa ilike('" + parkingowa.getNumer_karta_parkingowa() + "')";

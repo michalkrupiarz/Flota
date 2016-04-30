@@ -45,14 +45,10 @@ public class KartaPaliwowaWyszukaj {
                     + "where id_karta_paliwowa is not null";
 
             if (!paliwowa.getId_status_paliwowa().isEmpty()) {
-                sql = sql + " and karta_paliwowa.id_status_paliwowa ="
-                        + "(select karta_paliwowa_statusy.id_karta_paliwowa_statusy from karta_paliwowa_statusy "
-                        + "where karta_paliwowa_statusy.status_karta_paliwowa_statusy ilike ('" + paliwowa.getId_status_paliwowa() + "'))";
+                sql = sql + " karta_paliwowa_statusy.status_karta_paliwowa_statusy ilike ('" + paliwowa.getId_status_paliwowa() + "'))";
             }
             if (!paliwowa.getId_lokalizacja_paliwowa().isEmpty()) {
-                sql = sql + " and karta_paliwowa.id_lokalizacja_paliwowa ="
-                        + "(select lokalizacja.id_lokalizacja from lokalizacja"
-                        + " where lokalizacja.nazwa_lokalizacja ilike ('" + paliwowa.getId_lokalizacja_paliwowa() + "'))";
+                sql = sql + " and  lokalizacja.nazwa_lokalizacja ilike ('" + paliwowa.getId_lokalizacja_paliwowa() + "'))";
             }
             if (!paliwowa.getNumer_Karty().isEmpty()) {
                 sql = sql + " and karta_paliwowa.numer_karty ilike('" + paliwowa.getNumer_Karty() + "')";

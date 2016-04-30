@@ -15,22 +15,22 @@ public class Pracownik {
     private String haslo;
     private String imie;
     private String nazwisko;
-    private int id_stanowisko;
-    private int id_dzial;
-    private int id_lokalizacja;
+    private String id_stanowisko;
+    private String id_dzial;
+    private String id_lokalizacja;
     private String mail;
-    private int tel_stac;
-    private int tel_kom;
-    private int id_samochod;
+    private String tel_stac;
+    private String tel_kom;
+    private String id_samochod;
     private int id_import;
-    private int id_uprawnienia;
+    private String id_uprawnienia;
     private String imieNazwisko;
     
     public Pracownik(){
         
     }
 
-    public Pracownik(long id_pracownik, String login, String haslo, String imie, String nazwisko, int id_stanowisko, int id_dzial, int id_lokalizacja, String mail, int tel_stac, int tel_kom, int id_samochod, int id_import, int id_uprawnienia) {
+    public Pracownik(long id_pracownik, String login, String haslo, String imie, String nazwisko, String id_stanowisko, String id_dzial, String id_lokalizacja, String mail, String tel_stac, String tel_kom, String id_samochod, int id_import, String id_uprawnienia) {
         this.id_pracownik = id_pracownik;
         this.login = login;
         this.haslo = haslo;
@@ -88,27 +88,27 @@ public class Pracownik {
         this.nazwisko = nazwisko;
     }
 
-    public int getId_stanowisko() {
+    public String getId_stanowisko() {
         return id_stanowisko;
     }
 
-    public void setId_stanowisko(int id_stanowisko) {
+    public void setId_stanowisko(String id_stanowisko) {
         this.id_stanowisko = id_stanowisko;
     }
 
-    public int getId_dzial() {
+    public String getId_dzial() {
         return id_dzial;
     }
 
-    public void setId_dzial(int id_dzial) {
+    public void setId_dzial(String id_dzial) {
         this.id_dzial = id_dzial;
     }
 
-    public int getId_lokalizacja() {
+    public String getId_lokalizacja() {
         return id_lokalizacja;
     }
 
-    public void setId_lokalizacja(int id_lokalizacja) {
+    public void setId_lokalizacja(String id_lokalizacja) {
         this.id_lokalizacja = id_lokalizacja;
     }
 
@@ -120,27 +120,27 @@ public class Pracownik {
         this.mail = mail;
     }
 
-    public int getTel_stac() {
+    public String getTel_stac() {
         return tel_stac;
     }
 
-    public void setTel_stac(int tel_stac) {
+    public void setTel_stac(String tel_stac) {
         this.tel_stac = tel_stac;
     }
 
-    public int getTel_kom() {
+    public String getTel_kom() {
         return tel_kom;
     }
 
-    public void setTel_kom(int tel_kom) {
+    public void setTel_kom(String tel_kom) {
         this.tel_kom = tel_kom;
     }
 
-    public int getId_samochod() {
+    public String getId_samochod() {
         return id_samochod;
     }
 
-    public void setId_samochod(int id_samochod) {
+    public void setId_samochod(String id_samochod) {
         this.id_samochod = id_samochod;
     }
 
@@ -152,11 +152,11 @@ public class Pracownik {
         this.id_import = id_import;
     }
 
-    public int getId_uprawnienia() {
+    public String getId_uprawnienia() {
         return id_uprawnienia;
     }
 
-    public void setId_uprawnienia(int id_uprawnienia) {
+    public void setId_uprawnienia(String id_uprawnienia) {
         this.id_uprawnienia = id_uprawnienia;
     }
 
@@ -167,5 +167,9 @@ public class Pracownik {
     public void setImieNazwisko(String imieNazwisko) {
         this.imieNazwisko = imieNazwisko;
     }
+    @Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
     
 }

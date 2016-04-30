@@ -45,14 +45,14 @@ public class PracownikZapytania {
                 lok.setHaslo(rs.getString("haslo"));
                 lok.setImie(rs.getString("imie"));
                 lok.setNazwisko(rs.getString("nazwisko"));
-                lok.setId_stanowisko(rs.getInt("id_stanowisko"));
-                lok.setId_dzial(rs.getInt("id_dzial"));
-                lok.setId_lokalizacja(rs.getInt("id_lokalizacja"));
+                lok.setId_stanowisko(rs.getString("id_stanowisko"));
+                lok.setId_dzial(rs.getString("id_dzial"));
+                lok.setId_lokalizacja(rs.getString("id_lokalizacja"));
                 lok.setMail(rs.getString("mail"));
-                lok.setTel_stac(rs.getInt("tel_stac"));
-                lok.setTel_kom(rs.getInt("tel_kom"));
+                lok.setTel_stac(rs.getString("tel_stac"));
+                lok.setTel_kom(rs.getString("tel_kom"));
                 lok.setId_import(rs.getInt("id_import"));
-                lok.setId_uprawnienia(rs.getInt("id_uprawnienia"));
+                lok.setId_uprawnienia(rs.getString("id_uprawnienia"));
                 lok.setImieNazwisko(lok.getImie()+" "+lok.getNazwisko());
                 listPracownikow.add(lok);
 
@@ -71,5 +71,35 @@ public class PracownikZapytania {
         }
         
         return listPracownikow;
+    }
+    public static void usunPracownik(Long idPracownika) {
+        Connection c = null;
+        String sql;
+
+        Statement stmt = null;
+        System.out.print("weszklo do tworzenia zapytania");
+        sql = "DELETE FROM pracownik where id_pracownik=" + idPracownika;
+        
+        System.out.println("XXX "+sql);
+        
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/", "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
