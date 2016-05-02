@@ -9,7 +9,7 @@ package flota_klasy;
  *
  * @author M
  */
-public class Pracownik {
+public class Pracownik implements Cloneable{
     private long id_pracownik;
     private String login;
     private String haslo;

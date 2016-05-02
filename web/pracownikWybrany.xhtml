@@ -135,15 +135,17 @@
                         <td class="col-md-4" 
                             style="vertical-align: middle">
                             <p class="text-center">
-                                <p:inplace id="inplace_nazwisko" 
+                                <p:inplace id="inplace_tel_stac" 
                                            editor="true" 
-                                           label="#{pracownikWyswietl.wyedytowanePracownik.nazwisko}" >
+                                           label="#{pracownikWyswietl.wyedytowanePracownik.tel_stac}" >
                                     <p:ajax event="save"  
-                                            update ="brak_nazwisko"/>
-                                    <p:inputText value="#{pracownikWyswietl.wyedytowanePracownik.nazwisko}"
-                                                 id="nazwisko" 
+                                            update ="brak_tel_stac"/>
+                                    <p:inputText value="#{pracownikWyswietl.wyedytowanePracownik.tel_stac}"
+                                                 id="tel_stac" 
                                                  required="false"
-                                                 requiredMessage="Nie podano nazwiska."> 
+                                                 
+                                                 validatorMessage="Podano błędny numer telefonu."> 
+                                        <f:validateRegex pattern="[0-9].{8}" for="tel_stac"/>
                                     </p:inputText> 
                                 </p:inplace>
                             </p>
@@ -151,26 +153,184 @@
                         <td class="col-md-4" 
                             style="vertical-align: middle"> 
                             <p class="text-center">
-                                <h:message  id="brak_nazwisko" 
-                                            for="nazwisko"></h:message>
+                                <h:message  id="brak_tel_stac" 
+                                            for="tel_stac"></h:message>
                             </p>
                         </td>
                     </tr>
-
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Telefon komorkowy
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_tel_kom" 
+                                           editor="true" 
+                                           label="#{pracownikWyswietl.wyedytowanePracownik.tel_kom}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_tel_kom"/>
+                                    <p:inputText value="#{pracownikWyswietl.wyedytowanePracownik.tel_kom}"
+                                                 id="tel_kom" 
+                                                 required="false"
+                                                 
+                                                 validatorMessage="Podano błędny numer telefonu."> 
+                                        <f:validateRegex pattern="[0-9].{8}" for="tel_kom"/>
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_tel_kom" 
+                                            for="tel_kom"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                Mail
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_mail" 
+                                           editor="true" 
+                                           label="#{pracownikWyswietl.wyedytowanePracownik.mail}" >
+                                    <p:ajax event="save"  
+                                            update ="brak_mail"/>
+                                    <p:inputText value="#{pracownikWyswietl.wyedytowanePracownik.mail}"
+                                                 id="mail" 
+                                                 required="false"
+                                                 requiredMessage="Nie podano adresu mailoweg."
+                                                 validatorMessage="Podano błędny adres mailowy."> 
+                                        <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                                    </p:inputText> 
+                                </p:inplace>
+                            </p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_mail" 
+                                            for="mail"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Lokalizacja.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_lokalizacja" 
+                                           editor="true" 
+                                           label="#{pracownikWyswietl.wyedytowanePracownik.id_lokalizacja}">
+                                    <p:ajax event="save"  
+                                            update ="brak_lokalizacja"/>
+                                    <h:selectOneMenu value="#{pracownikWyswietl.wyedytowanePracownik.id_lokalizacja}"
+                                                     id="lokalizacja" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano lokalizacji.">
+                                        <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="item"
+                                                       itemLabel="#{item.nazwa_lokalizacja}" itemValue="#{item.nazwa_lokalizacja}"/>
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_lokalizacja" 
+                                            for="lokalizacja"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Dzial.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_dzial" 
+                                           editor="true" 
+                                           label="#{pracownikWyswietl.wyedytowanePracownik.id_dzial}">
+                                    <p:ajax event="save"  
+                                            update ="brak_dzial"/>
+                                    <h:selectOneMenu value="#{pracownikWyswietl.wyedytowanePracownik.id_dzial}"
+                                                     id="dzial" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano dzialu.">
+                                        <f:selectItems value="#{dzialZapytania.dzialList}" var="item"
+                                                       itemLabel="#{item.nazwa_dzial}" itemValue="#{item.nazwa_dzial}"/>
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_dzial" 
+                                            for="dzial"></h:message>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">Stanowisko.</p>
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle">
+                            <p class="text-center">
+                                <p:inplace id="inplace_stanowisko" 
+                                           editor="true" 
+                                           label="#{pracownikWyswietl.wyedytowanePracownik.id_stanowisko}">
+                                    <p:ajax event="save"  
+                                            update ="brak_stanowisko"/>
+                                    <h:selectOneMenu value="#{pracownikWyswietl.wyedytowanePracownik.id_stanowisko}"
+                                                     id="stanowisko" 
+                                                     required="true"
+                                                     requiredMessage="Nie wybrano stanowiska.">
+                                        <f:selectItems value="#{stanowiskoZapytania.stanowiskoList}" var="item"
+                                                       itemLabel="#{item.nazwa_stanowisko}" itemValue="#{item.nazwa_stanowisko}"/>
+                                    </h:selectOneMenu> 
+                                </p:inplace>
+                            </p>    
+                        </td>
+                        <td class="col-md-4" 
+                            style="vertical-align: middle"> 
+                            <p class="text-center">
+                                <h:message  id="brak_stanowisko" 
+                                            for="stanowisko"></h:message>
+                            </p>
+                        </td>
+                    </tr>
                 </table>
                 <hr></hr>
                 <br/>
                 <br/>
             </h:form>
             <h:form>
-                <h:commandButton  value="Zatwierdz edycje" action="#{kartaParkingoweWyswietl.weryfikacjaDanych()}" ></h:commandButton>
+                <h:commandButton  value="Zatwierdz edycje" action="#{pracownikWyswietl.weryfikacjaDanych()}" ></h:commandButton>
             </h:form>
             <p:dialog header="Potwierdzenie edycji" widgetVar="dlg1" minHeight="40"  width="500" modal="true">
                 <h:form id="confirmSaveDialog">
 
                     <br/>
 
-                    <p:dataTable var="roznice" value="#{kartaParkingoweWyswietl.listaRoznicParkingowe}" >
+                    <p:dataTable var="roznice" value="#{pracownikWyswietl.listaRoznicPracownik}" >
                         <p:column headerText="Nazwa pola">
                             <h:outputText value="#{roznice.nazwaPola}"/>
                         </p:column>
@@ -184,7 +344,7 @@
 
                     <br/>
 
-                    <h:commandButton action="#{kartaParkingoweWyswietl.zapiszWyedytowanaKarte()}" value="Potwierdz edycje"/>
+                    <h:commandButton action="#{pracownikWyswietl.zapiszWyedytowanegoPracownika()}" value="Potwierdz edycje"/>
 
 
                 </h:form>
@@ -194,7 +354,7 @@
         <ui:define name="bottom">
             <h:form>
                 <Button type="button" class="btn btn-default btn-sm">
-                    <p:commandButton action="#{kartaParkingoweWyswietl.goToIndex()}" value="Powrot" class="btn-default btn-sm">
+                    <p:commandButton action="#{pracownikWyswietl.goToIndex()}" value="Powrot" class="btn-default btn-sm">
                         <span class="glyphicon glyphicon-backward"></span></p:commandButton> 
                 </Button>
             </h:form>

@@ -9,7 +9,6 @@ package flota_klasy;
  *
  * @author M
  */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,9 +22,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class PracownikZapytania {
-    public List<Pracownik> getListaPracownik(){
-        Connection c=null;
-        List <Pracownik> listPracownikow = new ArrayList<Pracownik>();
+
+    public List<Pracownik> getListaPracownik() {
+        Connection c = null;
+        List<Pracownik> listPracownikow = new ArrayList<Pracownik>();
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
@@ -33,7 +33,7 @@ public class PracownikZapytania {
                     .getConnection("jdbc:postgresql://localhost:7886/",
                             "postgres", "ponczus21");
             c.setAutoCommit(false);
-           
+
             stmt = c.createStatement();
             String sql = "Select * from pracownik";
             ResultSet rs = stmt.executeQuery(sql);
@@ -53,7 +53,7 @@ public class PracownikZapytania {
                 lok.setTel_kom(rs.getString("tel_kom"));
                 lok.setId_import(rs.getInt("id_import"));
                 lok.setId_uprawnienia(rs.getString("id_uprawnienia"));
-                lok.setImieNazwisko(lok.getImie()+" "+lok.getNazwisko());
+                lok.setImieNazwisko(lok.getImie() + " " + lok.getNazwisko());
                 listPracownikow.add(lok);
 
             }
@@ -62,16 +62,62 @@ public class PracownikZapytania {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        
+
         try {
             c.commit();
             c.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return listPracownikow;
     }
+
+    public static void zapiszPracownik(Pracownik pracownik) {
+        Connection c = null;
+        String sql;
+
+        Statement stmt = null;
+        System.out.print("weszklo do tworzenia zapytania");
+        sql = "UPDATE pracownik\n"
+                + "SET    "
+                + "       login='"+pracownik.getLogin()+"', "
+                + "       haslo='"+pracownik.getHaslo()+"', "
+                + "       imie='"+pracownik.getImie()+"', "
+                + "       nazwisko='"+pracownik.getNazwisko()+"', "
+                + "       id_stanowisko=(select stanowisko.id_stanowisko from stanowisko where stanowisko.nazwa_stanowisko ilike('"+pracownik.getId_stanowisko()+"')), \n"
+                + "       id_dzial=(select dzial.id_dzial from dzial where dzial.nazwa_dzial ilike('"+pracownik.getId_dzial()+"')), "
+                + "       id_lokalizacja=(select lokalizacja.id_lokalizacja from lokalizacja where lokalizacja.nazwa_lokalizacja ilike('"+pracownik.getId_lokalizacja()+"')), "
+                + "       mail='"+pracownik.getMail()+"', "
+                + "       tel_stac='"+pracownik.getTel_stac()+"', "
+                + "       tel_kom='"+pracownik.getTel_kom()+"', \n"
+                + "       id_import='"+pracownik.getId_import()+"', "
+                + "       id_uprawnienia= (select uprawnienia.id_uprawnienia from uprawnienia where uprawnienia.nazwa ilike('"+pracownik.getId_uprawnienia()+"')) \n"
+                + " WHERE id_pracownik = "+pracownik.getId_pracownik();
+
+        System.out.println("XXX " + sql);
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/", "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void usunPracownik(Long idPracownika) {
         Connection c = null;
         String sql;
@@ -79,9 +125,9 @@ public class PracownikZapytania {
         Statement stmt = null;
         System.out.print("weszklo do tworzenia zapytania");
         sql = "DELETE FROM pracownik where id_pracownik=" + idPracownika;
-        
-        System.out.println("XXX "+sql);
-        
+
+        System.out.println("XXX " + sql);
+
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/", "postgres", "ponczus21");

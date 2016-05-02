@@ -32,12 +32,22 @@ public class PracownikWyswietl {
     private Pracownik aktualnePracownik = new Pracownik();
     private Pracownik wyedytowanePracownik = new Pracownik();
     private Pracownik PracownikDoWyszukania = new Pracownik();
-    private boolean numerPracownikBlad = false;
-    private List<String> listaPol = asList("Id",
-            "Status",
-            "Lokalizacja",
-            "Numer Karty",
-            "Pin Karty");
+    private boolean loginPracownikBlad = false;
+    private List<String> listaPol = asList("Id pracownik",
+            "Login",
+            "Hsalo",
+            "Imie",
+            "Nazwisko",
+            "Stanowisko",
+            "Dzial",
+            "Loklizacja",
+            "Mail",
+            "Telefon stacjonarny",
+            "Telefon komorkowy",
+            "Samochod",
+            "id_import",
+            "Uprawnienia",
+            "Imie Nazwisko");
 
     public Pracownik getUsuwanePracownik() {
         return usuwanePracownik;
@@ -71,12 +81,12 @@ public class PracownikWyswietl {
         this.PracownikDoWyszukania = PracownikDoWyszukania;
     }
 
-    public boolean isNumerPracownikBlad() {
-        return numerPracownikBlad;
+    public boolean getLoginPracownikBlad() {
+        return loginPracownikBlad;
     }
 
-    public void setNumerPracownikBlad(boolean numerPracownikBlad) {
-        this.numerPracownikBlad = numerPracownikBlad;
+    public void setLoginPracownikBlad(boolean numerPracownikBlad) {
+        this.loginPracownikBlad = numerPracownikBlad;
     }
 
     public List<Roznice> getListaRoznicPracownik() {
@@ -119,40 +129,40 @@ public class PracownikWyswietl {
     public String weryfikacjaDanych() throws IllegalAccessException, InstantiationException {
 
         List<Integer> listaRoznic = new ArrayList<Integer>();
-        List<Object> aktKartaPal = new ArrayList<Object>();
-        List<Object> wyedKartaPal = new ArrayList<Object>();
+        List<Object> aktPracownik = new ArrayList<Object>();
+        List<Object> wyedPracownik = new ArrayList<Object>();
 
-        if (!aktualnePracownik.getNumer_Karty().equals(wyedytowanePracownik.getNumer_Karty())) {
-            setNumerPracownikBlad(!WeryfikacjaDanych.czyUnikalny("numer_karty", "karta_paliwowa", wyedytowanePracownik.getNumer_Karty()));
+        if (!aktualnePracownik.getLogin().equals(wyedytowanePracownik.getLogin())) {
+            setLoginPracownikBlad(!WeryfikacjaDanych.czyUnikalny("login", "pracownik", wyedytowanePracownik.getLogin()));
         }
-        if (numerPracownikBlad) {
-            saveMessage("Numer karty paliwowej juz wystepuje, podaj inny.");
+        if (loginPracownikBlad) {
+            saveMessage("Login juz istnieje podaj inny");
         }
 
-        if (!numerPracownikBlad) {
+        if (!loginPracownikBlad) {
             RequestContext context = RequestContext.getCurrentInstance();
             for (Field field : aktualnePracownik.getClass().getDeclaredFields()) {
                 field.setAccessible(true); // You might want to set modifier to public first.
                 Object value = field.get(aktualnePracownik);
                 System.out.println("pole " + field.getName() + " wartosc " + value);
-                aktKartaPal.add(value);
+                aktPracownik.add(value);
 
                 Object value2 = field.get(wyedytowanePracownik);
-                wyedKartaPal.add(value2);
+                wyedPracownik.add(value2);
 
             }
             listaRoznic.clear();
-            listaRoznic = WyswietlSamochod.porownajDwieListy(aktKartaPal, wyedKartaPal);
+            listaRoznic = WyswietlSamochod.porownajDwieListy(aktPracownik, wyedPracownik);
             if (listaRoznic.isEmpty()) {
-                return "paliwowaWidok";
+                return "pracownikWidok";
             } else {
-                listaRoznicPracownik = Roznice.stworzListeRoznic(aktKartaPal, wyedKartaPal, listaRoznic, listaPol);
+                listaRoznicPracownik = Roznice.stworzListeRoznic(aktPracownik, wyedPracownik, listaRoznic, listaPol);
                 context.execute("PF('dlg1').show();");
-                return "paliwowaWybrana";
+                return "pracownikWybrany";
             }
 
         } else {
-            return "paliwowaWybrana";
+            return "pracownikWybrany";
         }
 
     }
@@ -162,22 +172,22 @@ public class PracownikWyswietl {
         context.addMessage(null, new FacesMessage(message));
     }
 
-    public String zapiszWyedytowanaKarte() {
+    public String zapiszWyedytowanegoPracownika() {
 
-        PracownikZapytania.zapiszWyedytowanyPracownik(wyedytowanePracownik);
-        return "paliwowaWidok";
+        PracownikZapytania.zapiszPracownik(wyedytowanePracownik);
+        return "pracownikWidok";
     }
 
     public String usunPracownik() {
         usuwanePracownik = (Pracownik) listaPracownikowNowa.getRowData();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('potwierdzUsuwanie').show();");
-        return "paliwowaWidok";
+        return "pracownikWidok";
     }
 
     public String potwierdzUsunieciePracownika() {
         PracownikZapytania.usunPracownik(usuwanePracownik.getId_pracownik());
-        return "ubezpieczeniaWidok";
+        return "pracownikWidok";
     }
 
 }
