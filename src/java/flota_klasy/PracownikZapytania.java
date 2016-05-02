@@ -148,4 +148,51 @@ public class PracownikZapytania {
             e.printStackTrace();
         }
     }
+    public static void dodajPracownika (Pracownik pracownik){
+        Connection c = null;
+        String sql;
+
+        Statement stmt = null;
+        System.out.print("weszklo do tworzenia zapytania");
+        sql = "INSERT INTO pracownik(\n" +
+"            id_pracownik, login, haslo, imie, nazwisko, id_stanowisko, id_dzial, \n" +
+"            id_lokalizacja, mail, tel_stac, tel_kom, id_import, id_uprawnienia)"
+                + "VALUES    "
+                + "         (select max(id_pracownik)+1 from pracownik), "
+                +           pracownik.getLogin()+"', "
+                +           pracownik.getHaslo()+"', "
+                +           pracownik.getImie()+"', "
+                +           pracownik.getNazwisko()+"', "
+                + "         (select stanowisko.id_stanowisko from stanowisko where stanowisko.nazwa_stanowisko ilike('"+pracownik.getId_stanowisko()+"')), \n"
+                + "         (select dzial.id_dzial from dzial where dzial.nazwa_dzial ilike('"+pracownik.getId_dzial()+"')), "
+                + "         (select lokalizacja.id_lokalizacja from lokalizacja where lokalizacja.nazwa_lokalizacja ilike('"+pracownik.getId_lokalizacja()+"')), "
+                +           pracownik.getMail()+"', "
+                +           pracownik.getTel_stac()+"', "
+                +           pracownik.getTel_kom()+"', \n"
+                +           pracownik.getId_import()+"', "
+                + "         (select uprawnienia.id_uprawnienia from uprawnienia where uprawnienia.nazwa ilike('"+pracownik.getId_uprawnienia()+"')) \n";
+               
+
+        System.out.println("XXX " + sql);
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:7886/", "postgres", "ponczus21");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
+
+        try {
+            c.commit();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

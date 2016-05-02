@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="jquery-ui.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="/resources/js/validator.min.js"></script>
+    </head>
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+
+        </ui:define>    
+
+        <ui:define name="body">
+
+            <br/>
+           Podaj dane nowego Pracownika.
+            <hr></hr>
+            <h:form>
+                <br/>
+                <table class="table table-hover" >
+                    <tr>
+                        <td class="col-md-2" style="vertical-align: middle">Imie <span class="glyphicon glyphicon-star" /></td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.imie}" 
+                                                                                         id="imie" 
+                                                                                         required="true" 
+                                                                                         requiredMessage="Nie podano Imienia."/> 
+                        </td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:message  for="imie"></h:message>
+                        </td>
+                        <td class="col-md-2" style="vertical-align: middle">Nazwisko <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nazwisko}" 
+                                                                                         id= "nazwisko" 
+                                                                                         required="true" 
+                                                                                         requiredMessage="Nie podano Nazwiska." /></td>
+                        <td class="col-md-2" style="vertical-align: middle"><h:message  for="nazwisko"></h:message>
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Login <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.login}" 
+                                                          id="login" label="login" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano Loginu."/>
+                        </td>
+                        <td class="col-md-2">
+                            <h:form rendered="#{pracownikDodaj.}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> </td>
+
+                        <td class="col-md-2">Oznaczenie producenta pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.oznaczenie_producenta}" 
+                                                          id="oznaczenie_producenta_pojazdu" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano oznaczenia pojazdu."/></td>
+                        <td class="col-md-2"> <h:message for="oznaczenie_producenta_pojazdu"></h:message></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Rodzaj Paliwa</td>
+                        <td class="col-md-2" >
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.paliwo}" 
+                                             style="color: black; width: fit-content" >
+                                <f:selectItem itemValue="Benzyna" itemLabel="Benzyna"/>
+                                <f:selectItem itemValue="Diesel" itemLabel="Diesel"/>
+                            </h:selectOneMenu> 
+
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                        <td class="col-md-2">Numer rejestracyjny <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nr_rej}" 
+                                                          id="nr_rej" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano numeru rejestracyjnego."/></td>
+                        <td class="col-md-2"><h:message for="nr_rej"></h:message>
+                            <h:form rendered="#{pracownikDodaj.nrRejSamochoduBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer VIN <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nr_vin}" 
+                                                          id="nr_vin" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano numeru VIN."
+                                                          validatorMessage="Podano błędny numer VIN.">
+                                <f:validateRegex pattern="[0-9a-zA-Z].{16}" for="nr_vin"/>
+                            </h:inputText></td>
+                        <td class="col-md-2"><h:message for="nr_vin"></h:message>
+                            <h:form rendered="#{pracownikDodaj.nr_vinBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                </div>
+                            </h:form> 
+                        </td>
+                        <td class="col-md-2">Status Pojazdu</td>
+                        <td class="col-md-2">
+
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_status}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{samochodStatusZapytania.samochodStatusList}" var="lok"
+                                               itemLabel="#{lok.nazwa_samochod_status}" itemValue="#{lok.nazwa_samochod_status}"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Rodzaj Opon <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_opony_satus}" style="color: black; width: fit-content" >
+                                <f:selectItem itemValue="letnie" itemLabel="letnie"/>
+                                <f:selectItem itemValue="zimowe" itemLabel="zimowe"/>
+                            </h:selectOneMenu> </td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Lokalizacja Pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2">
+
+
+
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.idlokalizacja}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaList}" var="lok"
+                                               itemLabel="#{lok.nazwa_lokalizacja}" itemValue="#{lok.nazwa_lokalizacja}"/>
+                            </h:selectOneMenu>
+
+
+
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Lokalizacja Stała Pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2">
+
+
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_lokalizacja_stala}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{lokalizacjaZapytania.lokalizacjaStalaList}" var="lok_st"
+                                               itemLabel="#{lok_st.nazwa_lokalizacja}" itemValue="#{lok_st.nazwa_lokalizacja}"/>
+                            </h:selectOneMenu>
+
+
+
+
+                        </td>                
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Rodzaj Pojazdu <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_rodzaj_pojazdu}" style="color: black; width: fit-content" >
+                                <f:selectItem itemValue="wlasny" itemLabel="wlasny"/>
+                                <f:selectItem itemValue="wypozyczony" itemLabel="wypozyczony"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer Karty Parkingowej</td>
+                        <td class="col-md-2">
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_karta_parkingowa}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{kartaParkingowaZapytania.listaKartParkingowych}" var="kparkingowa"
+                                               itemLabel="#{kparkingowa.numer_karta_parkingowa}" itemValue="#{kparkingowa.numer_karta_parkingowa}"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Numer Karty Paliwowej</td>
+                        <td class="col-md-2">
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_karta_paliwowa}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{kartaPaliwowaZapytania.listaKartPaliwowych}" var="kpaliwowa"
+                                               itemLabel="#{kpaliwowa.numer_Karty}" itemValue="#{kpaliwowa.numer_Karty}"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td class="col-md-2">Pracownik Używajacy</td>
+                        <td class="col-md-2">
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.pracownik_uzywajacy}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{pracownikZapytania.listaPracownik}" var="lok"
+                                               itemLabel="#{lok.imieNazwisko}" itemValue="#{lok.imieNazwisko}"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer Ubezpieczenia</td>
+                        <td class="col-md-2">
+                            Numer Ubezpieczenia powinien zostać dodany przy dodawaniu ubezpieczenia.
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+                        <td class="col-md-2">Pojemność Silnika</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.poj_silnika}" 
+                                                          id="poj_silnika" required="true" 
+                                                          requiredMessage="Nie podano pojemnosci silnika."/></td>
+                        <td class="col-md-2"><h:message for="poj_silnika"></h:message>
+
+                        </td>
+
+                    </tr>
+                    <tr><td class="col-md-2">Rok Produkcji</td>
+                        <td class="col-md-2">
+                            <h:inputText value="#{pracownikDodaj.dodawanyPracownik.rok_produkcji}" 
+                                         id="rok_prod"                
+                                         required="true" 
+                                         requiredMessage="Nie podano roku produkcji."  
+                                         pt:placeholder="rrrr" 
+                                         validatorMessage="Podana wartosc nie odpowiada wzorowi (4 znaki).">                                                                                                                                      
+                                <f:validateRegex pattern="([0-9]).{3}" for="rok_produkcji"    />      
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2"><h:message for="rok_prod"></h:message>
+
+                        </td>
+                        <td class="col-md-2">Data Przyjęcia Do Firmy</td>
+                        <td class="col-md-2">
+                            <h:inputText value="#{pracownikDodaj.dodawanyPracownik.data_przyjecia}" 
+                                         id="data_przyjecia" 
+                                         required="true" 
+                                         requiredMessage="Nie podano daty przyjęcia do firmy."
+                                         pt:placeholder="rrrr-mm-dd"
+                                         validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_przyjecia"/>
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2"> <h:message for="data_przyjecia"></h:message>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">Data Pierwszej Rejestracji</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.data_pierwszej_rejestracji}" 
+                                                          id="data_pierw_rej" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano daty pierwszej rejestracji."
+                                                          pt:placeholder="rrrr-mm-dd"
+                                                          validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="data_pierw_rej"/>
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2">
+                            <h:message for="data_pierw_rej"></h:message>
+                        </td>
+
+                        <td class="col-md-2">Numer GPS</td>
+                        <td class="col-md-2">
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_gps}" style="color: black; width: fit-content">
+                                <f:selectItems value="#{gPSZapytania.GPSList}" var="lok"
+                                               itemLabel="#{lok.gps_numer}" itemValue="#{lok.gps_numer}"/>
+                            </h:selectOneMenu>
+                        </td>
+                        <td class="col-md-2">
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Przebieg</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.kilometry}" 
+                                                          id="przebieg" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano przebiegu."
+                                                          validatorMessage="Podano błędny przebieg.">
+                                <f:validateRegex for="przebieg" pattern="[0-9]+"/>
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2">
+                            <h:message for="przebieg"/>
+                        </td>
+
+                        <td class="col-md-2">Kolor Nadwozia</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.kolor}" id="kolor" required="true" requiredMessage="Nie podano koloru nadwozia."/></td>
+                        <td class="col-md-2">
+                            <h:message for="kolor"/>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Wersja Pojazdu</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.wersja}" id="wersja" required="true" requiredMessage="Nie podano wersji pojazdu."/></td>
+                        <td class="col-md-2">
+                            <h:message for="wersja"/>
+                        </td>
+
+                        <td class="col-md-2">Typ Samochodu</td>
+                        <td class="col-md-2">
+
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_typ_samochodu}"
+                                             style="color: black; width: fit-content" 
+                                             id="typ_samochodu" 
+                                             required="true" 
+                                             requiredMessage="Nie podano typu samochodu">
+                                <f:selectItems value="#{typPojazduZapytania.typPojazduList}" var="tpl"
+                                               itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
+                                <f:validateRegex pattern="[^-]+" for="typ_samochodu"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <td class="col-md-2">
+                            <h:message for="typ_samochodu"/>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">VAT</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.vat}"
+                                                          id="dodaj_Vat"
+                                                          required="true"
+                                                          requiredMessage="Nie podanu VAT."/></td>
+                        <td class="col-md-2">
+                            <h:message for="dodaj_Vat"/>
+                        </td>
+
+                        <td class="col-md-2">Grupa Limit</td>
+                        <td class="col-md-2"><h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_grupa_limit}"
+                                                              style="color: black; width: fit-content" 
+                                                              id="grupa_limit" 
+                                                              required="true" 
+                                                              requiredMessage="Nie podano typu samochodu">
+                                <f:selectItems value="#{grupaLimitZapytania.grupaLimitZapytaniaList}" var="tpl"
+                                               itemLabel="#{tpl.nazwa}" itemValue="#{tpl.nazwa}"/>
+                                <f:validateRegex pattern="[^-]+" for="grupa_limit"/>
+                            </h:selectOneMenu></td>
+                        <td class="col-md-2">
+                            <h:message for="grupa_limit"/>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">Numer Umowy Leasingu</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nr_umowy_leasingu}" 
+                                                          id="nr_leasing" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano numeru leasingu."/></td>
+                        <td class="col-md-2">
+                            <h:message for ="nr_leasing"/><h:form rendered="#{pracownikDodaj.nr_umowy_leasingBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer leasingu juz istnieje.
+                                </div>
+                            </h:form> 
+                        </td>
+
+                        <td class="col-md-2">Numer Umowy Serwisu</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nr_umowy_serwis}" 
+                                                          id="nr_umowy_serwis" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano numeru umowy serwisu."/></td>
+                        <td class="col-md-2">
+                            <h:message for ="nr_umowy_serwis"/><h:form rendered="#{pracownikDodaj.nr_umowy_serwisBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer umowy serwisowej juz istnieje.
+                                </div>
+                            </h:form> 
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">MPK</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.mpk}" 
+                                                          id="mpk" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano MPK."/></td>
+                        <td class="col-md-2">
+                            <h:message for ="mpk"/>
+                        </td>
+
+                        <td class="col-md-2">Numer Umowy PRV</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.prv_umowa}" 
+                                                          id="prv_umowa" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano nr umowy PRV."/></td>
+                        <td class="col-md-2">
+                            <h:message for="prv_umowa"/>
+                            <h:form rendered="#{pracownikDodaj.prv_umowaBlad}">
+                                <div class="alert alert-danger">
+                                    Taki numer PRV umowy już istnieje, podaj inny.
+                                </div>
+                            </h:form> 
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">Umowa Z Dnia</td>
+                        <td class="col-md-2">
+                            <h:inputText value="#{pracownikDodaj.dodawanyPracownik.umowa_z_dnia}" 
+                                         id="umowa_z_dnia" 
+                                         required="true" requiredMessage="Nie podano daty umowy z dnia."
+                                         pt:placeholder="rrrr-mm-dd"
+                                         validatorMessage="Podano bledną datę.">
+                                <f:validateRegex pattern="[0-9].{3}[-][0-9].{1}[-][0-9].{1}" for="umowa_z_dnia"/>
+                            </h:inputText>
+                        </td>
+
+                        <td class="col-md-2">
+
+                            <h:message for="umowa_z_dnia"/>
+                        </td>
+
+                        <td class="col-md-2">Miejsce Parkingowe</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.miejsce_parkingowe}" 
+                                                          id="miejsce_parkingowe"/></td>
+                        <td class="col-md-2">
+                            <h:message for="miejsce_parkingowe"/>
+                            <h:form rendered="#{pracownikDodaj.prv_umowaBlad}">
+                                <div class="alert alert-danger">
+                                    To miejsce parkingowe jest już przydzielone innemu pojazdowi.
+                                </div>
+                            </h:form>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">Rozmiar Opon</td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.rozmiar_opon}" 
+                                                          id="rozm_opon" 
+                                                          required="true" 
+                                                          requiredMessage="Nie podano rozmiaru opon."
+                                                          validatorMessage="Podany zły rozmiar opon.">
+                                <f:validateRegex pattern = "[0-9].{1}" for = "rozm_opon"/>
+                            </h:inputText></td>
+                        <td class="col-md-2">
+                            <h:message for="rozm_opon"/>
+                        </td>
+                    </tr>
+                </table>
+                <hr></hr>
+
+
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton value="Dodaj Samochod" action="#{pracownikDodaj.pracownikDodaj()}"  class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
+                </Button>
+            </h:form>
+        </ui:define>
+        <ui:define name="bottom">
+            <h:form>
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton value="Powrot" action="#{wyswietlSamochod.pokazWszystkieSamochody()}"  class="btn-default btn-sm">
+                        <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
+                </Button>
+            </h:form>
+
+
+        </ui:define>  
+
+    </ui:composition>
+</html>

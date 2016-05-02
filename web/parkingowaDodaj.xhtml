@@ -33,7 +33,7 @@ and open the template in the editor.
                 <table class="table table-hover" >
                     <tr>
                         <td class="col-md-2" style="vertical-align: middle">Numer karty parkingowej <span class="glyphicon glyphicon-star" /></td>
-                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{kartaParkingowaDodaj.dodawanaKarta.numer_karta_parkingowa}" 
+                        <td class="col-md-2" style="vertical-align: middle"><h:inputText value="#{kartaParkingowaDodawanie.dodawanaKarta.numer_karta_parkingowa}" 
                                                                                              id= "numer_karty" 
                                                                                          required="true" 
                                                                                          requiredMessage="Nie podano numeru karty."  >
@@ -41,14 +41,14 @@ and open the template in the editor.
                             </h:inputText>
                         </td>
                         <td class="col-md-2" style="vertical-align: middle"><h:message  for="numer_karty"></h:message>
-                            <h:form rendered="#{kartaParkingowaDodaj.numerKartyBlad}">
+                            <h:form rendered="#{kartaParkingowaDodawanie.numerKartyBlad}">
                                 <div class="alert alert-danger">
                                    Taki numer karty juz istnieje.
                                 </div>
                             </h:form> 
                         </td>
                         <td class="col-md-2" style="vertical-align: middle">Status karty parkingowej <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2" style="vertical-align: middle"><h:selectOneMenu value="#{kartaParkingowaDodaj.dodawanaKarta.id_status_parkingowa}" 
+                        <td class="col-md-2" style="vertical-align: middle"><h:selectOneMenu value="#{kartaParkingowaDodawanie.dodawanaKarta.id_status_parkingowa}" 
                                                                                          id= "status_karty" 
                                                                                          required="true" 
                                                                                          requiredMessage="Nie podano statusu karty parkingowej."  
@@ -66,7 +66,7 @@ and open the template in the editor.
 
                     <tr>
                         <td class="col-md-2" style="vertical-align: middle">Lokalizacja karty parkingowej <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2" style="vertical-align: middle"><h:selectOneMenu value="#{kartaParkingowaDodaj.dodawanaKarta.id_lokalizacja_parkingowa}" 
+                        <td class="col-md-2" style="vertical-align: middle"><h:selectOneMenu value="#{kartaParkingowaDodawanie.dodawanaKarta.id_lokalizacja_parkingowa}" 
                                                                                          id= "lokalizacja_karty" 
                                                                                          required="true" 
                                                                                          requiredMessage="Nie podano lokalizacji karty parkingowej."  
@@ -90,7 +90,7 @@ and open the template in the editor.
 
 
                 <Button type="button" class="btn btn-default btn-sm">
-                    <h:commandButton value="Dodaj Karte Parkingowa" action="#{kartaParkingowaDodaj.dodajKarte()}"  class="btn-default btn-sm">
+                    <h:commandButton value="Dodaj Karte Parkingowa" action="#{kartaParkingowaDodawanie.dodajKarte()}"  class="btn-default btn-sm">
                         <span class="glyphicon glyphicon-backward"></span></h:commandButton> 
                 </Button>
             </h:form>
