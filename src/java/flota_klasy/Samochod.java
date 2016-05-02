@@ -59,12 +59,7 @@ public class Samochod implements Cloneable{
     private String pracownik_uzywajacy;
     private String id_ubezpieczenia;
 
-   
-   
-    
-   
-
-    
+     
 
     public String getNazwa() {
         return nazwa;
