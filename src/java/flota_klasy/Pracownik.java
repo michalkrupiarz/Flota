@@ -92,7 +92,7 @@ public class Pracownik implements Cloneable{
         return id_stanowisko;
     }
 
-    public void setId_stanowisko(String id_stanowisko) {
+    public void setId_st(String id_stanowisko) {
         this.id_stanowisko = id_stanowisko;
     }
 

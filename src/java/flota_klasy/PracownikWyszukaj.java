@@ -69,7 +69,7 @@ public class PracownikWyszukaj {
                 pracownik.setHaslo(rs.getString("haslo"));
                 pracownik.setImie(rs.getString("imie"));
                 pracownik.setNazwisko(rs.getString("nazwisko"));
-                pracownik.setId_stanowisko(rs.getString("stanowisko"));
+                pracownik.setId_st(rs.getString("stanowisko"));
                 pracownik.setId_dzial(rs.getString("dzial"));
                 pracownik.setId_lokalizacja(rs.getString("lokalizacja"));
                 pracownik.setTel_stac(rs.getString("tel_stac"));
@@ -113,8 +113,7 @@ public class PracownikWyszukaj {
                     + "	join stanowisko on stanowisko.id_stanowisko = pracownik.id_stanowisko\n"
                     + "	join dzial on dzial.id_dzial = pracownik.id_dzial\n"
                     + "	join lokalizacja on lokalizacja.id_lokalizacja = pracownik.id_lokalizacja\n"
-                    + "	join uprawnienia on uprawnienia.id_uprawnienia = pracownik.id_uprawnienia;\n"
-                    + "	";
+                    + "	join uprawnienia on uprawnienia.id_uprawnienia = pracownik.id_uprawnienia;\n";
 
             System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
@@ -127,7 +126,7 @@ public class PracownikWyszukaj {
                 pracownik.setHaslo(rs.getString("haslo"));
                 pracownik.setImie(rs.getString("imie"));
                 pracownik.setNazwisko(rs.getString("nazwisko"));
-                pracownik.setId_stanowisko(rs.getString("stanowisko"));
+                pracownik.setId_st(rs.getString("stanowisko"));
                 pracownik.setId_dzial(rs.getString("dzial"));
                 pracownik.setId_lokalizacja(rs.getString("lokalizacja"));
                 pracownik.setTel_stac(rs.getString("tel_stac"));

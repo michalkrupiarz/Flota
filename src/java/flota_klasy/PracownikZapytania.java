@@ -45,7 +45,7 @@ public class PracownikZapytania {
                 lok.setHaslo(rs.getString("haslo"));
                 lok.setImie(rs.getString("imie"));
                 lok.setNazwisko(rs.getString("nazwisko"));
-                lok.setId_stanowisko(rs.getString("id_stanowisko"));
+                lok.setId_st(rs.getString("id_stanowisko"));
                 lok.setId_dzial(rs.getString("id_dzial"));
                 lok.setId_lokalizacja(rs.getString("id_lokalizacja"));
                 lok.setMail(rs.getString("mail"));

@@ -10,6 +10,7 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      
       >
     <head>
         <title>TODO supply a title</title>
@@ -17,6 +18,7 @@ and open the template in the editor.
         <script src="jquery-ui.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
         <script src="/resources/js/validator.min.js"></script>
+        
     </head>
     <ui:composition template="./template.xhtml">
         <ui:define name="top">
@@ -59,63 +61,65 @@ and open the template in the editor.
                                                           requiredMessage="Nie podano Loginu."/>
                         </td>
                         <td class="col-md-2">
-                            <h:form rendered="#{pracownikDodaj.}">
+                            <h:form rendered="#{pracownikDodaj.loginBlad}">
                                 <div class="alert alert-danger">
-                                    Taki numer rejestracyjny już istnieje, podaj inny.
+                                    Taki Login istnieje, podaj inny.
                                 </div>
                             </h:form> </td>
 
-                        <td class="col-md-2">Oznaczenie producenta pojazdu <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.oznaczenie_producenta}" 
-                                                          id="oznaczenie_producenta_pojazdu" 
-                                                          required="true" 
-                                                          requiredMessage="Nie podano oznaczenia pojazdu."/></td>
-                        <td class="col-md-2"> <h:message for="oznaczenie_producenta_pojazdu"></h:message></td>
+                        <td class="col-md-2">Mail <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.mail}" 
+                                                          id="mail" 
+                                                          validatorMessage="Podano błędny adres mailowy."
+                                                          pt:placeholder = "aa@aa.aa">
+                                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                            </h:inputText>
+                        </td>
+                        <td class="col-md-2"> <h:message for="mail"></h:message></td>
                     </tr>
 
                     <tr>
-                        <td class="col-md-2">Rodzaj Paliwa</td>
+                        <td class="col-md-2">Telefon Stacjonarny</td>
                         <td class="col-md-2" >
-                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.paliwo}" 
-                                             style="color: black; width: fit-content" >
-                                <f:selectItem itemValue="Benzyna" itemLabel="Benzyna"/>
-                                <f:selectItem itemValue="Diesel" itemLabel="Diesel"/>
-                            </h:selectOneMenu> 
+                           <h:inputText value="#{pracownikDodaj.dodawanyPracownik.tel_stac}"
+                                                 id="tel_stac" 
+                                                 required="false"
+                                                 
+                                                 validatorMessage="Podano błędny numer telefonu."> 
+                                        <f:validateRegex pattern="[0-9].{8}" for="tel_stac"/>
+                                    </h:inputText> 
 
                         </td>
-                        <td class="col-md-2">
+                       <td class="col-md-2"> <h:message for=tel_stac"></h:message></td>
+
+                        
+
+                        <td class="col-md-2">Telefon Komorkowy</td>
+                        <td class="col-md-2" >
+                            <h:inputText value="#{pracownikDodaj.dodawanyPracownik.tel_kom}"
+                                                 id="tel_kom" 
+                                                 required="false"
+                                                 
+                                                 validatorMessage="Podano błędny numer telefonu."> 
+                                        <f:validateRegex pattern="[0-9].{8}" for="tel_kom"/>
+                                    </h:inputText> 
 
                         </td>
-
-                        <td class="col-md-2">Numer rejestracyjny <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nr_rej}" 
-                                                          id="nr_rej" 
-                                                          required="true" 
-                                                          requiredMessage="Nie podano numeru rejestracyjnego."/></td>
-                        <td class="col-md-2"><h:message for="nr_rej"></h:message>
-                            <h:form rendered="#{pracownikDodaj.nrRejSamochoduBlad}">
-                                <div class="alert alert-danger">
-                                    Taki numer rejestracyjny już istnieje, podaj inny.
-                                </div>
-                            </h:form> </td>
+                       <td class="col-md-2"> <h:message for=tel_kom"></h:message></td>
 
                     </tr>
 
                     <tr>
-                        <td class="col-md-2">Numer VIN <span class="glyphicon glyphicon-star"/></td>
-                        <td class="col-md-2"><h:inputText value="#{pracownikDodaj.dodawanyPracownik.nr_vin}" 
-                                                          id="nr_vin" 
-                                                          required="true" 
-                                                          requiredMessage="Nie podano numeru VIN."
-                                                          validatorMessage="Podano błędny numer VIN.">
-                                <f:validateRegex pattern="[0-9a-zA-Z].{16}" for="nr_vin"/>
-                            </h:inputText></td>
-                        <td class="col-md-2"><h:message for="nr_vin"></h:message>
-                            <h:form rendered="#{pracownikDodaj.nr_vinBlad}">
-                                <div class="alert alert-danger">
-                                    Taki numer rejestracyjny już istnieje, podaj inny.
-                                </div>
-                            </h:form> 
+                        <td class="col-md-2">Stanowisko <span class="glyphicon glyphicon-star"/></td>
+                        <td class="col-md-2">
+                            <h:selectOneMenu value="#{pracownikDodaj.dodawanyPracownik.id_stanowisko}" style="color: black; width: fit-content"> 
+                                <f:selectItems value="#{stanowiskoZapytania.stanowiskoList}" var="lok"
+                                               itemLabel="#{lok.nazwa_stanowisko}" itemValue="#{lok.nazwa_stanowisko}"/>
+                            </h:selectOneMenu>               
+                               
+                            </td>
+                        <td class="col-md-2">
+                            
                         </td>
                         <td class="col-md-2">Status Pojazdu</td>
                         <td class="col-md-2">

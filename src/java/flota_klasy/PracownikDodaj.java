@@ -28,8 +28,17 @@ public class PracownikDodaj {
     }
     
     private boolean loginBlad = false;
-     
 
+    public boolean isLoginBlad() {
+        return loginBlad;
+    }
+
+    public void setLoginBlad(boolean loginBlad) {
+        this.loginBlad = loginBlad;
+    }
+     
+    
+    
     public String wywietldodajPracownik() {
         return "dodajPracownik";
     }
