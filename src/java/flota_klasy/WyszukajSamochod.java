@@ -67,128 +67,129 @@ public class WyszukajSamochod {
                 
                 + "where samochod.id_samochod is not null\n";
 
-        if (!przekazanySamochod.getModel().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getModel()) ) {
             sql = sql + " and samochod.model ilike('" + przekazanySamochod.getModel() + "')\n";
         }
 
-        if (!przekazanySamochod.getId_status().isEmpty()) {
+        
+
+        if (!emptyOrNull(przekazanySamochod.getId_status())) {
             sql = sql + " and samochod.model ilike('" + przekazanySamochod.getId_status()+ "')\n";
         }
 
-        if (!przekazanySamochod.getPracownik_uzywajacy().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getPracownik_uzywajacy())){
             sql = sql + " and concat(pracownik.imie ,' ', pracownik.nazwisko) ilike ('" + przekazanySamochod.getPracownik_uzywajacy() + "')\n";
         }
 
-        if (!przekazanySamochod.getNr_rej().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getNr_rej())){
             sql = sql + " and samochod.nr_rej ilike('" + przekazanySamochod.getNr_rej() + "')\n";
         }
 
-        if (!przekazanySamochod.getIdlokalizacja().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getIdlokalizacja())) {
             sql = sql + " and lokalizacja.nazwa_lokalizacja ilike ('" + przekazanySamochod.getIdlokalizacja() + "')\n";
         }
 
-        if (!przekazanySamochod.getNazwa().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getNazwa())) {
             sql = sql + " and samochod.nazwa ilike('" + przekazanySamochod.getNazwa() + "')\n";
         }
 
-        if (!przekazanySamochod.getId_opony_satus().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_opony_satus())) {
             sql = sql + " and opony_status.nazwa_opony_status ilike('" + przekazanySamochod.getId_opony_satus() + "')\n";
         }
 
-        if (!przekazanySamochod.getOznaczenie_producenta().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getOznaczenie_producenta())) {
             sql = sql + " and samochod.oznaczenie_producenta ilike('" + przekazanySamochod.getOznaczenie_producenta() + "')\n";
         }
 
-        if (!przekazanySamochod.getNr_vin().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getNr_vin())) {
             sql = sql + " and samochod.nr_vin ilike('" + przekazanySamochod.getNr_vin() + "')\n";
         }
 
-        if (!przekazanySamochod.getMarka().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getMarka())) {
             sql = sql + " and samochod.marka ilike('" + przekazanySamochod.getMarka() + "')\n";
         }
-        if (!przekazanySamochod.getPaliwo().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getPaliwo())) {
             sql = sql + " and samochod.paliwo ilike('" + przekazanySamochod.getPaliwo() + "')\n";
         }
-        if (!przekazanySamochod.getId_lokalizacja_stala().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_lokalizacja_stala())) {
             sql = sql + " and lokalizacja.nazwa_lokalizacja ilike('" +przekazanySamochod.getId_lokalizacja_stala() + "')\n";
         }
-        if (!przekazanySamochod.getId_rodzaj_pojazdu().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_rodzaj_pojazdu())) {
             sql = sql + " and rodzaj_pojazdu.nazwa ilike('" + przekazanySamochod.getId_rodzaj_pojazdu() + "')\n";
         }
-        if (!przekazanySamochod.getId_karta_parkingowa().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_karta_parkingowa())) {
             sql = sql + " and karta_parkingowa.numer_karta_parkingowa ilike('" + przekazanySamochod.getId_karta_parkingowa() + "')\n";
         }
-        if (!przekazanySamochod.getId_karta_paliwowa().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_karta_paliwowa())) {
             sql = sql + " and karta_paliwowa.numer_karty ilike('" + przekazanySamochod.getId_karta_paliwowa() + "')\n";
         }
-        if (przekazanySamochod.getPrzebieg_calkowity().matches("[0-9]+")) {
+        if (przekazanySamochod.getPrzebieg_calkowity()!= null && przekazanySamochod.getPrzebieg_calkowity().matches("[0-9]+")) {
             sql = sql + " and samochod.przebieg_calkowity =('" + Double.parseDouble(przekazanySamochod.getPrzebieg_calkowity()) + "')\n";
         } //dla tabeli kilometry
-        if (!przekazanySamochod.getId_ubezpieczenia().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_ubezpieczenia())) {
             sql = sql + " and ubezpieczenie.numer_polisy ilike('" + przekazanySamochod.getId_ubezpieczenia() + "')\n";
         }
-        if (!przekazanySamochod.getPoj_silnika().isEmpty() ) {
+        if (!emptyOrNull(przekazanySamochod.getPoj_silnika())) {
             sql = sql + " and samochod.poj_silnika ilike('" + przekazanySamochod.getPoj_silnika() + "')\n";
         }
 
-        if (przekazanySamochod.getRok_produkcji().matches("[0-9]+")) {
+        if (przekazanySamochod.getRok_produkcji()!= null && przekazanySamochod.getRok_produkcji().matches("[0-9]+")) {
             sql = sql + " and samochod.rok_produkcji = ('" + Integer.parseInt(przekazanySamochod.getRok_produkcji()) + "')\n";
         }
 
-        if (przekazanySamochod.getData_przyjecia().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
+        if (przekazanySamochod.getData_przyjecia()!=null && przekazanySamochod.getData_przyjecia().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
             sql = sql + " and samochod.data_przyjecia = ('" + przekazanySamochod.getData_przyjecia() + "')\n";
         }
-        if (przekazanySamochod.getData_pierwszej_rejestracji().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
+        if (przekazanySamochod.getData_pierwszej_rejestracji()!=null && przekazanySamochod.getData_pierwszej_rejestracji().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
             sql = sql + " and samochod.data_przyjecia = ('" + przekazanySamochod.getData_pierwszej_rejestracji() + "')\n";
         }
-        if (!przekazanySamochod.getId_gps().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_gps())) {
             sql = sql + "and gps.gps_numer ilike ('" + przekazanySamochod.getId_gps() + "')\n";
         }
 
-        if (przekazanySamochod.getKilometry().matches("[0-9]+")) {
+        if (przekazanySamochod.getKilometry()!=null && przekazanySamochod.getKilometry().matches("[0-9]+")) {
             sql = sql + "and samochod.kilometry =('" + Double.parseDouble(przekazanySamochod.getKilometry()) + "')\n";
         }
-        if (!przekazanySamochod.getKolor().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getKolor())) {
             sql = sql + "and samochod.kolor ilike('" + przekazanySamochod.getKolor()  + "')\n";
         }
-        if (!przekazanySamochod.getWersja().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getWersja())) {
             sql = sql + "and samochod.wersja ilike ('" + przekazanySamochod.getWersja() + "')\n";
         }
-        if (!przekazanySamochod.getId_typ_samochodu().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_typ_samochodu())) {
             sql = sql + "and typ_samochod.nazwa ilike('" + przekazanySamochod.getId_typ_samochodu() + "')\n";
         }
 
-        if (!przekazanySamochod.getVat().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getVat())) {
             sql = sql + "and samochod.vat ilike('" + przekazanySamochod.getVat() + "')\n";
         }
-        if (!przekazanySamochod.getId_grupa_limit().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getId_grupa_limit()) ){
             sql = sql + "and grupa_limit.nazwa ilike('" + przekazanySamochod.getId_grupa_limit() + "')\n";
         }
-        if (!przekazanySamochod.getNr_umowy_leasingu().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getNr_umowy_leasingu())) {
             sql = sql + "and samochod.nr_umowy_leasingu ilike ('" + przekazanySamochod.getNr_umowy_leasingu() + "')\n";
         }
-        if (!przekazanySamochod.getNr_umowy_serwis().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getNr_umowy_serwis())) {
             sql = sql + "and samochod.nr_umowy_serwis ilike ('" + przekazanySamochod.getNr_umowy_serwis() + "')\n";
         }
 
-        if (!przekazanySamochod.getMpk().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getMpk())) {
             sql = sql + "and samochod.mpk ilike('" + przekazanySamochod.getMpk() + "')\n";
         }
-        if (!przekazanySamochod.getPrv_umowa().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getPrv_umowa())) {
             sql = sql + "and samochod.prv_umowa ilike ('" + przekazanySamochod.getPrv_umowa() + "')\n";
         }
 
-        if (przekazanySamochod.getUmowa_z_dnia().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
+        if (przekazanySamochod.getUmowa_z_dnia()!=null && przekazanySamochod.getUmowa_z_dnia().matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]")) {
             sql = sql + "and samochod.umowa_z_dnia =('" + przekazanySamochod.getUmowa_z_dnia() + "')\n";
         }
-        if (!przekazanySamochod.getMiejsce_parkingowe().isEmpty()) {
+        if (!emptyOrNull(przekazanySamochod.getMiejsce_parkingowe())) {
             sql = sql + "and samochod.miejsce_parkingowe ilike ('" + przekazanySamochod.getMiejsce_parkingowe() + "')\n";
         }
 
-        if (przekazanySamochod.getRozmiar_opon().matches("[0-9]+")) {
+        if (przekazanySamochod.getRozmiar_opon()!=null && przekazanySamochod.getRozmiar_opon().matches("[0-9]+")) {
             sql = sql + "and samochod.rozmiar_opon =('" + Double.parseDouble(przekazanySamochod.getRozmiar_opon()) + "')\n";
         }
-
         
 
         try {
@@ -351,5 +352,9 @@ public class WyszukajSamochod {
             System.exit(0);
         }
         return listaSamochodow;
+    }
+    
+    private static boolean emptyOrNull(String s){
+        return s==null || s.trim().isEmpty();
     }
 }
