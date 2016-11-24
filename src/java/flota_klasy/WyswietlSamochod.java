@@ -264,6 +264,10 @@ public class WyswietlSamochod {
 
         return "wyszukaneSamochody";
     }
+    
+    public String wyszukajSamochodDoWypozyczenia(){
+        return "samochodyZnalezioneDoWypozyczenia";
+    }
 
     public DataModel getWyswietlWszystkieSamochody() {
         listaSamochodowNowa = new ListDataModel(WyszukajSamochod.getListaSamochodowNowa());

@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <ui:composition template="./template.xhtml">
+        <ui:define name="top">
+        </ui:define>
+        <ui:define  name= "body">
+            <h:form>
+                
+                <div class="row">                          
+                   Wypozyczenie pojazdu
+                </div>
+                <br/>
+                <div class ="row">
+                    <div class="col-sm-3">
+                        <label  for="podaj_model_label">Model</label>
+                        <h:inputText class="input-sm" id="podaj_model" value="#{wyswietlSamochod.wyszukanySamochod.model}"></h:inputText>
+                    </div>
+                    <div class="col-sm-3">
+                        <label  for="podaj_nr_rej_label">Numer rejestracyjny</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_nr_rej" value="#{wyswietlSamochod.wyszukanySamochod.nr_rej}"></h:inputText>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label  for="podaj_lokalizacja_label">Lokalizacja</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_lokalizacja" value="#{wyswietlSamochod.wyszukanySamochod.idlokalizacja}"></h:inputText>
+                    </div>
+                </div>
+                <div class="row">        
+                    <div class="col-sm-3">
+                        <label  for="marka_label">Marka</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_marke" value="#{wyswietlSamochod.wyszukanySamochod.marka}"></h:inputText>
+                    </div>
+                    <div class="col-sm-3">
+                        <label  for="paliwo_label">Rodzaj Paliwa</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_paliwo" value="#{wyswietlSamochod.wyszukanySamochod.paliwo}"></h:inputText>
+                    </div>
+                    <div class="col-sm-3">
+                        <label  for="marka_label">Lokalizacja Stala</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_lokalizacje_stala" value="#{wyswietlSamochod.wyszukanySamochod.id_lokalizacja_stala}"></h:inputText>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label  for="rodzaj_label">Rodzaj Samochodu</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_rodzaj_samochodu" value="#{wyswietlSamochod.wyszukanySamochod.id_rodzaj_pojazdu}"></h:inputText>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label  for="podaj_status_label">Dostępność</label>
+                        <h:inputText size="50" class="input-sm" id="podaj_status" value="#{wyswietlSamochod.wyszukanySamochod.id_status}"></h:inputText>
+                    </div>
+                </div>
+                <div class="row">      
+                    <div class="col-sm-3">
+                        <label  for="wersja_label">Wersja pojazdu</label>
+                        <h:inputText size="50" class="input-sm" id="wersja" value="#{wyswietlSamochod.wyszukanySamochod.wersja}"></h:inputText>
+                    </div>
+                    <div class="col-sm-3">
+                        <label  for="id_typ_pojazdu">Typ pojazdu</label>
+                        <h:inputText size="50" class="input-sm" id="id_typ_pojazdu" value="#{wyswietlSamochod.wyszukanySamochod.id_typ_samochodu}"></h:inputText>
+                    </div>                                 
+                </div>
+                <br/><br/> 
+                <Button type="button" class="btn btn-default btn-sm">
+                    <h:commandButton id="submit" value="Szukaj" action="#{wyswietlSamochod.wyszukajSamochod()}" class ="btn-default">
+                        <span class="glyphicon glyphicon-search"></span></h:commandButton>
+                </Button>
+            </h:form>
+            <hr></hr>
+            <h:form>
+                <h:dataTable value="#{wyswietlSamochod.wyswietlwyszukanySamochod}" var="item" class="table table-hover table-striped">
+                    <h:column>
+    			<f:facet name="header">
+    				L.p.
+    			</f:facet>
+    				<h:outputText value="#{item.id_samochod}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Model
+    			</f:facet>
+                        <h:outputText value="#{item.model}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Nr rejestracyjny
+    			</f:facet>
+                        <h:outputText value="#{item.nr_rej}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Nazwa
+    			</f:facet>
+                        <h:outputText value="#{item.nazwa}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Dostępność
+    			</f:facet>
+                        <h:outputText value="#{item.id_status}"/>
+                    </h:column>
+                     <h:column>
+    			<f:facet name="header">
+    				Lokalizacja
+    			</f:facet>
+                         <h:outputText value = "#{item.lokalizacja}"/>
+                    </h:column>
+                    <h:column>
+    			<f:facet name="header">
+    				Pracownik
+    			</f:facet>
+                        <h:outputText value="#{item.pracownik_uzywajacy}"/>
+                    </h:column>
+                     <h:column>
+                         <Button type="button" class="btn btn-default btn-sm">
+                             <h:commandButton value="Przegladaj" action="#{wyswietlSamochod.pokazSamochod()}" class="btn-primary" id="Przegladaj" >
+                            <span class="glyphicon glyphicon-search"></span></h:commandButton>
+                         </Button>
+                    </h:column>
+                     
+                </h:dataTable>
+            </h:form>
+       
+
+      
+    </ui:define>
+    </ui:composition>
+</html>
