@@ -6,8 +6,11 @@
 package flota_klasy;
 
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -24,9 +27,29 @@ import org.primefaces.context.RequestContext;
 @ManagedBean
 @SessionScoped
 public class WyswietlSamochod {
-
+    private String rodzajWypozyczenia;
     private String growlMessage;
+    private Date dataStart;
+    private Date dataStop;
 
+    public Date getDataStart() {
+        return dataStart;
+    }
+
+    public void setDataStart(Date dataStart) {
+        this.dataStart = dataStart;
+    }
+
+    public Date getDataStop() {
+        return dataStop;
+    }
+
+    public void setDataStop(Date dataStop) {
+        this.dataStop = dataStop;
+    }
+
+   
+    
     public String getGrowlMessage() {
         return growlMessage;
     }
@@ -34,6 +57,15 @@ public class WyswietlSamochod {
     public void setGrowlMessage(String growlMessage) {
         this.growlMessage = growlMessage;
     }
+
+    public String getRodzajWypozyczenia() {
+        return rodzajWypozyczenia;
+    }
+
+    public void setRodzajWypozyczenia(String rodzajWypozyczenia) {
+        this.rodzajWypozyczenia = rodzajWypozyczenia;
+    }
+    
     private boolean nazwaSamochoduBlad = false;
     private boolean NrRejSamochoduBlad = false;
     private boolean nr_umowy_leasingBlad = false;
@@ -50,11 +82,15 @@ public class WyswietlSamochod {
     Samochod samochod;
     private Samochod usuwanySamochod = new Samochod();
     private Samochod wyszukanySamochod = new Samochod();
-
-    private Samochod aktualnySamochod = new Samochod();
-
+    private Samochod aktualnySamochod = new Samochod(); 
     private Samochod wyedytowanySamochod = new Samochod();
+    private Samochod wypozyczanySamochod = new Samochod();
+    
+    private Wypozyczenie wypozyczenie = new Wypozyczenie();
+    
     private List<Object> listaRoznicWzor = new ArrayList<Object>();
+
+    
     private List<Object> listaRoznicKopia = new ArrayList<Object>();
     private List<String> listaPolZRoznicami = new ArrayList<String>();
     private List<String> listaPolDoWyswietlenia = new ArrayList<String>();
@@ -92,6 +128,11 @@ public class WyswietlSamochod {
             "Umowa z dnia.",
             "NR miejsca parkingowego.",
             "Rozmiar opon.");
+    
+    
+    public Wypozyczenie getWypozyczenie() {
+        return wypozyczenie;
+    }
 
     private List<Roznice> listaRoznicSamochod = new ArrayList<Roznice>();
 
@@ -223,7 +264,11 @@ public class WyswietlSamochod {
     public Samochod getWyszukanySamochod() {
         return wyszukanySamochod;
     }
-
+    
+    public Samochod getWypozyczanySamochod(){
+        return wypozyczanySamochod;
+    }
+    
     public String pokazWszystkieSamochody() {
 
         return "index";
@@ -435,4 +480,20 @@ public class WyswietlSamochod {
     public String pokazIndex() {
         return "index";
     }
+    public String otworzDialogDodawaniaWypozyczenia(){
+        wypozyczanySamochod = (Samochod) listaSamochodowNowa.getRowData(); 
+        RequestContext context = RequestContext.getCurrentInstance();
+        context.execute("PF('potwWypozczenia').show();");
+        return "samochodyZnalezioneDoWypozyczenia";   
+    }
+    
+    public String dodajWypozyczenie() throws ParseException{
+        
+        java.sql.Timestamp sql = new java.sql.Timestamp(dataStart.getTime());
+        wypozyczenie.setData_przyjecia_zlecenia(sql);
+        System.err.println(dataStart);
+        System.out.println(wypozyczenie.getData_przyjecia_zlecenia());
+        return  "samochodyZnalezioneDoWypozyczenia";
+    }
+   
 }

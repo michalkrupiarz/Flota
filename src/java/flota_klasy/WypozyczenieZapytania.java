@@ -37,8 +37,8 @@ public class WypozyczenieZapytania {
             while (rs.next()){
                 Wypozyczenie wypozyczenie = new Wypozyczenie();
                 wypozyczenie.setTresc_zlecenia(rs.getString("tresc_zlecenia"));
-                wypozyczenie.setData_zlecenia(rs.getDate("data_zlecenia"));
-                wypozyczenie.setData_zakonczenia_zlecenia(rs.getDate("data_zakonczenia_zlecenia"));
+                wypozyczenie.setData_zlecenia(rs.getTimestamp("data_zlecenia"));
+                wypozyczenie.setData_zakonczenia_zlecenia(rs.getTimestamp("data_zakonczenia_zlecenia"));
                 listaWypozyczen.add(wypozyczenie);
             }
         }

@@ -5,7 +5,7 @@
  */
 package flota_klasy;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -18,9 +18,9 @@ public class Wypozyczenie {
     private String tresc_zlecenia;
     private String id_zlecajacego;
     private String id_pracownika_realizujacego;
-    private Date data_zlecenia;
-    private Date data_przyjecia_zlecenia;
-    private Date data_zakonczenia_zlecenia;
+    private Timestamp data_zlecenia;
+    private Timestamp data_przyjecia_zlecenia;
+    private Timestamp data_zakonczenia_zlecenia;
     private String id_pojazdu;
     private String id_pracownika_wypozyczajacego;
     private String id_lokalizacja;
@@ -34,9 +34,9 @@ public class Wypozyczenie {
      String tresc_zlecenia,
      String id_zlecajacego,
      String id_pracownika_realizujacego,
-     Date data_zlecenia,
-     Date data_przyjecia_zlecenia,
-     Date data_zakonczenia_zlecenia,
+     Timestamp data_zlecenia,
+     Timestamp data_przyjecia_zlecenia,
+     Timestamp data_zakonczenia_zlecenia,
      String id_pojazdu,
      String id_pracownika_wypozyczajacego,
      String id_lokalizacja){
@@ -93,29 +93,31 @@ public class Wypozyczenie {
         this.id_pracownika_realizujacego = id_pracownika_realizujacego;
     }
 
-    public Date getData_zlecenia() {
+    public Timestamp getData_zlecenia() {
         return data_zlecenia;
     }
 
-    public void setData_zlecenia(Date data_zlecenia) {
+    public void setData_zlecenia(Timestamp data_zlecenia) {
         this.data_zlecenia = data_zlecenia;
     }
 
-    public Date getData_przyjecia_zlecenia() {
+    public Timestamp getData_przyjecia_zlecenia() {
         return data_przyjecia_zlecenia;
     }
 
-    public void setData_przyjecia_zlecenia(Date data_przyjecia_zlecenia) {
+    public void setData_przyjecia_zlecenia(Timestamp data_przyjecia_zlecenia) {
         this.data_przyjecia_zlecenia = data_przyjecia_zlecenia;
     }
 
-    public Date getData_zakonczenia_zlecenia() {
+    public Timestamp getData_zakonczenia_zlecenia() {
         return data_zakonczenia_zlecenia;
     }
 
-    public void setData_zakonczenia_zlecenia(Date data_zakonczenia_zlecenia) {
+    public void setData_zakonczenia_zlecenia(Timestamp data_zakonczenia_zlecenia) {
         this.data_zakonczenia_zlecenia = data_zakonczenia_zlecenia;
     }
+
+    
 
     public String getId_pojazdu() {
         return id_pojazdu;
